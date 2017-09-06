@@ -1,0 +1,47 @@
+<div>
+	limit of field : <input type="integer" name="limit" id="limit" value="10" onchange="update()"><br/>
+	name : <input type="text" name="name" id="name" value="" onchange="update()"><br/>
+	answer : <input type="text" name="answer" id="answer" value="" onchange="update()"><br/>
+	question id : <input type="text" name="iddQuestion" id="iddQuestion" value="" onchange="update()"><br/>
+</div>
+
+<div id="champ"></div>
+<div id="test"></div>
+
+<script>
+	onload=update();
+
+	function update() {
+		var research = "http://localhost:1337/answer/";
+
+		if (document.getElementById("limit").value){
+			research += "?limit=" + document.getElementById("limit").value;
+		}
+		if (document.getElementById("name").value){
+			research += "&name=" + document.getElementById("name").value;
+		}
+		if (document.getElementById("answer").value){
+			research += "&content=" + document.getElementById("answer").value;
+		}
+		if (document.getElementById("iddQuestion").value){
+			research += "&numero=" + document.getElementById("iddQuestion").value;
+		}
+
+		var apiContent = new XMLHttpRequest();
+		apiContent.open("GET", research, false);
+		apiContent.send(null);
+
+		var r = JSON.parse(apiContent.response);
+		var n = (Math.floor((Math.random() * 100) + 1))%r.length;
+		var output = "";
+
+		for (i = 0; i < r.length; i++) {
+
+			output += r[i].name + " -- " + r[i].content + " -- "+ r[i].numero + "<br/>";
+		}
+		document.getElementById("champ").innerHTML = output;
+
+	}
+
+</script>
+

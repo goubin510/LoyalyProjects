@@ -1,0 +1,140 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="stylesheet" type="text/css" href="/font.css">
+
+<dom-module id="question-app">
+  <template>
+    <style>
+    #menu {
+      float: left;
+      width: 50px;
+    }
+
+    .menuOption {
+      display: block;
+      width: 50px;
+      height: 50px;
+
+      background-color: white;
+      color: grey;
+
+      box-shadow: 1px 1px 3px grey;
+      font-size: 15px;
+    }
+
+    .home {
+      background-color: #6d89a0;
+      color: white;
+    }
+
+    button {
+      border-style: none;
+      background-color: white;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
+      border-bottom: 1px solid #ccc;
+    }
+
+    li:last-child {
+      border: none;
+    }
+
+    li paper-button {
+      text-decoration: none;
+      color: #000;
+      display: block;
+    }
+
+    li paper-button:hover {
+      background: #f6f6f6;
+    }
+    #questionList, #questionEdit {
+      vertical-align: middle;
+      display: inline-block;
+      margin-left: 10px;
+      width: 190px;
+    }
+    paper-button, paper-input{
+      display: inline-block;
+    }
+    </style>
+
+    <div id="menu">
+      <a href="#/dashboard/customers">
+        <button class="menuOption home">
+          <iron-icon icon="icons:home"></iron-icon>
+        </button>
+      </a>
+
+      <a href="#/categories">
+        <button class="menuOption">
+          <iron-icon icon="icons:apps"></iron-icon>
+        </button>
+      </a>
+
+      <a href="#/search">
+        <button class="menuOption">
+          <iron-icon icon="icons:search"></iron-icon>
+        </button>
+      </a>
+    </div>
+
+    <div id="questionList">
+      <ul>
+        <li><paper-button on-tap="reac" data="{{test}}">add +</paper-button></li>
+        <li><paper-button on-tap="reac" data="{{testun}}">question 1</paper-button></li>
+        <li><paper-button on-tap="reac" data="{{testdeux}}">question 2</paper-button></li>
+      </ul>
+    </div>
+
+    <div id="questionEdit">
+      <paper-input label="Question edit" value={{questionValue}}></paper-input>
+      <paper-button>Save</paper-button>
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'question-app',
+      properties: {
+        connId: {
+          type: String,
+          value: "57d2c67d6165141b3d842987",
+        },
+        test: {
+          type: String,
+          value: 'add +',
+        },
+        testun: {
+          type: String,
+          value: 'question 1',
+        },
+        testdeux: {
+          type: String,
+          value: 'question 2',
+        },
+        questionValue: {
+          type: String,
+        },
+      },
+      reac: function(evt){
+        if(evt.currentTarget.data != 'add +')
+          this.questionValue = evt.currentTarget.data;
+        else
+          this.questionValue = '';
+      },
+    });
+  </script>
+</dom-module>

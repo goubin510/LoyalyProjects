@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Question Test</title>
+<style>
+body {
+	text-align: center;
+	background-color: #dfbf9f;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+	margin: 0.67em 0;
+	margin-top: 0;
+	margin-bottom: 0.5rem;
+	font-weight: 500;
+	line-height: 1.1;
+	color: inherit;
+	font-size: 2.5rem;
+}
+
+p {
+	orphans: 3;
+	widows: 3;
+}
+
+input {
+	font: inherit;
+	overflow: visible;
+	margin: 0;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	margin: 0;
+	line-height: inherit;
+	border-radius: 0;
+}
+
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+input:-moz-focusring {
+	outline: 1px dotted ButtonText;
+}
+
+.jumbotron {
+	padding: 2rem 1rem;
+	margin-bottom: 2rem;
+	background-color: #eceeef;
+	border-radius: 0.3rem;
+}
+
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+	<div class="jumbotron">
+	<h1>please, give us your id :</h1>
+	<form action="file:///Users/antoinegoubin/Documents/stage%20EI/built/onlineTest/index.html" onsubmit="idCheck()">
+		<input type="text" id="userId">
+		<input type="submit" value="send">
+	</form>
+	</div>
+</div>
+</body>
+</html>
+
+<script>
+	
+function idCheck() {
+	if(!getCookie('userId')){
+		document.cookie = "messageEx = 0";
+	 	document.cookie = "userId = " + document.getElementById('userId').value;
+	 }
+}
+
+function getCookie(cName) {
+  var name = cName + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0; i<ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+</script>

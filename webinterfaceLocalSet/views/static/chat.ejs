@@ -1,0 +1,47 @@
+<link rel="stylesheet" type="text/css" media="screen" href="https://cdn.conversejs.org/css/converse.min.css">
+<script src="https://cdn.conversejs.org/dist/converse.min.js"></script>
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>Chat page</h1>
+  </div>
+</div>
+
+<script>
+
+var room='tagada';
+
+
+    require(['converse'], function (converse) {
+        converse.initialize({
+            allow_muc_invitations: false, // Doesn't make sense to allow because only
+                                          // roster contacts can be invited
+            allow_contact_requests: false, // Contacts from other servers cannot,
+                                           // be added and anonymous users don't
+                                           // know one another's JIDs, so disabling.
+            allow_muc: false,
+            authentication: 'anonymous',
+            auto_login: true,
+            auto_join_rooms: [
+                room + '@conference.nomnom.im',
+            ],
+            bosh_service_url: 'https://conversejs.org/http-bind/', // Please use this connection manager only for testing purposes
+            jid: 'nomnom.im', // XMPP server which allows anonymous login (doesn't
+                              // allow chatting with other XMPP servers).
+            keepalive: true,
+            hide_muc_server: true, // Federation is disabled, so no use in
+                                   // showing the MUC server.
+            play_sounds: true,
+            show_controlbox_by_default: false,
+            strict_plugin_dependencies: false,
+            debug: true,
+            visible_toolbar_buttons: {
+                call: false,
+                clear: true,
+                emoticons: false,
+                toggle_occupants: false
+            }
+        });
+    });
+
+</script>

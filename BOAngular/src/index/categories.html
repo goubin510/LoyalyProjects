@@ -1,0 +1,21 @@
+<div ng-controller="categoriesCtrl as current">
+	<div class="catMenu">
+		<div ng-repeat="mainCat in msg">
+			<button class="mainCat" ng-click="current.displaySubTab(mainCat.name)">{{mainCat.name}}</button>
+
+			<div ng-repeat="subCat in mainCat.array" ng-show="mainCat.name==mainTabData">
+				<button class="subCat" ng-click="current.displayListTab(subCat.name)">{{subCat.name}}</button>
+
+				<div ng-repeat="listCat in subCat.array" ng-show="subCat.name==subTabData">
+					<button class="listCat" id="{{listCat._id}}" ng-click="current.list(listCat._id)">{{listCat.name}}</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="selectedContent">
+		<div class="listContent" ng-repeat="productsList in listData">
+			<button ng-click="current.goToProduct(productsList._id)">{{productsList.name}}</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Beauty Website</title>
+  <script src="app.js"></script>
+  <link rel="stylesheet" type="text/css" href="appCss.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <style>
+    .nav, footer{
+      position: fixed;
+      display: block;
+      top: 0;
+      width: 100%;
+      margin: 0px;
+      margin-left: -8px;
+
+      background-color: black;
+      color: white;
+    }
+
+    footer {
+      bottom: 0px;
+      position: static;
+      padding: 25px;
+      margin-bottom: -8px;
+    }
+
+    h1{
+      display: block;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    h5{
+      display: inline-block;
+
+      text-align: center;
+      margin-right: 5px;
+      font-weight: 100;
+
+
+      padding: 5px;
+      padding-bottom: 10px;
+      margin-bottom: 0px;
+    }
+
+    h5:hover{
+      color: purple;
+      background-color: white;
+    }
+
+    #cat {
+      margin: auto;
+      text-align: center;
+    }
+
+    #primer{
+      display: block;
+      position: static;
+
+      margin-left: -8px;
+      margin-right: -8px;
+      margin-top: 150px; 
+      margin-bottom: 0px;
+    }
+
+    #primer img {
+      width: 100%;
+      height: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: 100;
+      color: black;
+      font-size: 18px;
+    }
+
+    #secondi {
+      display: block;
+      position: static;
+
+      background-color: white;
+      margin-top: -5px;
+      padding: 10px;
+
+      margin-left: -8px;
+      margin-right: -8px;
+    }
+
+    #pictures {
+      display: block;
+      position: static;
+
+      width: 80%;
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+
+    #eachPicture {
+      display: inline-block;
+      position: static;
+
+      width: 49%;
+
+      margin: auto;
+    }
+
+    #eachPicture img {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      margin: auto;
+    }
+
+    .legend {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 100;
+      color: grey;
+    }
+
+    a:hover {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <h1>Beauty</h1>
+
+    <div id="cat">
+      <h5>NEW</h5>
+      <h5>MAKEUP</h5>
+      <h5>SKIN</h5>
+      <h5>CARE</h5>
+      <h5>ACCESSORIES</h5>
+      <h5>BEST</h5>
+      <h5>SELLERS</h5>
+      <h5>TRENDSETTERS</h5>
+      <h5>STORES</h5>
+      <h5>PROMO</h5>
+    </div>
+  </div>
+
+  <div id="primer">
+    <img src="http://d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/uk/hp-responsive/2016/Launch_3DHydraLipgloss_HPdesktop-2-EN/original/Launch_3DHydraLipgloss_HPdesktop-2-EN.jpg">
+  </div>
+
+  <div id="secondi">
+    <h2>TRENDING NOW</h2>
+
+    <div id="pictures">
+      <div id="eachPicture">
+        <img src="https://pixabay.com/static/uploads/photo/2015/08/24/00/26/eyeshadow-903987_960_720.jpg">
+        <p class="legend">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+      </div>
+
+      <div id="eachPicture">
+        <img src="https://pixabay.com/static/uploads/photo/2015/08/24/00/26/eyeshadow-903987_960_720.jpg">
+        <p class="legend">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © Loyaly, All rights reserved.
+  </footer>
+
+  <div id="chat"></div>
+  <div id="presentation" class="modal"></div>
+  <a href='#' onclick='chatCall()' class="circle">Chat</a> 
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

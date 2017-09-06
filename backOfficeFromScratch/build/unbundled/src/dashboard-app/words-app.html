@@ -1,0 +1,34 @@
+<html><head><link rel="import" href="../../bower_components/polymer/polymer.html">
+
+</head><body><dom-module id="words-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      div {
+        height: 80vh;
+
+        margin-left: 260px;
+      }
+
+      #main {
+        display: block;
+        margin-right: 10px;
+        width: 100%;
+        height: 100%;
+      }
+
+    </style>
+
+    <div id="plop">
+      <iframe src="http://54.171.115.230/ldagraph/results.html" id="main">
+        <p>Your browser does not support iframes.</p>
+      </iframe>
+    </div>
+  </template>
+
+  <script>Polymer({is:"words-app"});</script>
+</dom-module>
+</body></html>

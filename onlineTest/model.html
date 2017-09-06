@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Beauty Quizz</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <style type="text/css">
+        body {
+            text-align: center;
+            background-color: #D7F5EE;
+            font-family: 'Montserrat', sans-serif;
+            color: #004438;
+        }
+
+        h1 {
+            margin: 0.67em 0;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            line-height: 1.1;
+            font-size: 2.5rem;
+        }
+
+        #start, #question, #rating, #finish, #approved, #rejected {
+            display: block;
+            margin: auto;
+            text-align: left;
+            color: #24292C;
+            width: 400px;
+            margin-bottom: 1rem;
+        }
+
+        #question, #rating, #finish, #approved, #rejected {
+            display: none;
+        }
+
+        .jumbotron {
+            margin: auto;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+            background-color: #eceeef;
+            border-radius: 0.3rem;
+        }
+
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .log, .top {
+            display: block;
+            background-color: #EDF8F5;
+            color: #528175;
+
+            border-radius: 5px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #CEE6DE;
+
+            margin: auto;
+            width: 50%;
+        }
+
+        .top {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            background-color: #EDF8F5;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .jumbotron {
+            background-color: white;
+            margin: 0px;
+        }
+
+        button {
+            background-color: #E7457A;
+            color: white;
+
+            border-style: none;
+            border-radius: 5px;
+            padding: 7px;
+            padding-right: 20px;
+            padding-left: 20px;
+
+            font-size: 20px;
+            font-family: "Montserrat";
+
+        }
+
+        input {
+            background-color: #E9F4F1;
+            margin-left: 33%;
+            height: 20px;
+            font: inherit;
+            color: #578579;
+
+            border-radius: 5px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #CEE6DE;        
+        }
+
+        .checking {
+            display: inline-block;
+        }
+
+        input:focus {
+            outline-color: #CEE6DE;
+        }
+
+        #finish{
+            text-align: center;
+        }
+
+    </style>
+    -------------------------------------------------------------------------------------------------------------
+    <script>
+        var requestBase = "http://54.171.115.230:8080/survey";
+        var start = true;
+        var status = "start";
+        var ratingInput = true;
+        var ratingType = "c";
+        var redir = "";
+
+        function next(){//---------------------------------------------------------------------------------------
+            if(status == "start"){
+                var data = {};
+                data.userId = document.getElementById("userIdInput").value;
+                localStorage.userId = document.getElementById("userIdInput").value;
+
+                var chatApi = new XMLHttpRequest();
+                chatApi.open("POST", requestBase);
+                chatApi.setRequestHeader("Content-Type", "application/json");
+                chatApi.send(JSON.stringify(data));
+
+                chatApi.onreadystatechange = function () {
+                  if (chatApi.readyState == 4 && chatApi.status == 200) {
+                    analyse(JSON.parse(chatApi.responseText));
+                  }
+                }
+            }else if(status == "testing"){
+                var oRadio = document.forms[0].elements["choice"];
+                var selected;
+                for(var i = 0; i < oRadio.length; i++)
+                {
+                   if(oRadio[i].checked)
+                   {
+                      selected = oRadio[i].value;
+                   }
+                }
+
+                var data = {};
+                data.userId = localStorage.userId;
+                data.message = selected;
+                data.testId = (document.forms[0].value || "none");
+                var request = requestBase + "/" + localStorage.sessionId;
+
+                var chatApi = new XMLHttpRequest();
+                chatApi.open("POST", request);
+                chatApi.setRequestHeader("Content-Type", "application/json");
+                chatApi.send(JSON.stringify(data));
+
+                chatApi.onreadystatechange = function () {
+                  if (chatApi.readyState == 4 && chatApi.status == 200) {
+                      analyse(JSON.parse(chatApi.responseText));
+                  }
+                }
+            }else if(status == "rejected"){
+                status = "finish";
+            }else if(status == "approved"){
+                status = "approved1";
+                document.getElementById("approved").innerHTML = "<p>step1</p>";
+            }else if(status == "approved1"){
+                status = "approved2";
+                document.getElementById("approved").innerHTML = "<p>step1</p>";
+            }else if(status == "approved2"){
+                status = "ongoing";
+                document.getElementById("approved").innerHTML = "<p>step2</p>";
+            }else if(status == "finish"){
+                document.location = redir;
+            }else if(status == "ongoing"){
+                var data = {};
+                data.userId = localStorage.userId;
+                data.questionId = localStorage.questionId;
+                data.answerType = ratingType;
+                if(ratingType == "continue") data.message = document.getElementById("answerCInput").value;
+                
+                var request = requestBase + "/" + localStorage.sessionId;
+
+                var chatApi = new XMLHttpRequest();
+                chatApi.open("POST", request);
+                chatApi.setRequestHeader("Content-Type", "application/json");
+                chatApi.send(JSON.stringify(data));
+
+                chatApi.onreadystatechange = function () {
+                  if (chatApi.readyState == 4 && chatApi.status == 200) {
+                      analyse(JSON.parse(chatApi.responseText));
+                  }
+                }
+            }
+        }
+
+        function analyse(reply){//----------------------------------------------------------------------------------
+            status = reply.status;
+            console.log(reply);
+            
+            if(status == "new"){
+                var data = {};
+                data.userId = localStorage.userId;
+                localStorage.sessionId = reply.sessionId;
+                var request = requestBase + "/" + reply.sessionId;
+
+                var chatApi = new XMLHttpRequest();
+                chatApi.open("POST", request);
+                chatApi.setRequestHeader("Content-Type", "application/json");
+                chatApi.send(JSON.stringify(data));
+
+                chatApi.onreadystatechange = function () {
+                  if (chatApi.readyState == 4 && chatApi.status == 200) {
+                    analyse(JSON.parse(chatApi.responseText));
+                  }
+                }
+            }else if(status == "testing"){
+                document.getElementById("start").style.display = "none";
+                document.getElementById("question").style.display = "block";
+                document.getElementById("questionTitle").innerText = reply.message;
+
+                document.forms[0].value = (reply.testId || "none");
+                document.getElementById("questionForm").innerHTML = "";
+                
+                for(var i = 0; i < reply.options.length; i++){
+                    document.getElementById("questionForm").innerHTML += "<input type='radio' name='choice' class='checking' value='" + reply.options[i].value + "'><p class='answer checking'>" + reply.options[i].value + "</p><br>";
+                }
+            }else if(status == "rejected"){
+                document.getElementById("question").style.display = "none";
+                document.getElementById("rejected").style.display = "block";
+
+            }else if(status == "approved"){
+                document.getElementById("start").style.display = "none";
+                document.getElementById("question").style.display = "none";
+                document.getElementById("approved").style.display = "none";
+                document.getElementById("rejected").style.display = "none";
+                document.getElementById("approved").style.display = "block";
+            }else if(status == "ongoing"){
+                if(!reply.messages){
+                    var data = {};
+                    data.userId = localStorage.userId;
+                    localStorage.sessionId = reply.sessionId;
+                    var request = requestBase + "/" + reply.sessionId;
+
+                    var chatApi = new XMLHttpRequest();
+                    chatApi.open("POST", request);
+                    chatApi.setRequestHeader("Content-Type", "application/json");
+                    chatApi.send(JSON.stringify(data));
+
+                    chatApi.onreadystatechange = function () {
+                      if (chatApi.readyState == 4 && chatApi.status == 200) {
+                        analyse(JSON.parse(chatApi.responseText));
+                      }
+                    }
+                }else{
+                    localStorage.questionId = reply.questionId;
+                    ratingType = "continue";
+                    ratingInput = true;
+                    
+                    document.getElementById("start").style.display = "none";
+                    document.getElementById("question").style.display = "none";
+                    document.getElementById("approved").style.display = "none";
+                    document.getElementById("rejected").style.display = "none";
+                    document.getElementById("rating").style.display = "block";
+                    
+                    document.getElementById("ratingQuestion").innerText = reply.messages;
+                }
+            }else if(reply.final){
+                document.getElementById("start").style.display = "none";
+                document.getElementById("question").style.display = "none";
+                document.getElementById("approved").style.display = "none";
+                document.getElementById("rejected").style.display = "none";
+                document.getElementById("rating").style.display = "none";
+                
+                document.getElementById("finish").style.display = "block";
+                document.getElementById("finish").innerText = reply.message;
+                redir = reply.redurl;
+                status = "finish";
+            }
+        }
+        
+        function rating(val){
+            if(val == "continue"){
+                document.getElementById("answerCInput").style.display = "block";
+                ratingInput = true;
+                ratingType = "continue";
+            }
+            else if(val == "generic"){
+                document.getElementById("answerCInput").style.display = "none";
+                ratingInput = false;
+                ratingType = "generic";
+            }else{
+                document.getElementById("answerCInput").style.display = "none";
+                ratingInput = false;
+                ratingType = "product";
+            }
+        }
+
+        function listening(evt){
+            if(window.event) { // IE                    
+              if(evt.keyCode == 13)
+                next();
+            } else if(evt.which){ // Netscape/Firefox/Opera                   
+              if(evt.which == 13)
+                next();
+            }
+        }
+    </script>
+</head>
+<body>
+---------------------------------------------------------------------------------------------------------------------
+<div class="container">
+	<div class="jumbotron">
+        <h1 id="mainTitle">Beauty Quizz</h1>
+        <div id="start">
+            <p>Hello,<br/>First we'll ask you to answer some question to see if you have the knowledge to keep going with us.</p>
+            <p>please, insert your userId :</p>
+            <input type="text" id="userIdInput" onkeydown="listening(event)" autofocus>
+        </div>
+        
+        <div id="question">
+            <p class="question" id="questionTitle">Do you want some make up ?</p>
+            <form id="questionForm"></form>
+        </div>
+        
+        <div id="approved">
+            <p>Hey,</p>
+            <p>You were approved.</p>
+        </div>
+        
+        <div id="rejected">
+            <p>Hey,</p>
+            <p>You were rejected.</p>
+        </div>
+        
+        <div id="rating">
+            <p class="rating" id="ratingQuestion">What cream do you use in this case ?</p>
+            <form id="ratingForm">
+                <input class="answer checking" type="radio" name="answerType" onchange="rating('continue')"  checked><span>Continue</span>
+                <input class="answer checking" type="radio" name="answerType" onchange="rating('product')"><span>product</span>
+                <input class="answer checking" type="radio" name="answerType" onchange="rating('generic')"><span>generic</span>
+                <input class="answer" type="text" id="answerCInput">
+            </form>
+        </div>
+        
+        <p id="finish">Thanks for your participation</p>
+        
+        <button onclick="next()" id="next">Next</button>
+    </div>
+</div>
+
+</body>
+</html>

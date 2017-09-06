@@ -1,0 +1,6 @@
+{
+  "name": "backOffice",
+  "short_name": "backOffice",
+  "start_url": "/",
+  "display": "standalone"
+}

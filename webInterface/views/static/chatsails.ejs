@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Sails Chat page</h1>
+  </div>
+</div>
+
+<input id="testTest" style="display:none" value="<%= req.session.id %>"></input>
+<p></p>
+<p id="test"></p>
+<div id="chat"></div>
+<div id="bouton"></div>
+
+
+<script>
+
+	onload = function setUp(){
+		var plop = document.getElementById('testTest').value;
+		document.getElementById('test').innerHTML = plop;
+		document.getElementById('bouton').innerHTML = "<button id='chatBtn' class='btn' onclick='afficherChat()'>Chat</button>";
+	}
+
+	function afficherChat(){
+		document.getElementById('chat').innerHTML = "<div id='chatFenetre'><div id='conversation'></div><input type='text' name='message'><button class='btn btn-sm btn-primary'onclick='envoier()'>Envoier</button></div>";
+		document.getElementById('bouton').innerHTML = "<button id='chatBtn' class='btn' onclick='cacherChat()'>Chat</button>"
+	}
+
+	function cacherChat(){
+		document.getElementById('chat').innerHTML = "";
+		document.getElementById('bouton').innerHTML = "<button id='chatBtn' class='btn' onclick='afficherChat()'>Chat</button>"
+	}
+
+	function envoier() {
+
+	}
+</script>
+ 

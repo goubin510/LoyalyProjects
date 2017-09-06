@@ -1,0 +1,93 @@
+<div id="textGoesHere"></div>
+<iframe src="" sandbox name="myFrame" id="urlGoesHere" height="200" width="200" onload="getData();"></iframe>
+
+<script type="text/javascript">
+	var links = [""];
+	var broken = [], working = [];
+
+	var pager = 0;
+	document.getElementById('urlGoesHere').src = "http://www.kikocosmetics.com" + links[pager];
+	
+	document.getElementById('textGoesHere').innerHTML += "[";
+
+	function getData() {
+			//first filter
+			var iframe = window.frames[0].document.body;
+			var deb = iframe.innerHTML.search("select-options-box");
+			var fin = iframe.innerHTML.search("colors-preview");
+
+			if(deb < 0){
+				broken.push(links[pager]);
+				pager ++;
+
+				if(pager < links.length){
+					document.getElementById('urlGoesHere').src = "http://www.kikocosmetics.com" + links[pager];
+				}else{
+					document.getElementById('textGoesHere').innerHTML += "]";
+					alert('done');
+					alert('working adresses : ' + working.toString());
+					alert('not working adresses : ' + broken.toString());
+				}
+
+			}else{
+
+				var tagada = iframe.innerHTML.substring(deb, fin);
+				var finAtribute, atribute = {retinaUrl: '', imgUrl: '', colorName: ''};
+				var Url;
+				var first = true;
+
+				// loop to get adresses
+				do{
+					deb = parseInt(tagada.search('<option')) + 1;
+					tagada = tagada.substring(deb);
+
+						deb = tagada.search('retina') + 8;
+
+						if(tagada[deb + 1] != ' '){
+						tagada = tagada.substring(deb);
+						finAtribute = tagada.search('retina') + 6;
+						atribute.retinaUrl = "http:" + tagada.substring(0, finAtribute);
+						}else{
+							atribute.retinaUrl = "";
+						}
+
+						deb = tagada.search('data-pack-image-desktop') + 'data-pack-image-desktop'.length + 2;
+
+						if(tagada[deb + 1] != ' '){
+						tagada = tagada.substring(deb);
+						finAtribute = tagada.search('product') + 'product'.length;
+						atribute.imgUrl =  "http:" + tagada.substring(0, finAtribute);
+						}else{
+							atribute.imgUrl = "";
+						}
+
+						deb = tagada.search('>') + '>'.length + 1;
+						tagada = tagada.substring(deb);
+						finAtribute = tagada.search('<');
+						atribute.colorName =  tagada.substring(0, finAtribute);
+
+						if(first){
+							document.getElementById('textGoesHere').innerHTML += ",{\"Url\": \" " + links[pager] + " \", \"retinaUrl\": \" " + atribute.retinaUrl + " \", \"imgUrl\": \" " + atribute.imgUrl + " \", \"colorName\": \" " + atribute.colorName + " \", \"colors\":[{\"retinaUrl\": \"\", \"imgUrl\": \"\", \"colorName\": \"\"}";
+							first = false;
+						}
+						else{
+							document.getElementById('textGoesHere').innerHTML += ',' + JSON.stringify(atribute);
+						}
+				}while(tagada.search('<option') >= 0);
+
+					document.getElementById('textGoesHere').innerHTML += "]}"
+
+				working.push(links[pager]);
+				pager++;
+				if(pager < links.length){
+
+					document.getElementById('urlGoesHere').src = "http://www.kikocosmetics.com" + links[pager];
+				}else{
+					document.getElementById('textGoesHere').innerHTML += "]";
+					alert('done');
+					alert('working adresses : ' + working.toString());
+					alert('not working adresses : ' + broken.toString());
+				}
+			}
+	}
+</script>

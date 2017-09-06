@@ -1,0 +1,70 @@
+<input id="testTest" style="display:none" value="<%= req.session.id %>"></input>
+
+<div class="container">
+  <div class="jumbotron">
+    <h1 align="center">API Chat page</h1>
+  </div>
+  <div style="height: 300px; background-color: grey;" id="chatbox"></div>
+
+  <form action="/chat/create" method="POST" align="right">
+    <input type="text" name="name" readonly="true" id="name">
+    <input type="text" name="sessionId" style="display:none" value="<%= req.session.id %>">
+    <input type="text" name="message" placeholder="your message" required="true">
+
+    <input type="submit" class="btn" value="send">
+  </form>
+</div>
+
+<script>
+  var sessionId;
+
+  window.onload = function setUp(){
+
+    sessionId = document.getElementById('testTest').value;
+
+    var testRequest = "https://secret-castle-99611.herokuapp.com/chatsession/?sessionId=" + sessionId;
+    var testContent = new XMLHttpRequest();
+    testContent.open("GET", testRequest, false);
+    testContent.send(null);
+    var test = JSON.parse(testContent.response);
+
+    if(!test.length){
+      var pseudo = prompt("what is your name ?");
+      if(pseudo){
+        document.getElementById('name').value = pseudo;
+      }else {
+        document.getElementById('name').value = "undifined";
+      }
+      var request = "https://secret-castle-99611.herokuapp.com/chatsession/create?sessionId=" + sessionId + "&connected=true";
+      var apiContent = new XMLHttpRequest();
+      apiContent.open("GET", request, false);
+      apiContent.send(null);
+    }else{
+      var request = "https://secret-castle-99611.herokuapp.com/chatsession/update/" + test[0].id + "?connected=true";
+      var apiContent = new XMLHttpRequest();
+      apiContent.open("GET", request, false);
+      apiContent.send(null);
+    }
+    update();
+  }
+
+  function update(){
+    var research = "https://secret-castle-99611.herokuapp.com/chat/?sessionId=" + sessionId;
+    var apiContent = new XMLHttpRequest();
+    apiContent.open("GET", research, false);
+    apiContent.send(null);
+    var r = JSON.parse(apiContent.response);
+    
+    if(r.length){
+      document.getElementById('name').value = r[0].name ;
+      document.getElementById('chatbox').innerHTML = "";
+      for (i = 0; i < r.length; i++) {
+        if(r[i].name == r[0].name){
+          document.getElementById('chatbox').innerHTML += r[i].name + " : " + r[i].message + "<br/>";
+        }else {
+          document.getElementById('chatbox').innerHTML += "-> " + r[i].message + "<br/>";
+        }
+      }
+    }
+  }
+</script>

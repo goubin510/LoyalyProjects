@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <script src='bower_components/angular-tag-cloud/src/ng-tag-cloud.js'></script>
+
+    <link rel="stylesheet" href="bower_components/angular-tag-cloud/src/css/ng-tag-cloud.css">
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <style>
+        body {
+            font: 12px 'Montserrat', sans-serif;
+        }
+        .circle {
+            font-size: 30px;
+
+            height: 60px;
+            width: 60px;
+            padding-top: 13px;
+            margin-top: 20px;
+            margin-right: 10px;
+
+            border-width: 1px;
+            border-style: solid;
+            border-color: #fff;
+            border-radius: 50%;
+        }
+        #content {
+            background-color: #EAEAEA;
+            padding-bottom: 100px;
+        }
+        #title {
+            height: 100px;
+            background-color: #4C4149;
+
+            text-align: center;
+            color: white;
+        }
+        h1 {
+            margin-top: 25px;
+        }
+        #mainBar {
+            height: 100px;
+            background-color: #6989A2;
+
+            color: white;
+        }
+        #mainBar a {
+            color: white;
+            font-size: 20px;
+            text-align: center;
+
+            display: inline-block;
+            background-color: transparent;
+            vertical-align: top;
+
+            border-style: none;
+        }
+        #mainCircle, .mainOption {
+            display: inline-block;
+            margin-left: 25%;
+        }
+        .mainBottom {
+            margin-top: 70px;
+            display: inline-block;
+        }
+        .glyphicon-remove, .glyphicon-search{
+            font-weight: lighter;
+        }
+        .topTab {
+            display: block;
+            text-align: center;
+            background-color: #86ACD1;
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        .dayTabs {
+            color: white;
+            background-color: transparent;
+            border-style: none;
+
+            padding: 10px;
+            margin: 10px;
+        }
+        .displayed {
+            color: #86ACD1;
+            background-color: #6989A2
+        }
+        .homeButton {
+            height: 100px;
+            margin-right: -14px;
+            padding-top: 35px;
+
+            background-color: white;
+            color: #4C4149;
+
+            box-shadow: 1px 1px 3px grey;
+
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .homeButton a {
+            color: #4C4149;
+        }
+        .cat {
+            margin-top: 10px;
+            margin-left: 25%;
+            font-size: 16px;
+            color: #6989A2;
+        }
+        .pageLink {
+            line-height: 30px;
+            margin-left: 27%;
+            font-size: 16px;
+            color: grey;
+        }
+        #insights {
+            margin-right: -14px;
+
+            border-style: solid;
+            border-width: 10px 1px 1px 1px;
+            border-color: #86ACD1 grey grey grey;
+
+            box-shadow: 1px 1px 3px grey;
+        }
+        #loyaly {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: 13%;
+            height: auto;
+        }
+        a:hover, a:link {
+            text-decoration: none;
+        }
+        .mainCat, .subCat, .listCat {
+            border-style: none;
+            background-color: white;
+            height: 40px;
+
+            font-size: 15px;
+        }
+        .mainCat {
+            margin-left: 0px;
+            width: 100%;
+
+            background-color: #6989A2;
+            color: white;
+        }
+        .subCat {
+            margin-left: 10px;
+            color: #6989A2;
+
+            border-style: none none none solid;
+            border-color: black;
+            border-width: 1px;
+        }
+        .listCat {
+            margin-left: 20px;
+
+            border-style: none none none solid;
+            border-color: black;
+            border-width: 1px;
+        }
+        .catMenu {
+            margin-top: 5px;
+            margin-left: -10px;
+            display: inline-block;
+
+            color: grey;
+            background-color: white;
+
+            border-style: none solid none none;
+            border-color: grey;
+            border-width: 1px;
+        }
+        .listContent {
+            display: block;
+            vertical-align: top;
+
+            background-color: white;
+
+            border-style: none none solid none;
+            border-width: 1px;
+            border-color: grey;
+        }
+        .imgBlock {
+            display: inline-block;
+            background-color: white;
+            width: 220px;
+            height: auto;
+
+            margin: 0;
+            margin-top: 10px;
+            margin-left: 7px;
+            padding: 5px;
+            vertical-align: top;
+
+            border-style: solid;
+            border-color: grey;
+            border-width: 1px;
+            border-radius: 0px;
+        }
+        .block, .largeBlock, .tallBlock {
+            display: inline-block;
+            background-color: white;
+            overflow: auto;
+
+            width: 220px;
+            height: 70px;
+
+            margin: 0;
+            margin-top: 10px;
+            margin-left: 7px;
+            padding: 5px;
+            vertical-align: top;
+
+            border-style: solid;
+            border-color: grey;
+            border-width: 1px;
+            border-radius: 0px;
+        }
+        .largeBlock {
+            width: 450px;
+            height: 150px;
+            max-height: 150px;
+        }
+        .tallBlock {
+            height: 248px;
+            overflow: hidden;
+        }
+        hr {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            height: 1px;
+        }
+        .single {
+            display: inline-block;
+            margin: 10px;
+            padding: 5px;
+
+            border-style: solid;
+            border-color: grey;
+            border-width: 1px;
+            border-radius: 0px;
+        }
+        .dropdown {
+            margin: 0;
+            margin-top: 10px;
+            margin-left: 7px;
+            width: 220px;
+
+            background-color: white;
+            border-color: grey;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 0px;
+        }
+        .dropdown-toggle {
+            border-style: none;
+            background-color: white;
+        }
+        .dropdown-menu {
+            max-height: 300px;
+            overflow: auto;
+        }
+        li button {
+            border-style: none;
+            background-color: white;
+        }
+        .card {
+            display: inline-block;
+            vertical-align: top;
+            padding: 0;
+            margin: 0;
+            margin-top: 1%;
+            margin-left: 1%;
+
+            text-align: center;
+
+            overflow: hidden;
+
+            border-color: grey;
+            border-style: solid;
+            border-width: 1px;
+
+            background-color: white;
+            box-shadow: 1px 1px 2px grey;
+        }
+        .mainIntel, .subIntel {
+            vertical-align: middle;
+            color: #6989A2;
+            margin: 0;
+        }
+        .mainIntel {
+            margin-top: 10%;
+            text-align: center;
+            font-size: 100px;
+        }
+        .subIntel {
+            font-size: 30px;
+        }
+        .square {
+            width: 20%;
+            height: 220px;
+        }
+        .large {
+            display: inline-block;
+            width: 70%;
+            height: 220px;
+        }
+        #chart1, #chart4 {
+            max-width: 100%;
+            height: 100%;
+        }
+        #chart2 {
+            text-align: center;
+
+            height: 200px;
+        }
+        .est {
+            float: left;
+            width: 49%;
+            height: 450px;
+        }
+        .medium {
+            width: 41.3%;
+            height: 220px;
+        }
+        .listContent button {
+            border-style: none;
+            background-color: white;
+
+            vertical-align: top;
+        }
+        .catMenu {
+            display: inline-block;
+        }
+        .selectedContent {
+            vertical-align: top;
+            display: inline-block;
+            margin-top: 10px;
+            margin-left: 10px;
+
+            font-size: 16px;
+            width: 50%;
+        }
+        .productMenu {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: #86ACD1;
+
+            display: block;
+            vertical-align: top;
+        }
+        .productTabs {
+            display: inline-block;
+            vertical-align: top;
+        }
+        .searchField {
+            margin: 20px;
+        }
+        .searchField input, .settingInput {
+            margin-left: 20px;
+            background-color: #EAEAEA;
+            padding-bottom: 3px;
+
+            border-width: 1px;
+            border-style: none none solid none;
+        }
+        .searchField input:focus, .settingInput:focus {
+            border-color: #6989A2;
+        }
+        ng-tag-cloud {
+            margin-top: 100px;
+        }
+        quote {
+            display: block;
+            color: grey;
+            font-size: 10px;
+            margin-bottom: 10px;
+        }
+        .tallBlock textarea, .block textarea {
+            border-style: none none solid none;
+            padding-bottom: 2px;
+            width: 90%;
+            height: 90%;
+            resize: none;
+        }
+        .block textarea {
+            height: 50%;
+        }
+        .bottom {
+            vertical-align: bottom;
+        }
+        .update {
+            margin-left: 20%;
+            background-color: #4C4149;
+            color: white;
+        }
+        .single input {
+            border-style: none none solid none;
+            border-width: 1px;
+        }
+        .blockContainer {
+            display: inline-block;
+            width: 220px;
+            margin: 0;
+            padding: 0;
+            vertical-align: top;
+        }
+    </style>
+    <script>
+        var app = angular.module("myApp", ["ngRoute", "ngTagCloud"]);
+        var sessionId = "57d2c67d6165141b3d842987";
+        var product = "";
+        var messages = [];
+        
+        app.config(function($routeProvider) {
+            $routeProvider
+            .when("/", {
+                templateUrl: "src/index/home/customers.html",
+                controller: "customersCtrl"
+            })
+                .when("/home/customers", {
+                    templateUrl: "src/index/home/customers.html",
+                    controller: "customersCtrl"
+                })
+                .when("/home/products", {
+                    templateUrl: "src/index/home/products.html",
+                    controller: "productsCtrl"
+                })
+                .when("/home/words", {
+                    templateUrl: "src/index/home/words.html",
+                    controller: "wordsCtrl"
+                })
+            .when("/categories", {
+                templateUrl: "src/index/categories.html",
+                controller: "categoriesCtrl"
+            })
+            .when("/search", {
+                templateUrl: "src/index/search.html",
+                controller: "searchCtrl"
+            })
+            .when("/cloud", {
+                templateUrl: "src/index/cloud.html",
+                controller: "cloudCtrl"
+            })
+
+            .when("/setting", {
+                templateUrl: "src/index/setting.html",
+                controller: "settingCtrl"
+            })
+            .when("/question", {
+                templateUrl: "src/index/question.html",
+                controller: "questionCtrl"
+            })
+            .when("/product/:id", {
+                templateUrl: "src/index/product.html",
+                controller: "productCtrl"
+            });
+        });
+
+        app.controller("categoriesCtrl", function($scope, $http, $location) {
+            $http.get("http://54.171.115.230:8080/api/v1/entities/" + sessionId + "/categories/tree").then(function(response) {
+                console.log(response.data);
+                $scope.msg = response.data;
+            });
+
+            this.displaySubTab = function(value) {
+                if($scope.mainTabData != value){
+                    $scope.mainTabData = value;
+                    $scope.subTabData = "";
+                }else $scope.mainTabData = "";
+            };
+
+            this.displayListTab = function(value) {
+                if($scope.subTabData != value)
+                    $scope.subTabData = value;
+                else $scope.subTabData = "";
+            };
+
+            this.list = function(value) {
+                $http.get("http://54.171.115.230:8080/api/v1/entities/" + sessionId + "/categories/" + value).then(function(response) {
+                    $scope.listData = response.data.products;
+                });
+            };
+
+            this.goToProduct = function(value) {
+                console.log("plop");
+                $location.url("/product/" + value);
+            };
+        });
+        app.controller("searchCtrl", function($scope, $http, $location) {
+            this.search = function(value){
+                if(value != undefined){
+                    var searchString = value.split(' ');
+                    var finalString = '';
+
+                    if(searchString.length > 1){
+                      for (var i = 0; i < searchString.length; i++) {
+                        if(searchString[i] != "")
+                          finalString += searchString[i];
+                        if((i < searchString.length - 1) &&(searchString[i + 1] != ""))
+                          finalString += '-';
+                      }
+                    }else{
+                      finalString = searchString[0];
+                    }
+
+                    console.log(finalString);
+
+                    $http.get("http://54.171.115.230:8080/api/v1/entities/" + sessionId + "/products/search?text=" + finalString).then(function(response) {
+                        console.log(response.data);
+
+                        $scope.msg = response.data.results;
+                    });
+                }
+            };
+
+            this.goToProduct = function(value) {
+                console.log("plop");
+                $location.url("/product/" + value);
+            };
+        });
+        app.controller("cloudCtrl", function($scope, $http) {
+
+            $scope.data = [
+                {text: "Select", weight: 15, link: "https://google.com"}, //if your tag has a link. 
+                {text: "a", weight: 9},
+                {text: "Date", weight: 6}
+                // ...as many words as you want 
+            ];
+
+            $http.get("http://54.171.115.230:8080/api/v1/entities/" + sessionId + "/metrics").then(function(response) {
+                console.log(response.data);
+
+                $scope.msg = response.data;
+                $scope.tab = response.data.values[response.data.values.length - 1].metrics.sent_SUM;
+            });
+
+            this.showTab = function(value){
+                var data;
+                for(var i = 0; i < $scope.msg.values.length; i++){
+                    if(value == $scope.msg.values[i].ts)
+                        data = $scope.msg.values[i].metrics.sent_SUM;
+                }
+                if(data != null || data != undefined){
+                    var array = Object.keys(data);
+                    var dataArray = [];
+                    var temp;
+                    for(var i = 0; i < array.length; i++){
+                        temp = data[array[i]];
+                        dataArray.push({'text': array[i], 'weight': temp});
+                    }
+                    
+                    $scope.data = dataArray;
+                }else {
+                    $scope.data = [
+                        {text: "No", weight: 15, link: "https://google.com"}, //if your tag has a link. 
+                        {text: "Data", weight: 9},
+                        {text: "for", weight: 6},
+                        {text: "this", weight: 7},
+                        {text: "date", weight: 5}
+                        // ...as many words as you want 
+                    ];
+                }
+            };
+
+            this.getDateNumber = function(number){
+            var actual = new Date();
+            var dataDay = new Date(number);
+            var date;
+            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+            if(actual.getDate() == dataDay.getDate() && actual.getMonth() == dataDay.getMonth() && actual.getFullYear() == dataDay.getFullYear()){
+                date = 'Today';
+            }else if( (actual.getDate() - 1) == dataDay.getDate() && actual.getMonth() == dataDay.getMonth() && actual.getFullYear() == dataDay.getFullYear()){
+                date = 'Yesterday';
+            }else{
+                date = dataDay.getDate() + ' ' + months[dataDay.getMonth()];
+            }
+            return date;
+            };
+        });
+        app.controller("settingCtrl", function($scope, $http) {
+            $http.get("http://54.171.115.230:8080/api/v1/entities/" + sessionId + "/categories/tree").then(function(response) {
+                console.log(response.data);
+                $scope.msg = response.data;
+            });
+        });
+        app.controller("questionCtrl", function($scope) {
+            var array = ["Question 1"];
+            $scope.questions = array;
+
+            this.addQ = function(value) {
+                array.push(value);
+                $scope = array;
+            };
+        });
+
+        // -------------------------------
+
+
+        app.controller("productCtrl", function($scope, $http, $routeParams) {
+                $http.get("http://54.171.115.230:8080/api/v1/entities/" + sessionId + "/products/" + $routeParams.id).then(function(response) {
+                console.log(response.data);
+                $scope.msg = response.data;
+                $scope.tagArray = JSON.parse(JSON.stringify(response.data.tags));
+                $scope.img = response.data.img;
+
+                $scope.tab = 0;
+            });
+
+            this.showTab = function(value) {
+                $scope.tab = value;
+            };
+
+            this.showColor = function(value) {
+                if(value == 'add'){
+                    console.log("add");
+                }else {
+                    $scope.color = value;
+                    $scope.base = value;
+                    $scope.img = "http:" + value.img;
+                }
+            };
+
+            this.updateColor = function() {
+                $scope.msg.colors[$scope.msg.colors.indexOf($scope.base)] = $scope.color;
+            };
+
+            this.getColorName = function() {
+                if(!$scope.color)
+                    return "Select color";
+                else return $scope.color.code;
+            };
+
+            this.update = function() {
+                $http.put("http://54.171.115.230:8080/api/v1/entities/" + sessionId + "/products/" + $routeParams.id, $scope.msg).then( function(response) {
+                });
+            };
+
+            this.add = function(branche, value) {
+                if(value != "" || value != undefined){
+                    if(branche == 'tags' || branche == 'crossProds')
+                        $scope.msg[branche].push(value);
+                    if(branche == 'finish' || branche == 'skinTypes' || branche == 'spf')
+                        $scope.msg.features[branche].push(value);
+
+                }
+            };
+
+            this.remove = function(branche, value) {
+                if(branche == 'tags' || branche == 'crossProds')
+                    $scope.msg[branche].splice($scope.msg[branche].indexOf(value), 1);
+                if(branche == 'finish' || branche == 'skinTypes' || branche == 'spf')
+                    $scope.msg.features[branche].splice($scope.msg.features[branche].indexOf(value), 1);
+            };
+        });
+
+        // -------------------------------
+
+        app.controller("customersCtrl", function($scope, $http) {
+            $http.get("http://54.171.115.230:8080/api/v1/entities/" + sessionId + "/metrics").then(function(response) {
+                console.log(response.data);
+
+                $scope.msg = response.data;
+                $scope.tab = response.data.values[response.data.values.length - 1];
+            });
+
+            this.showTab = function(value){
+                for(var i = 0; i < $scope.msg.values.length; i++){
+                    if(value == $scope.msg.values[i].ts){
+                        $scope.tab = $scope.msg.values[i];
+                    }
+                }
+                    Highcharts.chart('chart1', {
+                        title: {
+                            text: 'Chat Data',
+                            x: -20 //center
+                        },
+                        xAxis: {
+                            title: {
+                                text: 'hours (h)'
+                            },
+                            categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'iteration (n°)'
+                            },
+                            plotLines: [{
+                                value: 0,
+                                width: 1,
+                                color: '#808080'
+                            }]
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'middle',
+                            borderWidth: 0
+                        },
+                        series: [{
+                            name: 'Messages',
+                            data: $scope.tab.metrics.msg
+                        }, {
+                            name: 'Chats',
+                            data: $scope.tab.metrics.newCh
+                        }, {
+                            name: 'Active Chats',
+                            data: $scope.tab.metrics.chtAct
+                        }, {
+                            name: 'Opened',
+                            data: $scope.tab.metrics.chOp
+                        }]
+                    });
+
+                    Highcharts.chart('chart2', {
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+                        },
+                        title: {
+                            text: 'Browser used by chatters'
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                    style: {
+                                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                    }
+                                }
+                            }
+                        },
+                        series: [{
+                            name: 'Brands',
+                            colorByPoint: true,
+                            data: [{
+                                name: 'Microsoft Internet Explorer',
+                                y: 56.33
+                            }, {
+                                name: 'Chrome',
+                                y: 24.03,
+                                sliced: true,
+                                selected: true
+                            }, {
+                                name: 'Firefox',
+                                y: 10.38
+                            }, {
+                                name: 'Safari',
+                                y: 4.77
+                            }, {
+                                name: 'Opera',
+                                y: 0.91
+                            }, {
+                                name: 'Proprietary or Undetectable',
+                                y: 0.2
+                            }]
+                        }]
+                    });
+
+                    Highcharts.chart('chart3', {
+                        title: {
+                            text: 'Media Data',
+                            x: -20 //center
+                        },
+                        xAxis: {
+                            title: {
+                                text: 'hours (h)'
+                            },
+                            categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'iteration (n°)'
+                            },
+                            plotLines: [{
+                                value: 0,
+                                width: 1,
+                                color: '#808080'
+                            }]
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'middle',
+                            borderWidth: 0
+                        },
+                        series: [{
+                            name: 'Video watch',
+                            data: $scope.tab.metrics.vidView
+                        }, {
+                            name: 'Photo displayed',
+                            data: $scope.tab.metrics.phto
+                        }, {
+                            name: 'Amodals opened',
+                            data: $scope.tab.metrics.mdOp
+                        }]
+                    });
+
+                    Highcharts.chart('chart4', {
+                        title: {
+                            text: 'Product Data',
+                            x: -20 //center
+                        },
+                        xAxis: {
+                            title: {
+                                text: 'hours (h)'
+                            },
+                            categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'iteration (n°)'
+                            },
+                            plotLines: [{
+                                value: 0,
+                                width: 1,
+                                color: '#808080'
+                            }]
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'middle',
+                            borderWidth: 0
+                        },
+                        series: [{
+                            name: 'carted',
+                            data: $scope.tab.metrics.addTC
+                        }, {
+                            name: 'product disp.',
+                            data: $scope.tab.metrics.pDisp
+                        }, {
+                            name: 'product clicked',
+                            data: $scope.tab.metrics.pClck
+                        }, {
+                            name: 'samples asked',
+                            data: $scope.tab.metrics.smpl
+                        }]
+                    });
+            };
+
+            this.getDateNumber = function(number){
+            var actual = new Date();
+            var dataDay = new Date(number);
+            var date;
+            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+            if(actual.getDate() == dataDay.getDate() && actual.getMonth() == dataDay.getMonth() && actual.getFullYear() == dataDay.getFullYear()){
+                date = 'Today';
+            }else if( (actual.getDate() - 1) == dataDay.getDate() && actual.getMonth() == dataDay.getMonth() && actual.getFullYear() == dataDay.getFullYear()){
+                date = 'Yesterday';
+            }else{
+                date = dataDay.getDate() + ' ' + months[dataDay.getMonth()];
+            }
+            return date;
+            };
+        });
+        app.controller("productsCtrl", function($scope, $http) {
+            $http.get("http://54.171.115.230:8080/api/v1/entities/" + sessionId + "/products/top").then(function(response) {
+                console.log(response.data);
+
+                $scope.msg = JSON.stringify(response.data);
+            });
+        });
+        app.controller("wordsCtrl", function() {
+        });
+    </script>
+</head>
+<body>
+    <div class="row" id="header">
+        <div class="col-md-2" id="title">
+            <h1>Beauty</h1>
+        </div>
+        <div class="col-md-10" id="mainBar">
+            <a class="mainBottom"><span class="glyphicon glyphicon-user"></span> Admin</a>
+
+            <div id="mainCircle">
+                <a><span class="glyphicon glyphicon-signal circle"></span></a>
+                <a href="#/question"><span class="glyphicon glyphicon-flash circle"></span></a>
+                <a href="#/cloud"><span class="glyphicon glyphicon-cloud circle"></span></a>
+                <a href="#/setting"><span class="glyphicon glyphicon-wrench circle"></span></a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" ng-app="myApp">
+        <div class="col-md-2" id="menu">
+            <div class="homeButton"><a href="#/"><span class="glyphicon glyphicon-home"></span> HOME</a></div>
+            
+            <div>
+                <!-- design change in depends of pages -->
+                <div class="cat">Products</div><br>
+
+                <a class="pageLink" href="#/categories"><span class="glyphicon glyphicon-menu-right"></span> Categories</a><br>
+                <a class="pageLink" href="#/search"><span class="glyphicon glyphicon-menu-right"></span> Search</a><br>
+            </div>
+
+            <div id="insights">
+                <!-- if home is selected -->
+                <div class="cat">Insights</div><br>
+
+                <a class="pageLink" href="#/home/customers"><span class="glyphicon glyphicon-menu-right"></span> Customers</a><br>
+                <a class="pageLink" href="#/home/products"><span class="glyphicon glyphicon-menu-right"></span> Products</a><br>
+                <a class="pageLink" href="#/home/words"><span class="glyphicon glyphicon-menu-right"></span> Words</a>
+            </div>
+        </div>
+
+        <div class="col-md-10" id="content" ng-view></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <img src="src/image/loyalyLogo.png" id="loyaly">
+        </div>
+        <div class="col-md-10"></div>
+    </div>
+</body>
+</html> 
+
+
+
+
+
+
+
+
+

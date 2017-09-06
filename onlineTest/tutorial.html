@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Beauty Quizz Tutorial</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    
+    <style>
+        body {
+            text-align: center;
+            background-color: #D7F5EE;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            color: #004438;
+        }
+        div {
+            display: block;
+            text-align: left;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p, input {
+            margin-bottom: 0px;
+        }
+        .step, #questionForm, #textField, #addField, .subFields {
+            display: none;
+        }
+        #validate, .validationLink {
+            background-color: #E7457A;
+            color: white;
+
+            border-style: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            padding: 7px;
+            padding-right: 20px;
+            padding-left: 20px;
+
+            font-size: 20px;
+            font-family: "Montserrat";
+        }
+        #addFieldButton {
+            background-color: rgba(0,0,0,0);
+            border-style: none;
+            border-bottom-style: solid;
+            padding: 0;
+            
+        }
+        input {
+            background-color: #E9F4F1;
+            font: inherit;
+            color: #578579;
+
+            
+            border-radius: 5px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #CEE6DE;        
+        }
+        input:focus {
+            outline-color: #CEE6DE;
+        }
+        #main {
+            border-color: #EBF9F5;
+            border-style: solid;
+            border-radius: 10px;
+            border-width: 10px;
+            
+            padding: 10px;
+            
+            background-color: white;
+        }
+        #textField {
+            height: 30px;
+        }
+        .testPart {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+        #info {
+            margin-bottom: 10px;
+        }
+        #help {
+            background-color: white;
+            padding: 5px;
+            margin-bottom: 10px;
+            
+            color: grey;
+            
+            border-style: solid;
+            border-width: 5px;
+            border-radius: 5px;
+            border-color: #E8FAF5;
+        }
+        u:hover {
+            color: blue;
+        }
+        #subFields {
+            margin-top: 5px;
+        }
+        .subFields {
+            background-color: #D0F8EF;
+            color: #004839;
+        }
+        #navigation {
+            position: absolute;
+            top: 5px;
+            left: 20%;
+        }
+        .subFields button {
+            margin-left: 180px;
+        }
+    </style>
+    <script>
+        var welcome = "<p>Here is the help box.<br/>You will see here informations on how our quizz work and what do we expect from you.<br>Each time you will refresh the page, this page will appear. don't worry this will not erase what you have done. You will be able to get back where you were, and finish the Quizz.</p><br><p>Nothing special on this page, simply write down the userId you have been given before.</p>";
+        
+        var presentationMessage = "<p>You'll eather get this message or a similar one, if you've finished the test or had reload the page...</p>";
+        
+        var helpFakeQuestion = "<p>The first part of the Quizz will be composed with severals question of this kind. All you need is pick the answer that you think is right.</p>";
+        var fakeQuestion = "If I want my dog to be smarter I should : ";
+        var fakeAnswers = ["1) Teach him tricks", "2) Be patient", "3) Spend time with him", "4) Love him"];
+        
+        var acceptedMayBe = "<p>After a few questions, hopefully, you'll get approuved and you'll be able to keep going with the tricky part.<br>severals type of question will be shown to you, you will have to classify the question in one of the proposed category or/and answer it with a personal sentence.</p>";
+        
+        var helpTrickyPart = "<p>First type of question. those are the one that could be answered by yes or no. Please classify the question as a \"generic\".</p>";
+        var fakeTrickyQuestion = "<p>Are your products tested on animals ? </p>";
+        var helpTrickyPart2 = "<p>Second type of question. To question that are specify enough to propose the person a product, please mark it as a \"Product\"</p>";
+        var fakeTrickyQuestion2 = "<p>I am looking for brush, waterproof and non-glitter eyeliner.</p>";
+        var helpTrickyPart3 = "<p>Third kind of question, here you will have to write a personal sentence. As shown you can add a list a answer. <br>To add more field, click on \"add\".</p>";
+        var fakeTrickyQuestion3 = "<p>Do you have black eye pencil ? </p>";
+        
+        var helpEval = "<p>In this case, you will rate someone else answer, depending on what you think, tick the button that reflect your opinion if you think the answer is relevant and helpful, tick good other wise tick bad.</p>";
+        var evalInfo = "<p>We would like you to evaluate something, <br>\"Good afternoon, I'd like to find an everlasting nail polish.\"<br>A user answered with a generic</p>";
+        
+        var RespondHelp = "<p>Now that you evaluate the user answer, you can respond to the question that was asked.</p>";
+        var Respond = "<p>We would like you to evaluate something, <br>\"Good afternoon, I'd like to find an everlasting nail polish.\"<br>A user answered with a generic</p><p>What would you have responde ?</p>";
+        
+        var endedHelp = "<p>THE END.<br>You're done with this tutorial, thanks for your attention, I hope you understood everything otherwise just reload the page, this will restart the tutorial... Good luck for our real quizz.</p>";
+        
+        var intro = "<p>Hello,<br/>To help us know more about you, please write down the <u>userId</u> that has been given previously.</p>";
+        var newbie = "<p>Hey !<br/> You look new here. We will first ask you a few question to evaluate your knowledge.</p>";
+        var bravo = "<p>Great !<br/> It seems that you have the knowledge to keep going.</p>";
+        var ended = "<p>Hey !<br/> It seems that you already finished our quizz.</p>";
+        
+        var subFieldNumber = 0;
+        var step = 0;
+        
+        $(document).ready(function() {
+            $("#help").html(welcome);
+            $("#info").html(intro);
+            
+            $("#textField").css("display", "inline-block");
+            $("#textField").val("fakeId_12345");
+            $("#textField").attr("readOnly", "true");
+            
+            $("#validate").on("click", function(){
+                step++;
+                alert(step);
+                
+                if(step == 1){
+                    $("#textField").css("display", "none");
+                    $("#validate").text("Next");
+                    $("#info").html(newbie);
+                    $("#help").html(presentationMessage);
+                    
+                }else if(step == 2){
+                    $("#info").html(fakeQuestion);
+                    $("#help").html(helpFakeQuestion);
+                    
+                    var toAdd = "";
+                    for(var i = 0; i < fakeAnswers.length; i++){
+                        toAdd += "<p class='testPart'><input type='radio' disabled name='radioButton' value='" + fakeAnswers[i] + "'>   " + fakeAnswers[i] + "</p>";
+                    }
+                    toAdd += "<p class='testPart'><input type='radio' readOnly name='radioButton' value='5) All of above' checked>   5) All of above</p>";
+                    $("#questionForm").css("display", "block");
+                    $("#questionForm").html(toAdd);
+                    
+                }else if(step == 3){
+                    $("#info").html(bravo);
+                    $("#help").html(acceptedMayBe);
+                    $("#questionForm").css("display", "none");
+                    
+                }else if(step == 4){
+                    $("#help").html(helpTrickyPart);
+                    $("#info").html(fakeTrickyQuestion);
+                    
+                    var toAdd = "";
+                    toAdd += "<input type='radio' name='radioButton' value='generic' checked> generic<br>";
+                    toAdd += "<input type='radio' name='radioButton' value='product' disabled> product<br>";
+                    toAdd += "<input type='radio' name='radioButton' value='continue' disabled> continue<br>";
+
+                    $("#questionForm").css("display", "block");
+                    $("#questionForm").html(toAdd);
+                    
+                }else if(step == 5){
+                    $("#help").html(helpTrickyPart2);
+                    $("#info").html(fakeTrickyQuestion2);
+                    
+                    var toAdd = "";
+                    toAdd += "<input type='radio' name='radioButton' value='generic' disabled> generic<br>";
+                    toAdd += "<input type='radio' name='radioButton' value='product' checked> product<br>";
+                    toAdd += "<input type='radio' name='radioButton' value='continue' disabled> continue<br>";
+
+                    $("#questionForm").css("display", "block");
+                    $("#questionForm").html(toAdd);
+                    
+                }else if(step == 6){
+                    $("#help").html(helpTrickyPart3);
+                    $("#info").html(fakeTrickyQuestion3);
+                    
+                    var toAdd = "";
+                    toAdd += "<input type='radio' name='radioButton' value='generic' disabled> generic<br>";
+                    toAdd += "<input type='radio' name='radioButton' value='product' disabled> product<br>";
+                    toAdd += "<input type='radio' name='radioButton' value='continue' checked> continue<br>";
+                    
+                    $("#subFieldSample0").css("display", "block");
+                    $("#subFieldSample0").val("the inner");
+                    $("#subFieldSample1").css("display", "block");
+                    $("#subFieldSample1").val("the outer");
+                    $("#subFieldSample1Button").css("display", "inline-block");
+                    $("#textField").css("display", "inline-block");
+                    $("#textField").val("Sure is it for");
+                    
+                    $("#addField").css("display", "inline-block");
+                    $("#questionForm").css("display", "block");
+                    $("#questionForm").html(toAdd);
+                    
+                }else if(step == 7){
+                    $("#help").html(helpEval);
+                    $("#info").html(evalInfo);
+                    
+                    var toAddInput = "<input type='radio' name='radioButton' value='0'> bad<br>";
+                    toAddInput += "<input type='radio' name='radioButton' value='4'> good<br>";
+                    
+                    $("#subFieldSample0").css("display", "none");
+                    $("#subFieldSample1").css("display", "none");
+                    $("#subFieldSample1Button").css("display", "none");
+                    $("#textField").css("display", "none");
+                    $("#addField").css("display", "none");
+                    $("#questionForm").css("display", "block");
+                    $("#questionForm").html(toAddInput);
+                    
+                }else if(step == 8){
+                    $("#help").html(RespondHelp);
+                    $("#info").html(Respond);
+                    
+                    var toAdd = "";
+                    toAdd += "<input type='radio' name='radioButton' value='generic'> generic<br>";
+                    toAdd += "<input type='radio' name='radioButton' value='product'> product<br>";
+                    toAdd += "<input type='radio' name='radioButton' value='continue'> continue<br>";
+                    
+                    $("#subFieldSample0").val("");
+                    $("#subFieldSample1").val("");
+                    $("#textField").val("");
+                    
+                    $("#questionForm").css("display", "block");
+                    $("#questionForm").html(toAdd);
+                    
+                }else if(step == 9){
+                    $("#help").html(endedHelp);
+                    $("#info").html(ended);
+                    $("#textField").css("display", "none");
+                    $("#addField").css("display", "none");
+                    $("#questionForm").css("display", "none");
+                    $("#validation").html("<a href='/updateTurk.html' class='btn validationLink'>Start the Quizz</a>");
+                }
+                
+            });
+            
+            $("#questionForm").on("click", function(){
+                if(step == 8){
+                    if($("input[name=radioButton]:checked").val() == "continue"){
+                        $("#textField").css("display", "inline-block");
+                        $("#addField").css("display", "inline-block");
+                    }else{
+                        $("#textField").css("display", "none");
+                        $("#addField").css("display", "none");
+
+                        for(var y = 0; y < subFieldNumber; y++){
+                            $('#subFieldSample' + y).css("display", "none");
+                        }
+                        subFieldNumber = 0;
+                    }
+                }   
+            });
+            
+            $("#addFieldButton").on("click", function(){
+                if(step == 8){
+                    if(subFieldNumber < 5){
+                        $('#subFieldSample' + subFieldNumber).css("display", "block");
+                        subFieldNumber++;
+                    }   
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="row" id="title">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <h1>Beauty Quizz Tutorial</h1>
+            <div id="help">JQuery is disable...</div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" id="main">
+            <div id="info"></div>
+
+            <div id="inputFields">
+                <form id="questionForm"></form>
+                <input type="text" id="textField">
+                
+                <p id="addField">
+                    In case you would like to add a list of element : 
+                    <button id="addFieldButton" class="btn"><u>add</u></button>
+                </p>
+                
+                <div id="subFields">
+                    <input type='text' id='subFieldSample0' name="0" class="subFields"><button class="subFields btn" id='subFieldSample0Button'>+</button>
+                    <input type='text' id='subFieldSample1' name="1" class="subFields"><button class="subFields btn" id='subFieldSample1Button'>+</button>
+                    <input type='text' id='subFieldSample2' name="2" class="subFields"><button class="subFields btn" id='subFieldSample2Button'>+</button>
+                    <input type='text' id='subFieldSample3' name="3" class="subFields"><button class="subFields btn" id='subFieldSample3Button'>+</button>
+                    <input type='text' id='subFieldSample4' name="4" class="subFields"><button class="subFields btn" id='subFieldSample4Button'>+</button>
+                </div>
+            </div>
+
+            <div id="validation">
+                <button id="validate">Submit</button>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    <div id="navigation"><a href="/updateTurk.html">Back to the Quizz</a></div>
+</body>
+</html>

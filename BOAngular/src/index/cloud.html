@@ -1,0 +1,11 @@
+<div ng-controller="cloudCtrl as current">
+	<p class="topTab">
+		<button ng-repeat="i in msg.values" ng-click="current.showTab(i.ts)" ng-class="{displayed: tab.ts == i.ts}" class="dayTabs"> {{current.getDateNumber(i.ts)}} </button>
+	</p>
+	<div style="display: inline-block; width: 25%;">
+		
+	</div>
+	<div style="display: inline-block;">
+		<ng-tag-cloud class="custom-css-class" cloud-width="250" cloud-height="250" cloud-data="data"></ng-tag-cloud>
+	</div>
+</div>

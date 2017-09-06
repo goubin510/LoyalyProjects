@@ -1,0 +1,162 @@
+<html><head><link rel="import" href="../../bower_components/polymer/polymer.html">
+
+</head><body><dom-module id="global-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+    .card {
+      display: inline-block;
+
+      vertical-align: middle;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    .mainInput {
+      display: inline-block;
+
+      vertical-align: top;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    #mainProductField {
+      display: block;
+
+      margin-left: 70px;
+      margin-right: 10px;
+    }
+
+    .mainInput {
+      display: inline-block;
+    }
+
+    button {
+      border-style: none;
+      background-color: white;
+    }
+
+    #menuOption {
+      display: block;
+      width: 50px;
+      height: 50px;
+
+      background-color: white;
+      color: grey;
+
+      box-shadow: 1px 1px 3px grey;
+      font-size: 15px;
+    }
+
+    #producMenu {
+      float: left;
+    }
+
+    paper-input, paper-dropdown-menu, paper-textarea, .list {
+      vertical-align: top;
+      margin: 5px;
+      padding: 5px;
+      display: inline-block;
+      width: 210px;
+      overflow: auto;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: grey;
+    }
+
+    paper-textarea {
+      margin: 5px;
+      float: left;
+      height: 210px;
+    }
+
+    paper-button {
+      float: right;
+    }
+
+    .main {
+      font-weight: 900;
+      padding-left: 10px;
+    }
+
+    .sub {
+      font-weight: 500;
+      padding-left: 20px;
+    }
+
+    .type {
+      font-weight: 100;
+      padding-left: 30px;
+    }
+
+    </style>
+
+      <paper-input label="Short description" value="{{items.shDesc::input}}"></paper-input>
+      <paper-input label="Price" value="{{items.price::input}}"></paper-input>
+      <paper-input label="Active" value="{{items.active::input}}"></paper-input>
+      
+      <paper-textarea label="Long description" value="{{items.lgDesc::input}}"></paper-textarea>
+
+      <paper-input label="Url" value="{{items.url::input}}"></paper-input>
+
+      <paper-input label="Last update on" value="{{items.lastUpdate}}" readonly=""></paper-input>
+
+        <paper-dropdown-menu label="Cat list" id="plop">
+          <paper-listbox class="dropdown-content" selected="{{showing}}">
+            <template is="dom-repeat" items="{{catList}}" as="main">
+              <paper-item class="main">{{main.name}}</paper-item>
+              <template is="dom-repeat" items="{{main.array}}" as="sub">
+                <paper-item class="sub">{{sub.name}}</paper-item>
+                <template is="dom-repeat" items="{{sub.array}}" as="fine">
+                  <paper-item class="type">{{fine.name}}</paper-item>
+                </template>
+              </template>
+            </template>
+          </paper-listbox>
+        </paper-dropdown-menu>
+
+      <paper-input label="Main category" value="{{getMainCat(catChoose)}}" readonly=""></paper-input>
+      <paper-input label="Sub category" value="{{getSubCat(catChoose)}}" readonly=""></paper-input>
+      <paper-input label="Type of category" value="{{getTypeCat(catChoose)}}" readonly=""></paper-input>
+
+      <iron-ajax auto="" url="http://54.171.115.230:8080/api/v1/entities/{{connId}}/categories/tree" handle-as="json" debounce-duration="300" last-response="{{catList}}"></iron-ajax>
+
+      <iron-ajax auto="" url="http://54.171.115.230:8080/api/v1/entities/{{connId}}/categories/tree" handle-as="json" debounce-duration="300" last-response="{{catRef}}"></iron-ajax>
+
+<paper-dropdown-menu label="Cat list" id="tagada" value="{{catChoose}}" style="display: none">
+  <paper-listbox class="dropdown-content" selected="{{showing}}">
+    <template is="dom-repeat" items="{{catList}}" as="main">
+    <paper-item>{{main.name}},,</paper-item>
+      <template is="dom-repeat" items="{{main.array}}" as="sub">
+      <paper-item>{{main.name}},{{sub.name}},</paper-item>
+        <template is="dom-repeat" items="{{sub.array}}" as="fine">
+          <paper-item>{{main.name}},{{sub.name}},{{fine.name}}</paper-item>
+        </template>
+      </template>
+    </template>
+  </paper-listbox>
+</paper-dropdown-menu>
+
+  </template>
+
+  <script>Polymer({is:"global-app",stringify:function(t){return JSON.stringify(t)},getMainCat:function(t){var n=t.split(",");return n[0]},getSubCat:function(t){var n=t.split(",");return n[1]},getTypeCat:function(t){var n=t.split(",");return n[2]},properties:{connId:{type:String,value:sessionId}}});</script>
+</dom-module>
+</body></html>

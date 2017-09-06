@@ -1,0 +1,11 @@
+<div ng-controller="searchCtrl as current">
+	<div class="searchField">
+		<span>Search :</span><input type="text" ng-keypress="current.search(searchString)" ng-model="searchString">
+	</div>
+
+	<div class="selectedContent">
+		<div class="listContent" ng-repeat="prod in msg">
+			<button ng-click="current.goToProduct(prod._id)">{{prod.name}}</button>
+		</div>
+	</div>
+</div>

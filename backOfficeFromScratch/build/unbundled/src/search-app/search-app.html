@@ -1,0 +1,96 @@
+<html><head><link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+</head><body><dom-module id="search-app">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+<style type="text/css">
+    #menu {
+      float: left;
+      width: 50px;
+      margin-top: 10px;
+    }
+
+    .menuOption {
+      display: block;
+      width: 50px;
+      height: 50px;
+
+      background-color: white;
+      color: grey;
+
+      box-shadow: 1px 1px 3px grey;
+      font-size: 15px;
+    }
+
+    .home {
+      background-color: #6d89a0;
+      color: white;
+    }
+
+    button {
+      border-style: none;
+      background-color: white;
+    }
+
+    #content {
+      margin: 10px;
+      margin-left: 70px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
+      border-bottom: 1px solid #ccc;
+    }
+
+    li:last-child {
+      border: none;
+    }
+
+    li paper-button {
+      text-decoration: none;
+      color: #000;
+      display: block;
+    }
+
+    li paper-button:hover {
+      background: #f6f6f6;
+    }
+      
+    </style>
+
+    <div id="menu">
+      <button class="menuOption home" onclick="dashboardCall()"><iron-icon icon="icons:home"></iron-icon></button>
+      <button class="menuOption" onclick="categoriesCall()"><iron-icon icon="icons:apps"></iron-icon></button>
+      <button class="menuOption" onclick="searchCall()"><iron-icon icon="icons:search"></iron-icon></button>
+    </div>
+
+    <div id="content">
+      <paper-input label="Search" on-input="refresh" id="inputField" "=""></paper-input>
+
+      <div id="results">
+        <ul>
+          <template is="dom-repeat" items="{{answer.results}}">
+            <li><paper-button data="{{item._id}}" on-tap="prodShow">{{item.name}}</paper-button></li>
+          </template>
+        </ul>
+      </div>
+    </div>
+
+  <iron-ajax auto="" id="ajax" url="" handle-as="json" content-type="application/json" debounce-duration="300" last-response="{{answer}}"></iron-ajax>
+
+  </template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>function searchCall(){var e=document.querySelector("iron-pages");e.selectIndex(3)}Polymer({is:"search-app",stringify:function(e){return JSON.stringify(e)},prodShow:function(e){console.log(e),this.fire("iron-signal",{name:"atchoum",data:e.currentTarget.data}),productCall()},refresh:function(){var e=this.$.inputField.value.split(" "),t="";if(e.length>1)for(var n=0;n<e.length;n++)""!=e[n]&&(t+=e[n]),n<e.length-1&&""!=e[n+1]&&(t+="-");else t=e[0];this.$.ajax.url="http://54.171.115.230:8080/api/v1/entities/"+this.connId+"/products/search?text="+t,this.$.inputField.value&&this.$.ajax.generateRequest()},properties:{connId:{type:String,value:sessionId}}});</script>
+</dom-module>
+</body></html>

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Turk</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #FBFBFE;
+        }
+        h2 {
+            display: inline-block;
+            margin: 0;
+            margin-left: 10px;
+            
+            color: white;
+            font-size: 20px;
+        }
+        h3 {
+            color: #3691CE;
+            font-weight: 200;
+        }
+        #setting {
+            background-color: #26313F;
+            color: #5FA5F3;
+            font-family: "Raleway";
+            height: 30px;
+        }
+        button {
+            background-color: rgba(0,0,0,0);
+            border-style: none;
+        }
+        #head, quote {
+            font-family: "Avenir Next";
+            font-size: 18px;
+            line-height: 26px;
+            color: #4A4A4A;
+            
+            margin-top: 30px;
+        }
+        quote{
+            margin-left: 50px;
+        }
+        #answersTitle, #evaluationsTitle, #testTitle {
+            font-family: "Avenir Next";
+            font-size: 18px;
+            line-height: 30px;
+            font-weight: 700;
+            color: #4A4A4A;
+        }
+        #answers, #evaluations, #test, .single {
+            padding-left: 10px;
+            margin-top: 50px;
+            
+            border-left-style: solid;
+            border-width: 3px;
+            border-color: #47484B;
+        }
+        #evaluations {
+            text-align: center;
+        }
+        #validation, #subQuestion {
+            text-align: center;
+            display: none;
+        }
+        span {
+            margin-left: 100px;
+        }
+        .reponse{
+            font-family: "Avenir Next";
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 22px;
+            color: #4A4A4A;
+            
+            margin-left: 300px;
+            margin-bottom: 0px;
+            text-align: left;
+        }
+        .question {
+            font-family: "Avenir Next";
+            font-size: 14px;
+            line-height: 19px;
+            color: #4A4A4A;
+        }
+        .liste {
+            font-family: "Lucida Grande";
+            font-size: 14px;
+            line-height: 17px;
+            color: #3691CE;
+            
+            margin-left: 10px;
+            margin-top: 10px;
+            display: block;
+            
+            text-align: center;
+        }
+        .stat {
+            margin-right: 10px;;
+            display: inline-block;
+            padding: 20px;
+            background-color: #FBFBFE;
+            
+            border-style: solid;
+            border-radius: 0px;
+            border-color: #C1C1C1;
+            border-width: 1px;
+        }
+        .mainBody {
+            background-color: white;
+            margin-top: 20px;
+            margin-left: 10px;
+            
+            border-color: #C1C1C1;
+            border-style: solid;
+            border-width: 1px;
+        }
+        .done {
+            background-color: RGBA(192, 192, 192, 0.5);
+        }
+        hr {
+            margin-top: 0px;
+        }
+        #list {
+            margin-top: 20px;
+            margin-left: 20px;
+            padding-bottom: 20px;
+            padding-top: 5px;
+            
+            background-color: white;
+            overflow: auto;
+            overflow: auto;
+            max-height: 600px;
+            
+            border-color: #C1C1C1;
+            border-style: solid;
+            border-width: 1px;
+        }
+        .yes {
+            background-color: rgba(0, 255, 0, 0.8);
+        }
+        .no {
+            background-color: rgba(255, 0, 0, 0.8);
+        }
+        #turk, #questionButton, #rsltButton {
+            margin-top: 4px;
+            margin-left: 10px;
+        }
+        .received {
+            margin-left: 25px;
+            padding-left: 5px;
+            border-left-style: solid;
+            border-width: 1px;
+            border-color: #47484B;
+        }
+        .find {
+            
+        }
+        .find:hover {
+            text-decoration: underline;
+        }
+        .plop {
+            border-bottom-style: solid;
+        }
+        a, a:hover {
+            color: #47484B;
+        }
+        strong {
+            font-size: 20px;
+        }
+        .circle {
+            border-style: solid;
+            border-width: 2px;
+            border-radius: 50%;
+            margin-right: 5px;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .hidden {
+            display: none;
+        }
+        .mainStat {
+            display: inline-block;
+            vertical-align: top;
+        }
+        select {
+            display: block;
+            margin-left: 10px;
+        }
+        #current {
+            margin-left: 70px;
+        }
+        kbd {
+            font-size: 20px;
+            margin-right: 20px;
+            background-color: white;
+        }
+    </style>
+    <script>
+        var current;
+        var testReduce = false;
+        var answserReduce = false;
+        var evaluationReduce = false;
+        var state = {};
+        var status = {};
+        var testTopic = "";
+        
+        $(document).ready(function() {
+            
+            $("#turk").on("click", function() {
+                $.ajax({
+                    url: "http://54.171.115.230:8080/survey/rslt/turks",
+                    type: "GET",
+                    success: function(result){
+                        $("#test").html("");
+                        $("#answers").html("");
+                        $("#evaluations").html("");
+                        $("#answerList").html("");
+                        $("#rslts").html("");
+                        $("#mainRslt").html("");
+                        $("#head").html("<quote>Select an Id</quote>");
+                        $("#validation").css("display", "none");
+                        $("#subQuestion").css("display", "none");
+
+                        
+                        var toAdd = "";
+                        for(var i = 0; i < result.length; i++){
+                            if(result[i].approved == null){
+                                toAdd += "<button class='liste ids' value='" + result[i]._id + "'><a href='#setting'>" + result[i].userId + " (" + result[i].status + ")</a></button>";
+                                
+                            }else if(result[i].approved){
+                            toAdd += "<button class='liste ids yes' value='" + result[i]._id + "'>" + result[i].userId + " (" + result[i].status + ")</button>";
+                                
+                            }else{ 
+                                toAdd += "<button class='liste ids no' value='" + result[i]._id + "'>" + result[i].userId + " (" + result[i].status + ")</button>";
+                            }
+                        }
+                        
+                        $("#list").html(toAdd);
+                        
+                        $(".ids").on("click", function(evt) {
+                            var id = evt.currentTarget.value;
+                            current = "http://54.171.115.230:8080/survey/rslt/turk/" + id;
+                            $.ajax({
+                                url: current,
+                                type: "GET",
+                                success: function(result){
+                                    display(result);
+                                },
+                                error: function(error){
+                                    console.log(error);
+                                }
+                            });
+                        });
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+                
+                $("#rate").on("click", function() {
+                    var dataToSend = $("#turkGrade").val();
+                    $.ajax({
+                        url: current,
+                        type: "POST",
+                        dataType: "json",
+                        data: {value: dataToSend},
+                        success: function(result){$("#turk").trigger("click");},
+                        error: function(error){$("#turk").trigger("click");}
+                    });
+                });
+            });
+            
+            $("#questionButton").on("click", function() {
+                $.ajax({
+                    url: "http://54.171.115.230:8080/survey/rslt/questions",
+                    type: "GET",
+                    success: function(result){
+                        $("#test").html("");
+                        $("#answers").html("");
+                        $("#evaluations").html("");
+                        $("#answerList").html("");
+                        $("#rslts").html("");
+                        $("#mainRslt").html("");
+                        $("#subQuestion").css("display", "none");
+                        $("#validation").css("display", "none");
+
+                        var toAdd = "";
+                        for(var i = 0; i < result.length; i++){
+                            toAdd += "<button class='liste ids' value='" + result[i]._id + "'><a href='#setting'>" + result[i].text + " (" + result[i].answered + ")</a></button>";
+                        }
+                        
+                        $("#list").html(toAdd);
+                        $("#head").html("<quote>Select an Id</quote>");
+                        $("#validation").css("display", "none");
+                        $("#subQuestion").css("display", "none");
+                        
+                        $(".ids").on("click", function(evt) {
+                            var id = evt.currentTarget.value;
+                            current = "http://54.171.115.230:8080/survey/rslt/question/" + id;
+                            $.ajax({
+                                url: current,
+                                type: "GET",
+                                success: function(result){
+                                    displayQuestion(result);
+                                },
+                                error: function(error){
+                                    console.log(error);
+                                }
+                            });
+                        });
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+                
+                $("#addSubQuestion").on("click", function() {
+                    var dataToSend = $("#subQuestionValue").val();
+                    $.ajax({
+                        url: current,
+                        type: "POST",
+                        dataType: "json",
+                        data: {text: dataToSend},
+                        success: function(result){$("#turk").trigger("click");},
+                        error: function(error){$("#turk").trigger("click");}
+                    });
+                });
+            });
+            
+            $("#rsltButton").on("click", function() {
+                $.ajax({
+                    url: "http://54.171.115.230:8080/survey/rslt/",
+                    type: "GET",
+                    success: function(rslt) {
+                        $("#test").html("");
+                        $("#answers").html("");
+                        $("#evaluations").html("");
+                        $("#answerList").html("");
+                        $("#list").html("");
+                        $("#head").html("");
+                        $("#mainRslt").html("");
+                        $("#rslts").html("");
+                        $("#subQuestion").css("display", "none");
+                        $("#validation").css("display", "none");
+                        $("#mainRslt").css("display", "block");
+                        $("#rslts").css("display", "block");
+                        
+                        var toAdd = "";
+                        var toAdd2 = "<br><span id='current'>current display : </span>";
+                        
+                        for(var i = 0; i < rslt.length; i++) {
+                            toAdd += "<div class='mainStat'><p class='liste stat'>" + rslt[i]._id + "<br> " + rslt[i].value + "</p>";
+                            
+                            toAdd += "<select class='dropOption'>";
+                            toAdd += "<option>select</option>";
+                            for(var j = 0; j < rslt[i].turks.length; j++) {
+                                toAdd += "<option><a class='dropOption'>" + rslt[i].turks[j].turkTopic + "</a></option>";
+                                testTopic = rslt[i].turks[j].testTopic;
+                            }
+                            
+                            toAdd += "</select>";
+                            toAdd += "</div>";
+                        }
+                        
+                        toAdd2 +=  "<span class='liste ids'>" + testTopic + "/</span>";
+                        
+                        $("#mainRslt").html(toAdd);
+                        $("#list").html("<quote>Menu</quote>" + toAdd2);
+                        
+                        $(".dropOption").on("change", function(evt) {
+                            $.ajax({
+                                url: "http://54.171.115.230:8080/survey/rslt/stats/" + evt.currentTarget.value + "/" + testTopic,
+                                type: "GET",
+                                success: function(result){
+                                    var toAdd = "<h3>Statistics</h3><hr>";
+                                    var toAdd2 = "";
+                                    var toAdd3 = "<br><span id='current'>current display : </span>";
+                                    state = {};
+                                    for(var i = 0; i < result.length; i++){
+                                        if(result[i].count){
+                                            toAdd += "<p class='liste stat'><strong>" + result[i].count + "</strong><br>" + result[i]._id + "</p>";
+                                        }else if(result[i].values && result[i]._id == "testResults"){
+                                            for(var j = 0; j < result[i].values.length; j++){
+                                                toAdd2 += "<p><button id='btn" + j + "' class='circle' onclick='tada(" + j + ")'>+</button>Question : " + result[i].values[j].question + "<br>";
+                                                toAdd2 += "<span></span>(tot : " + result[i].values[j].totalAnswers + ")<br></p>";
+                                                state["question" + j] = 0;
+
+                                                for(var k = 0; k < result[i].values[j].stats.length; k++){
+                                                    toAdd2 += "<p class='hidden question" + j + "'>answer : " + result[i].values[j].stats[k].answer + "<br>";
+                                                    toAdd2 += "points : " + result[i].values[j].stats[k].points + "<br>";
+                                                    toAdd2 += "answered : " + result[i].values[j].stats[k].answered + "</p>";
+                                                }
+                                                toAdd2 += "<hr>";
+                                            }
+                                        }else if(result[i].values && result[i]._id == "questionstuff"){
+                                            
+                                            for(var j = 0; j < result[i].values.length; j++){
+                                                
+                                                if(result[i].values[j].length && result[i].values[j][0]._id){
+                                                    
+                                                    for(var k = 0; k < result[i].values[j].length; k++){
+                                                        toAdd2 += "<p><button id='btnStuff" + k + "' class='circle' onclick='pouf(" + k + ")'>+</button><button class='find' value='" + result[i].values[j][k]._id.qId + "'>Evaluation : " + result[i].values[j][k]._id.text + "</button><br>";
+
+                                                        toAdd2 += "<span>" + result[i].values[j][k].points/4 + "<kbd class='text-success'>&#10004;</kbd>";
+                                                        toAdd2 += (result[i].values[j][k].count - (result[i].values[j][k].points/4)) + "<kbd class='text-danger'>&#10008;</kbd></span>";
+                                                        toAdd2 += "<p class='hidden questionStuff" + k + "'>answer type : " + result[i].values[j][k]._id.answerType + "<br>";
+                                                        if(result[i].values[j][k]._id.answerText)
+                                                            toAdd2 += "answer : " + result[i].values[j][k]._id.answerText
+                                                        
+                                                        toAdd2 += "<p><hr>";
+                                                        state["questionStuff" + k] = 0;
+                                                    }
+                                                }
+                                            }
+                                        }else if(result[i].name)
+                                            toAdd3 +=  "<span class='liste ids'>" + result[i].name + "/</span>";
+                                    }
+
+                                    $("#list").html("<quote>Menu</quote>" + toAdd3);
+                                    $("#head").html(toAdd);
+                                    $("#rslts").html(toAdd2);
+            
+                                    $(".find").on("click", function(evt){
+                                        $.ajax({
+                                            url: "http://54.171.115.230:8080/survey/rslt/question/" + evt.currentTarget.value,
+                                            type: "GET",
+                                            success: function(result){
+                                                displayQuestion(result);
+                                            },
+                                            error: function(error){
+                                                console.log(error);
+                                            }
+                                        });
+                                    });
+                                },
+                                error: function(error){
+                                    console.log(error);
+                                }
+                            });
+                        });
+                    },
+                    error: function(error){ console.log(error)},
+                });
+            });
+            
+            $("#rsltButton").trigger("click");
+        });
+        
+        function display(data){
+            
+            $("#test").html("");
+            $("#answers").html("");
+            $("#evaluations").html("");
+            $("#answerList").html("");
+            $("#rslts").html("");
+            $("#validation").css("display", "block");
+            
+            var toAdd = "";
+            
+            toAdd = "Score : <span id='scoreBox'>" + data.score + "</span> Status : <span id='statusBox'>" + data.status + "</span><br> userId : <span id='userIdBox'>" + data.userId + "</span>";
+            $("#head").html(toAdd);
+            
+            var toAdd = "<button id='testTitle'>Part test : </button>";
+            if(data.test){
+                for(var i = 0; i < data.test.length; i++){
+                    toAdd += "<p class='question'><u>Question</u> : " + data.test[i].test + "</p>";
+                    toAdd += "<p class='reponse'><u>Answer</u> : " + data.test[i].answer;
+                    toAdd += " (" + data.test[i].points + " pts.)</p>";
+
+                toAdd += "<hr>";
+                }
+            }
+            
+            $("#test").html(toAdd);
+            
+            if(data.answers.length){
+                toAdd = "<button id='answersTitle'> Part answers : </button>";
+                for(var i = 0; i < data.answers.length; i++){
+                    toAdd += "<p class='question'>";
+                    
+                    if(data.answers[i].qarray){
+                        for(var j = 0; j < data.answers[i].qarray.length; j++)
+                            toAdd += "<button class='find' value='" + data.answers[i].qarray[j].id + "'><u>Question</u> : <a href='#setting'>" + data.answers[i].qarray[j].text + "</a></button>";
+                    }
+                    
+                    toAdd += "</p><p class='reponse'><u>Answer</u> : " + data.answers[i].rcvdType + "</p>";
+                    if(data.answers[i].rcvdType == "continue")
+                        toAdd += "</p><p class='reponse'> -> " + data.answers[i].rcvd + "</p>";
+                    
+                toAdd += "<hr>";
+                }
+
+                $("#answers").html(toAdd);
+            }
+            
+            if(data.evaluations.length){
+                toAdd = "<button id='evaluationsTitle'>Part evaluations : </button>";
+                for(var i = 0; i < data.evaluations.length; i++){
+                    toAdd += "<p class'question'>";
+                    
+                    if(data.evaluations[i].qarray.length){
+                        for(var j = 0; j < data.evaluations[i].qarray.length; j++){
+                            toAdd += "<button class='find' value='" + data.evaluations[i].qarray[j].id + "'><a href='#setting'>" + data.evaluations[i].qarray[j].text + "</a></button>";
+                        }
+                    }
+                    
+                    if(data.evaluations[i].sentArray){
+                        if(data.evaluations[i].sentArray.length){
+                            for(var j = 0; j < data.evaluations[i].sentArray.length; j++){
+                                toAdd += "</p><p class='question'>" + data.evaluations[i].sentArray[j].sType + "</p>";
+
+                                if(data.evaluations[i].sentArray[j].sent)
+                                    toAdd += "</p><p class='question'>" + data.evaluations[i].sentArray[j].sent + "</p>";
+
+                                toAdd += "</p><p class='reponse'> -> " + data.evaluations[i].sentArray[j].rcvdRes + "</p>";
+                            }
+                        }
+                    }
+                       
+                    toAdd += "<hr>";
+                    }
+                
+                $("#evaluations").html(toAdd);
+            }
+            
+            $(".find").on("click", function(evt){
+                $.ajax({
+                    url: "http://54.171.115.230:8080/survey/rslt/question/" + evt.currentTarget.value,
+                    type: "GET",
+                    success: function(result){
+                        displayQuestion(result);
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            });
+            
+            $("#testTitle").on("click", function() {
+                if(testReduce){
+                    testReduce = false;
+                    
+                    $("#test").css("height", "30px");
+                    $("#test").css("overflow", "hidden");
+                    
+                }else {
+                    testReduce = true;
+                    
+                    $("#test").css("height", "100%");
+                    $("#test").css("overflow", "auto");
+                }
+            });
+            
+            $("#answersTitle").on("click", function() {
+                if(answserReduce){
+                    answserReduce = false;
+                    
+                    $("#answers").css("height", "30px");
+                    $("#answers").css("overflow", "hidden");
+                    
+                }else {
+                    answserReduce = true;
+                    
+                    $("#answers").css("height", "100%");
+                    $("#answers").css("overflow", "auto");
+                }
+            });
+            
+            $("#evaluationsTitle").on("click", function() {
+                if(evaluationReduce){
+                    evaluationReduce = false;
+                    
+                    $("#evaluations").css("height", "30px");
+                    $("#evaluations").css("overflow", "hidden");
+                    
+                }else {
+                    evaluationReduce = true;
+                    
+                    $("#evaluations").css("height", "100%");
+                    $("#evaluations").css("overflow", "auto");
+                }
+            });
+        }
+        
+        function displayQuestion(data) {
+            $("#test").html("");
+            $("#answers").html("");
+            $("#evaluations").html("");
+            $("#validation").css("display", "none");
+            $("#mainRslt").css("display", "none");
+            $("#rslts").css("display", "none");
+            $("#subQuestion").css("display", "block");
+            
+            var toAdd ="";
+            
+            toAdd += "<p>Question : " + data.text + "</p>";
+            toAdd += "<p><span>Topic : " + data.topic + "</span><span> Tot. answers : " + data.totAnswers + "</span></p>";
+            toAdd += "<p>"
+            
+            $("#head").html(toAdd);
+            toAdd = "";
+            
+            for(var i = 0; i < data.answers.length; i++){
+                toAdd += "<p id='answersTitle'>Answers : <p>";
+                
+                toAdd += "<span> Type : " + data.answers[i]._id.answerType + "</span>";
+                if(data.answers[i]._id.answerText)
+                    toAdd += "<span> Text : " + data.answers[i]._id.answerText + "</span>";
+                
+                toAdd += "<p><span> Users : ";
+                for(var j = 0; j < data.answers[i].inputs.length; j++)
+                    toAdd += "<button class='find' value='" + data.answers[i].inputs[j].turkId + "'><a href='#setting'>" + data.answers[i].inputs[j].turkId + "</a></button>, ";
+                toAdd += "</span></p>";
+                
+                toAdd += "<span>" + data.answers[i].points/4 + "<kbd class='text-success'>&#10004;</kbd>";
+                toAdd += (data.answers[i].count - (data.answers[i].points/4)) + "<kbd class='text-danger'>&#10008;</kbd></span>";
+                toAdd += "</p><hr>";
+            }
+            
+            $("#answerList").html(toAdd);
+            
+            $(".find").on("click", function(evt){
+                $.ajax({
+                    url: "http://54.171.115.230:8080/survey/rslt/turk/" + evt.currentTarget.value,
+                    type: "GET",
+                    success: function(result){
+                        display(result);
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            });
+        }
+        
+        function tada(id) {
+            if(state["question" + id] == 0){
+                $("#btn" + id).text("-");
+                $(".question" + id).removeClass("hidden");
+                state["question" + id] = 1;
+            }else {
+                $(".question" + id).addClass("hidden");
+                state["question" + id] = 0;
+                $("#btn" + id).text("+");
+            }
+        }
+        
+        function pouf(id) {
+            if(state["questionStuff" + id] == 0){
+                $("#btnStuff" + id).text("-");
+                $(".questionStuff" + id).removeClass("hidden");
+                state["questionStuff" + id] = 1;
+            }else {
+                $(".questionStuff" + id).addClass("hidden");
+                state["questionStuff" + id] = 0;
+                $("#btnStuff" + id).text("+");
+            }
+        }
+        
+    </script>
+</head>
+<body>
+    <div class="row" id="setting">
+        <div class="col-sm-12">
+            <h2>Loyaly</h2>
+            <button id="rsltButton">Result</button>
+            <button id="turk">Users</button>
+            <button id="questionButton">Questions</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div id="list"></div>
+        </div>
+        
+        <div class="col-sm-7 mainBody">
+            <div id="mainRslt"></div>
+            <div id="head"></div>
+            
+            <div id="subQuestion">
+                <input type="text" id="subQuestionValue">
+                <button id="addSubQuestion" class="btn btn-info" >Add subQuestion</button>
+            </div>
+            
+            <div id="answerList" class="single"></div>
+            <div id="test"></div>
+            <div id="answers"></div>
+            <div id="evaluations"></div>
+            <div id="rslts"></div>
+
+            <div id="validation">
+                <input id="turkGrade" type="number" min="0" max="10" value="0">
+                <button id="rate" class="btn btn-info">rate</button>
+            </div>
+        </div>
+        
+        <div class="col-sm-1"></div>
+        
+    </div>
+</body>
+</html>

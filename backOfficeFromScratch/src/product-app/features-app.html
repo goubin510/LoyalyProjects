@@ -1,0 +1,244 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+
+<link rel="stylesheet" type="text/css" href="/font.css">
+
+<dom-module id="features-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+    .card {
+      display: inline-block;
+
+      vertical-align: middle;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: grey;
+    }
+
+    .mainInput {
+      display: inline-block;
+
+      vertical-align: top;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    #mainProductField {
+      display: block;
+
+      margin-left: 70px;
+      margin-right: 10px;
+    }
+
+    .mainInput {
+      display: inline-block;
+    }
+
+    button {
+      border-style: none;
+      background-color: white;
+    }
+
+    #menuOption {
+      display: block;
+      width: 50px;
+      height: 50px;
+
+      background-color: white;
+      color: grey;
+
+      box-shadow: 1px 1px 3px grey;
+      font-size: 15px;
+    }
+
+    #producMenu {
+      float: left;
+    }
+
+    paper-input, paper-textarea, .list {
+      margin: 5px;
+      padding: 5px;
+      display: inline-block;
+      width: 210px;
+      overflow: auto;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: grey;
+    }
+
+    paper-textarea {
+      float: left;
+      height: 160px;
+    }
+
+    iron-image {
+      display: inline-block;
+      margin: 5px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #727272;
+    }
+
+    paper-button {
+      float: right;
+    }
+
+    #addDel{
+      border-style: solid;
+      border-color: grey;
+      border-width: 1px;
+    }
+
+    </style>
+
+        <div class="card">
+          <div>Tags: <input type="text" id="tagsInput"><button on-tap="addTags" id="add">Add</button></div>
+
+          <template is="dom-repeat" items="{{items.tags}}">
+            <div class="card">{{item}}<button data="{{item}}" on-tap="reacTags">X</button></div>
+          </template>
+        </div>
+
+        <div class="card">
+          <div>skin Types: <input type="text" id="skinTypesInput"><button on-tap="addSkinTypes" id="add">Add</button></div>
+
+          <template is="dom-repeat" items="{{items.features.skinTypes}}">
+            <div class="card">{{item}}<button data="{{item}}" on-tap="reacSkinTypes">X</button></div>
+          </template>
+        </div>
+
+        <div class="card">
+          <div>finish: <input type="text" id="finishInput"><button on-tap="addFinish" id="add">Add</button></div>
+
+          <template is="dom-repeat" items="{{items.features.finish}}">
+            <div class="card">{{item}}<button data="{{item}}" on-tap="reacFinish">X</button></div>
+          </template>
+        </div>
+
+        <paper-input label="Intensity" value="{{items.features.intensity::input}}"></paper-input>
+
+        <paper-input label="Texture" value="{{items.features.texture::input}}"></paper-input>
+
+        <paper-input label="Coverage" value="{{items.features.coverage::input}}"></paper-input>
+
+        <paper-input label="Age" value="{{items.features.age::input}}"></paper-input>
+
+        <paper-input label="Longevity" value="{{items.features.longevity::input}}"></paper-input>
+
+        <paper-input label="Dermatologic" value="{{items.features.dermatologic::input}}"></paper-input>
+
+        <paper-input label="Brush Type" value="{{items.features.brushType::input}}"></paper-input>
+
+        <div class="card">
+          <div>Spf: <input type="text" id="spfInput"><button on-tap="addSpf" id="add">Add</button></div>
+
+          <template is="dom-repeat" items="{{items.features.spf}}">
+            <div class="card">{{item}}<button data="{{item}}" on-tap="reacSpf">X</button></div>
+          </template>
+        </div>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'features-app',
+
+      addTags: function(){
+        if(this.items.tags.indexOf(this.$.tagsInput.value) < 0)
+          this.push('items.tags', this.$.tagsInput.value);
+        this.$.tagsInput.value = "";
+      },
+      removeTags: function(data) {
+        var index = this.items.tags.indexOf(data);
+        this.splice('items.tags', index, 1);
+      },
+      reacTags: function(evt){
+        var item = evt.currentTarget.data;
+        this.removeTags(item);
+      },
+
+      addSkinTypes: function(){
+        if(this.items.features.skinTypes.indexOf(this.$.skinTypesInput.value) < 0)
+          this.push('items.features.skinTypes', this.$.skinTypesInput.value);
+        this.$.skinTypesInput.value = "";
+      },
+      removeSkinTypes: function(data) {
+        var index = this.items.features.skinTypes.indexOf(data);
+        this.splice('items.features.skinTypes', index, 1);
+      },
+      reacSkinTypes: function(evt){
+         var item = evt.currentTarget.data;
+         this.removeSkinTypes(item);
+      },
+
+      addFinish: function(){
+        if(this.items.features.finish.indexOf(this.$.finishInput.value) < 0)
+          this.push('items.features.finish', this.$.finishInput.value);
+        this.$.finishInput.value = "";
+      },
+      removeFinish: function(data) {
+        var index = this.items.features.finish.indexOf(data);
+        this.splice('items.features.finish', index, 1);
+      },
+      reacFinish: function(evt){
+         var item = evt.currentTarget.data;
+         this.removeFinish(item);
+      },
+
+      addSpf: function(){
+        if(this.items.features.spf.indexOf(this.$.spfInput.value) < 0)
+          this.push('items.features.spf', this.$.spfInput.value);
+        this.$.spfInput.value = "";
+      },
+      removeSpf: function(data) {
+        var index = this.items.features.spf.indexOf(data);
+        this.splice('items.features.spf', index, 1);
+      },
+      reacSpf: function(evt){
+         var item = evt.currentTarget.data;
+         this.removeSpf(item);
+      },
+
+      stringify: function(obj){ return JSON.stringify(obj); },
+    });
+  </script>
+</dom-module>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

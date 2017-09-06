@@ -1,0 +1,595 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+<link rel="stylesheet" type="text/css" href="/font.css">
+
+<dom-module id="categoriesEdit-app">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style type="text/css">
+    a {
+      text-decoration: none;
+      color: grey;
+    }
+
+    #menu {
+      float: left;
+      width: 260px;
+      height: 100%;
+      top: 100px;
+      background-color: white;
+    }
+
+    #home, #homeButton {
+      display: block;
+      width: 100%;
+      height: 100px;
+
+      background-color: white;
+      color: #4a4249;
+
+      box-shadow: 1px 1px 3px grey;
+
+      text-align: left;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    #homeButton { 
+      text-align: center;
+    }
+
+    #menuSub {
+      position: static;
+
+      border-style: solid;
+      border-width: 10px 1px 1px 1px;
+      border-color: #8BADCF grey grey grey;
+
+      width: 100%;
+      bottom: 80px;
+      box-shadow: 1px 1px 3px grey;
+      padding-bottom: 20px;
+    }
+
+    button {
+      border-style: none;
+      background-color: white;
+    }
+
+    #categoryMenu {
+      float: left;
+      display: inline-block;
+      width: 210px;
+    }
+
+    #menuCat {
+      margin-left: 5px;
+      float: left;
+      width: auto;
+      background-color: #6d89a0;
+
+      border-style: none none none solid;
+      border-width: 1px;
+      border-color: black;
+
+      margin-bottom: 80px;
+    }
+
+    .subCat {
+      margin-left: 5px;
+
+      border-style: none none none solid;
+      border-width: 1px;
+      border-color: black;
+    }
+
+    paper-menu {
+      width: 210px;
+      background-color: #6d89a1;
+      color: white;
+    }
+
+    .sublist, .sublist2 {
+      background-color: white;
+      color: #6d89a1;
+    }
+
+    .card {
+      display: inline-block;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: grey;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    .categoryEditionBox, #featuresBox {
+      display: inline-block;
+      margin-left: 2%;
+      vertical-align: top;
+      padding-bottom: 80px;
+    }
+
+    .product {
+      display: inline-block;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: grey;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
+      border-bottom: 1px solid #ccc;
+    }
+
+    li:last-child {
+      border: none;
+    }
+
+    li paper-button {
+      text-decoration: none;
+      color: #000;
+      display: block;
+    }
+
+    li paper-button:hover {
+      background: #f6f6f6;
+    }
+
+    #save {
+      display: none;
+      float: left;
+      margin-left: 120px;
+      width: 80px;
+
+      border-style: solid;
+      border-color: black;
+      border-width: 1px;
+    }
+
+    paper-input {
+      width: 200px;
+    }
+
+    #pages dt, #menuSub dt {
+      padding-left: 75px;
+    }
+
+    #renverser {
+      transform: rotate(180deg);
+    }
+
+    a, button, dd {
+      cursor: pointer;
+    }
+
+    dt, dd {
+      list-style-type: none;
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #6989A2;
+    }
+
+    dd {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: grey;
+      margin-left: 55px;
+    }
+
+    .featuresInput {
+      display: inline-block;
+    }
+
+    .featureButton {
+      border-style: solid;
+      border-width: 1px;
+      border-color: grey;
+    }
+
+    .featuresValue{
+      margin-top: 0;
+      vertical-align: middle;
+    }
+
+    .featureFields{
+      display: block;
+    }
+
+    .existing{
+      display: none;
+    }
+
+    #filter {
+      display: block;
+    }
+
+    .addValue {
+      border-style: none none solid none;
+      border-radius: 0px 0px 50% 50%;
+      border-width: 1px;
+      border-color: grey;
+
+      vertical-align: bottom;
+      margin-bottom: 7px;
+    }
+
+    .values {
+      display: inline-block;
+      border-style: none solid none none;
+      border-width: 1px;
+      border-color: grey;
+    }
+
+    #newFeature {
+      display: none;
+    }
+      
+    </style>
+
+    <div id="menu">
+      <div id="home">
+        <a href="#/dashboard/customers">
+          <button id="homeButton">
+            <iron-icon icon="icons:home"></iron-icon>
+            HOME
+          </button>
+        </a>
+      </div>
+
+      <dl id="pages">
+        <dt>Products</dt>
+
+        <dd>
+            <a href="#/categories">
+              <iron-icon id="renverser" icon="icons:change-history"></iron-icon>
+              Categories
+            </a>
+        </dd>
+
+        <dd>
+          <a href="#/search">
+            <iron-icon id="renverser" icon="icons:change-history"></iron-icon>
+            Search
+          </a>
+        </dd>
+      </dl>
+
+      <div id="menuSub">
+        <dl>
+          <dt>Insights</dt>
+
+          <dd>
+            <a href="#/dashboard/customers">
+              <iron-icon id="renverser" icon="icons:change-history"></iron-icon>
+              Customers
+            </a>
+          </dd>
+
+          <dd>
+            <a href="#/dashboard/products">
+              <iron-icon id="renverser" icon="icons:change-history"></iron-icon>
+              Products
+            </a>
+          </dd>
+
+          <dd>
+            <a href="#/dashboard/words">
+              <iron-icon id="renverser" icon="icons:change-history"></iron-icon>
+              Words
+            </a>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <iron-ajax
+    auto
+    url="http://54.171.115.230:8080/api/v1/entities/{{connId}}/categories/tree"
+    handle-as="json"
+    debounce-duration="300"
+    last-response="{{categoryTree}}"></iron-ajax>
+
+    <iron-ajax
+    auto
+    id="getDataAjax"
+    url="http://54.171.115.230:8080/api/v1/entities/57d2c67d6165141b3d842987/categories/[[catId]]"
+    handle-as="json"
+    debounce-duration="300"
+    on-response="displayDomRepeat"
+    last-response="{{catInfo}}"></iron-ajax>
+
+    <iron-ajax
+    id="sendDataAjax"
+    url="http://54.171.115.230:8080/api/v1/entities/57d2c67d6165141b3d842987/categories/[[catId]]"
+    handle-as="json"
+    content-type="application/json"
+    method="put"
+    body={{catInfo}}
+    debounce-duration="300"
+    on-response="getNewData"
+    last-response="{{answer}}"></iron-ajax>
+
+    <iron-ajax
+    id="createNewCat"
+    url="http://54.171.115.230:8080/api/v1/entities/57d2c67d6165141b3d842987/categories"
+    handle-as="json"
+    content-type="application/json"
+    method="post"
+    body={{catInfo}}
+    debounce-duration="300"
+    on-response="getNewData"
+    last-response="{{answer}}"></iron-ajax>
+
+    <div class="categoryEditionBox">
+      <paper-input label="Main cat. name" value="{{mainString::input}}" data="{{mainId}}" on-focus="show" id="mainInput"></paper-input>
+        <div class="existing" id="main">
+          <template is="dom-repeat" items="{{categoryTree}}" as="mainCategories"
+            filter="{{mainFilter(mainString)}}">
+            <button id="filter" data="{{mainId}}" on-tap="hide">{{mainCategories.name}}</button>
+          </template>
+        </div>
+
+      <paper-input label="Sub cat. name" value="{{subString::input}}" data="{{subId}}" on-focus="show" id="subInput"></paper-input>
+        <div class="existing" id="sub">
+          <template is="dom-repeat" items="{{secondery.array}}" as="subCategories"
+            filter="{{subFilter(subString)}}">
+            <button id="filter" data="{{subId}}" on-tap="hide">{{subCategories.name}}</button>
+          </template>
+        </div>
+
+      <paper-input label="Type cat. name" value="{{typeString::input}}" data="{{typeId}}" on-focus="show" id="typeInput" on-change="setUp"></paper-input>
+        <div class="existing" id="type">
+          <template is="dom-repeat" items="{{thirdly.array}}" as="typeCategories"
+            filter="{{typeFilter(typeString)}}">
+            <button id="filter" data="{{typeId}}" on-tap="hide">{{typeCategories.name}}</button>
+          </template>
+        </div>
+
+      <paper-button id="save" on-tap="addCat">add</paper-button>
+    </div>
+
+    <div id="featuresBox">
+      <template is="dom-repeat" items="{{catInfo.features}}" as="SingleFeature" id="featuresDom">
+        <div class="featuresValue">
+          <paper-input label="Feature" class="featuresInput" data="{{SingleFeature.feature}}" on-change="featureNameUpdate" placeholder="{{SingleFeature.feature}}"></paper-input>
+
+          <paper-input label="add Value :" class="featuresInput" value="{{SingleFeature.newValue::input}}"></paper-input>
+          <paper-button class="addValue" on-tap="plus" data="{{SingleFeature.newValue}}" from="{{SingleFeature.feature}}">Add</paper-button>
+
+          <paper-button class="addValue" on-tap="del" data="{{SingleFeature.feature}}">X</paper-button>
+          <div>values : </div>
+          <div>
+            <template is="dom-repeat" items="{{SingleFeature.values}}">
+              <button class="values" on-tap="supp" data="{{SingleFeature.feature}}">{{item}}</button>
+            </template>
+          </div>
+        </div>
+      </template>
+      <paper-input label="New feature" id="newFeature" class="featuresInput" on-change="addNewFeature"></paper-input>
+
+    </div>
+
+  </template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+      is: 'categoriesEdit-app',
+      properties: {
+        connId: {
+          type: String,
+          value: "57d2c67d6165141b3d842987",
+        },
+        catId: {
+          type: String,
+        },
+        mainId: {
+          type: String,
+          value: 'main',
+        },
+        subId: {
+          type: String,
+          value: 'sub',
+        },
+        typeId: {
+          type: String,
+          value: 'type',
+        },
+        secondery: {
+          type: Object,
+        },
+        thirdly: {
+          type: Object,
+        },
+        catInfo: {
+          type: Object,
+        },
+      },
+      stringify: function(obj){ return JSON.stringify(obj); },
+      test: function(obj){ console.log(obj); },
+      save: function(){ 
+        this.$.sendDataAjax.generateRequest();
+      },
+      getNewData: function() { 
+        this.$.getDataAjax.generateRequest();
+        console.log(this.answer);
+      },
+      displayDomRepeat: function() { 
+        if(this.$.typeInput.value != "")
+          this.$.newFeature.style.display = 'block'; 
+      },
+      addCat: function() {
+        this.catInfo = {};
+        this.catInfo.main = this.$.mainInput.value;
+        this.catInfo.sub = this.$.subInput.value;
+        this.catInfo.name = this.$.typeInput.value;
+        
+        this.$.createNewCat.generateRequest();
+      },
+      addNewFeature: function(evt) {
+        if(evt.currentTarget.value != ""){
+          this.catInfo.features.push({"feature": evt.currentTarget.value, "values": []});
+          this.$.newFeature.value = "";
+          this.save();
+        }
+      },
+      show: function(evt){
+        this.$.main.style.display = 'none';
+        this.$.sub.style.display = 'none';
+        this.$.type.style.display = 'none';
+
+        var item = evt.currentTarget.data;
+        this.$[item].style.display = 'block';
+      },
+      setUp: function() {
+        if(this.$.typeInput.value != ""){
+          var array = [];
+          for (var i = 0; i < this.thirdly.array.length; i++) {
+            array[i] = this.thirdly.array[i].name;
+          }
+          if(array.indexOf(this.$.typeInput.value) >= 0){
+            this.$.save.style.display = 'none';
+            this.$.featuresBox.style.display = 'inline-block';
+            this.catId = this.thirdly.array[array.indexOf(this.$.typeInput.value)]._id;
+          }else{
+            this.$.save.style.display = 'block';
+            this.$.featuresBox.style.display = 'none';
+          }
+        }
+      },
+      supp: function(evt) {
+        var array = [];
+        for (var i = 0; i < this.catInfo.features.length; i++) {
+          array[i] = this.catInfo.features[i].feature;
+        }
+        if((array.indexOf(evt.currentTarget.data) >= 0) && (this.catInfo.features[array.indexOf(evt.currentTarget.data)].values.indexOf(evt.currentTarget.innerText) >= 0)){
+          this.catInfo.features[array.indexOf(evt.currentTarget.data)].values.splice(this.catInfo.features[array.indexOf(evt.currentTarget.data)].values.indexOf(evt.currentTarget.innerText), 1);
+          this.save();
+        }else{
+          console.log('err');
+        }
+        //reload the dom-repeat
+      },
+      plus: function(evt) {
+        var array = [];
+        for (var i = 0; i < this.catInfo.features.length; i++) {
+          array[i] = this.catInfo.features[i].feature;
+        }
+        this.catInfo.features[array.indexOf(evt.currentTarget.from)].values.push(evt.currentTarget.data);
+        
+        this.save();
+        // trie des ajouts ?
+      },
+      featureNameUpdate: function(evt) {
+        if(evt.currentTarget.value != "") {
+          var array = [];
+          for (var i = 0; i < this.catInfo.features.length; i++) {
+            array[i] = this.catInfo.features[i].feature;
+          }
+          this.catInfo.features[array.indexOf(evt.currentTarget.data)].feature = evt.currentTarget.value;
+          this.save();
+        }
+      },
+      del: function(evt) {
+        var array = [];
+        for (var i = 0; i < this.catInfo.features.length; i++) {
+          array[i] = this.catInfo.features[i].feature;
+        }
+        this.catInfo.features.splice(array.indexOf(evt.currentTarget.data), 1);
+
+        this.save();
+      },
+      hide: function(evt){
+        var item = evt.currentTarget.data;
+
+        if(item == 'main') this.mainString = evt.currentTarget.innerText;
+        if(item == 'sub') this.subString = evt.currentTarget.innerText;
+        if(item == 'type'){
+          this.typeString = evt.currentTarget.innerText;
+          this.setUp();
+        }
+
+        this.$[item].style.display = 'none';
+      },
+      mainFilter: function(string) {
+        var array = [];
+        for (var i = 0; i < this.categoryTree.length; i++) {
+          array[i] = this.categoryTree[i].name;
+        }
+        this.secondery = this.categoryTree[array.indexOf(string)];
+        if (!string) {
+          // set filter to null to disable filtering
+          return null;
+        } else {
+          // return a filter function for the current search string
+          string = string.toLowerCase();
+          return function(categories) {
+            var first = categories.name.toLowerCase();
+            return (first.indexOf(string) != -1);
+          };
+        }
+      },
+      subFilter: function(string) {
+        var array = [];
+        for (var i = 0; i < this.secondery.array.length; i++) {
+          array[i] = this.secondery.array[i].name;
+        }
+        this.thirdly = this.secondery.array[array.indexOf(string)];
+        if (!string) {
+          // set filter to null to disable filtering
+          return null;
+        } else {
+          // return a filter function for the current search string
+          string = string.toLowerCase();
+          return function(categories) {
+            var second = categories.name.toLowerCase();
+            return (second.indexOf(string) != -1);
+          };
+        }
+      },
+      typeFilter: function(string) {
+        if (!string) {
+          // set filter to null to disable filtering
+          return null;
+        } else {
+          // return a filter function for the current search string
+          string = string.toLowerCase();
+          return function(categories) {
+            var thid = categories.name.toLowerCase();
+            return (thid.indexOf(string) != -1);
+          };
+        }
+      },
+    });
+  </script>
+</dom-module>

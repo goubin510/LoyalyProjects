@@ -1,0 +1,259 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../../bower_components/paper-menu/paper-submenu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-signals/iron-signals.html">
+
+<link rel="stylesheet" type="text/css" href="/font.css">
+
+<dom-module id="categories-app">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style type="text/css">
+    #menu {
+      float: left;
+      width: 50px;
+    }
+
+    a {
+      text-decoration: none;
+      color: grey;
+    }
+
+    .menuOption {
+      display: block;
+      width: 50px;
+      height: 50px;
+
+      background-color: white;
+      color: grey;
+
+      box-shadow: 1px 1px 3px grey;
+      font-size: 15px;
+    }
+
+    .home {
+      background-color: #6d89a0;
+      color: white;
+    }
+
+    button {
+      border-style: none;
+      background-color: white;
+    }
+
+    #categoryMenu {
+      float: left;
+      display: inline-block;
+    }
+
+    #menuCat {
+      margin-left: 5px;
+      float: left;
+      width: auto;
+      background-color: #6d89a0;
+
+      border-style: none none none solid;
+      border-width: 1px;
+      border-color: black;
+
+      margin-bottom: 80px;
+    }
+
+    .subCat {
+      margin-left: 5px;
+
+      border-style: none none none solid;
+      border-width: 1px;
+      border-color: black;
+    }
+
+    paper-menu {
+      width: 204px;
+      background-color: #6d89a1;
+      color: white;
+    }
+
+    .sublist, .sublist2 {
+      background-color: white;
+      color: #6d89a1;
+    }
+
+    .card {
+      display: inline-block;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: grey;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    .categoryList {
+      position: static;
+      margin: 10px;
+      margin-left: 276px;
+    }
+
+    .product {
+      display: inline-block;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: grey;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
+      border-bottom: 1px solid #ccc;
+    }
+
+    li:last-child {
+      border: none;
+    }
+
+    li paper-button {
+      text-decoration: none;
+      color: #000;
+      display: block;
+    }
+
+    li paper-button:hover {
+      background: #f6f6f6;
+    }
+
+    a {
+      text-decoration: none;
+      color: grey;
+    }
+      
+    </style>
+
+    <app-route  route="{{route}}"
+                pattern="/:catId"
+                data="{{routeData}}"></app-route>
+
+    <div id="menu">
+      <a href="#/dashboard/customers">
+        <button class="menuOption home">
+          <iron-icon icon="icons:home"></iron-icon>
+        </button>
+      </a>
+
+      <a href="#/categories">
+        <button class="menuOption">
+          <iron-icon icon="icons:apps"></iron-icon>
+        </button>
+      </a>
+
+      <a href="#/search">
+        <button class="menuOption">
+          <iron-icon icon="icons:search"></iron-icon>
+        </button>
+      </a>
+    </div>
+
+    <iron-ajax
+    auto
+    url="http://54.171.115.230:8080/api/v1/entities/[[connId]]/categories/tree"
+    handle-as="json"
+    debounce-duration="300"
+    last-response="{{productList}}"></iron-ajax>
+
+    <div id="categoryMenu">
+       <div id="menuCat">
+        <paper-menu attr-for-item-title="label">
+          <template is="dom-repeat" items="{{productList}}">
+            <paper-submenu label="paper-menu">
+              <paper-item class="menu-trigger">{{item.name}}</paper-item>
+              <paper-menu class="menu-content sublist">
+                <div class="subCat">
+                  <template is="dom-repeat" items="{{item.array}}">
+                    <paper-submenu label="Properties">
+                      <paper-item class="menu-trigger">{{item.name}}</paper-item>
+                      <paper-menu class="menu-content sublist2">
+                        <div class="subCat">
+                          <template is="dom-repeat" items="{{item.array}}" >
+                            <a href="#/categories/[[item._id]]">
+                              <paper-item>{{item.name}}</paper-item>
+                            </a>
+                          </template>
+                        </div>
+                      </paper-menu>
+                    </paper-submenu>
+                  </template>
+                </div>
+              </paper-menu>
+            </paper-submenu>
+          </template>
+        </paper-menu>
+      </div>
+    </div>
+
+        <iron-ajax
+        auto
+        id="ajax"
+        url="http://54.171.115.230:8080/api/v1/entities/[[connId]]/categories/[[routeData.catId]]"
+        handle-as="json"
+        content-type="application/json"
+        debounce-duration="300"
+        last-response="{{answer}}"></iron-ajax>
+
+    <div class="categoryList">
+      <paper-input value="Product : " readOnly></paper-input>
+
+      <ul>
+        <template is="dom-repeat" items="{{answer.products}}">
+          <li>
+            <a href="#/product/[[item._id]]">
+              <paper-button>{{item.name}}</paper-button>
+            </a>
+          </li>
+        </template>
+      </ul>
+
+    </div>
+
+  </template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+      is: 'categories-app',
+      properties: {
+        connId: {
+          type: String,
+          value: "57d2c67d6165141b3d842987",
+        },
+      },
+      stringify: function(obj){ return JSON.stringify(obj); },
+      test: function(obj){ console.log(obj); },
+    });
+  </script>
+</dom-module>

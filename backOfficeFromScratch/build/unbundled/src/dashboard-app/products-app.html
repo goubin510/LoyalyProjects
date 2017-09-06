@@ -1,0 +1,189 @@
+<html><head><link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+</head><body><dom-module id="products-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      #productLists, #content {
+        position: static;
+        display: block;
+        margin: 10px;
+        margin-left: 270px;
+        margin-right: 10px;
+      }
+
+      .list {
+        display: inline-block;
+        padding: 10px;
+        margin: 10px;
+        width: 40%;
+
+        border-width: 1px;
+        border-style: solid;
+        border-color: grey;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
+        border-bottom: 1px solid #ccc;
+      }
+
+      li:last-child {
+        border: none;
+      }
+
+      li paper-button {
+        text-decoration: none;
+        color: #000;
+        display: block;
+      }
+
+      li paper-button:hover {
+        background: #f6f6f6;
+      }
+
+      paper-input, #results {
+        display: block;
+        margin-left: 10px;
+        width: 40%;
+      }
+
+      .bottom {
+        position: static;
+      }
+
+      #results {
+        z-index: 2;
+        position: absolute;
+        background-color: white;
+      }
+
+      #productDisplay {
+        position: static;
+        margin-left: 260px;
+      }
+
+      .card {
+        display: inline-block;
+        vertical-align: top;
+        margin: 5px;
+        padding: 5px;
+
+        border-color: grey;
+        border-style: solid;
+        border-width: 1px;
+
+        background-color: white;
+        box-shadow: 1px 1px 3px grey;
+      }
+
+      #mainIntel, #subIntel {
+        font: 12px Montserrat, sans-serif;
+        color: #6989A2;
+      }
+
+      #mainIntel {
+        text-align: center;
+        font-size: 30px;
+        margin: 0px;
+      }
+
+      #subIntel {
+        font-size: 20px;
+        margin: 0px;
+      }
+
+      #wide{
+        width: 600px;
+        height: 200px;
+      }
+
+      #pieChart {
+        z-index: 0;
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+      }
+
+    </style>
+
+    <div id="productLists">
+      <div class="list">
+        <ul>
+          <template is="dom-repeat" items="{{topProduct.topDisplayedByProd}}">
+            <li><paper-button data="{{item.mainId}}" on-tap="reac">{{item.code}}</paper-button></li>
+          </template>
+        </ul>
+      </div>
+      <div class="list">
+        <ul>
+          <template is="dom-repeat" items="{{topProduct.topViewedByProd}}">
+            <li><paper-button data="{{item.mainId}}" on-tap="reac">{{item.code}}</paper-button></li>
+          </template>
+        </ul>
+      </div>
+    </div>
+
+    <div id="content">
+      <paper-input label="Search" on-input="refresh" id="inputField" on-focus="showResults" on-blur="hideResults"></paper-input>
+
+      <div id="results">
+        <ul>
+          <template is="dom-repeat" items="{{answer.results}}">
+            <li><paper-button data="{{item._id}}" on-tap="reac">{{item.name}}</paper-button></li>
+          </template>
+        </ul>
+      </div>
+    </div>
+
+    <div id="productDisplay">
+      <div class="card">
+          <google-chart id="pieChart" type="pie" options="{&quot;title&quot;: &quot;Stat % &quot;, &quot;colors&quot;: [&quot;grey&quot;, &quot;#8BADCF&quot;], &quot;legend&quot;: &quot;none&quot;, &quot;height&quot;: &quot;200&quot;, &quot;width&quot;: &quot;200&quot;}" cols="[{&quot;label&quot;: &quot;status&quot;, &quot;type&quot;: &quot;string&quot;},{&quot;label&quot;: &quot;stat&quot;, &quot;type&quot;: &quot;number&quot;}]" rows="[[&quot;rejected&quot;, 30],[&quot;carted&quot;, 70]]">
+          </google-chart>
+      </div>
+
+
+      <div class="card">
+        <p id="mainIntel">{{sampledRatioDispStat}}</p>
+        <p id="subIntel">Ratio sampled / Disp</p>
+      </div>
+      <div class="card">
+        <p id="mainIntel">{{sampledRatioClckStat}}</p>
+        <p id="subIntel">Ratio sampled / Clck</p>
+      </div>
+
+
+      <div class="card">
+        <google-chart id="wide" type="combo" options="{&quot;seriesType&quot;: &quot;area&quot;, &quot;series&quot;: {&quot;0&quot;: {&quot;type&quot;: &quot;line&quot;}}, &quot;title&quot;: &quot;Chat Data&quot;, &quot;colors&quot;: [&quot;#FF9E94&quot;, &quot;#4C4149&quot;, &quot;#6989A2&quot;, &quot;grey&quot;, &quot;#8BADCF&quot;], &quot;legend&quot;: &quot;top&quot;}" cols="[{&quot;label&quot;: &quot;period&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;sample asked&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;rejected&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;carted&quot;, &quot;type&quot;: &quot;number&quot;}]" data="{{productShopTable}}">
+        </google-chart>
+      </div>
+
+      <div class="card">
+        <google-chart id="wide" type="combo" options="{&quot;seriesType&quot;: &quot;area&quot;, &quot;series&quot;: {&quot;0&quot;: {&quot;type&quot;: &quot;line&quot;}}, &quot;title&quot;: &quot;Chat Data&quot;, &quot;colors&quot;: [&quot;#FF9E94&quot;, &quot;#4C4149&quot;, &quot;#6989A2&quot;, &quot;grey&quot;, &quot;#8BADCF&quot;], &quot;legend&quot;: &quot;top&quot;}" cols="[{&quot;label&quot;: &quot;period&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;clicked&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;viewed&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;displayed&quot;, &quot;type&quot;: &quot;number&quot;}]" data="{{productChatTable}}">
+        </google-chart>
+      </div>
+    </div>
+
+  <iron-ajax id="getProduct" url="" handle-as="json" content-type="application/json" on-response="buildTable" debounce-duration="300" last-response="{{product}}"></iron-ajax>
+
+  <iron-ajax id="ajax" url="" handle-as="json" content-type="application/json" debounce-duration="300" last-response="{{answer}}"></iron-ajax>
+
+  <iron-ajax auto="" url="http://54.171.115.230:8080/api/v1/entities/{{connId}}/products/top" handle-as="json" debounce-duration="300" last-response="{{topProduct}}"></iron-ajax>
+
+  </template>
+  <script>Polymer({is:"products-app",properties:{connId:{type:String,value:sessionId},productShopTable:{type:Array,value:[]},productChatTable:{type:Array,value:[]},cartedRatioDispStat:{type:Number},cartedRatioClckStat:{type:Number},sampledRatioDispStat:{type:Number},sampledRatioClckStat:{type:Number}},showResults:function(){this.$.results.style.display="block"},hideResults:function(){this.$.results.style.display="none"},stringify:function(t){return JSON.stringify(t)},reac:function(t){this.$.getProduct.url="http://54.171.115.230:8080/api/v1/entities/"+this.connId+"/products/"+t.currentTarget.data+"/metrics",this.$.getProduct.generateRequest()},buildTable:function(){this.cartedRatioDispStat=Math.round(this.product.values[0].metrics.addTC_SUM/this.product.values[0].metrics.disp_SUM*100)/100,this.cartedRatioClckStat=Math.round(this.product.values[0].metrics.addTC_SUM/this.product.values[0].metrics.clck_SUM*100)/100,this.sampledRatioDispStat=Math.round(this.product.values[0].metrics.smpl_SUM/this.product.values[0].metrics.disp_SUM*100)/100,this.sampledRatioClckStat=Math.round(this.product.values[0].metrics.smpl_SUM/this.product.values[0].metrics.clck_SUM*100)/100,this.productShopTable=[],this.productChatTable=[],this.productShopTable.push(["period","cicked","viewed","displayed"]),this.productChatTable.push(["period","clicked","viewed","displayed"]);for(var t=0;t<this.product.values[0].metrics.smpl.length;t++)this.productShopTable.push([t,this.product.values[0].metrics.smpl[t],this.product.values[0].metrics.rej[t],this.product.values[0].metrics.addTC[t]]),this.productChatTable.push([t,this.product.values[0].metrics.clck[t],this.product.values[0].metrics.view[t],this.product.values[0].metrics.disp[t]])},refresh:function(){var t=this.$.inputField.value.split(" "),e="";if(t.length>1)for(var s=0;s<t.length;s++)""!=t[s]&&(e+=t[s]),s<t.length-1&&""!=t[s+1]&&(e+="-");else e=t[0];this.$.ajax.url="http://54.171.115.230:8080/api/v1/entities/"+this.connId+"/products/search?text="+e,this.$.inputField.value&&this.$.ajax.generateRequest()}});</script>
+</dom-module>
+</body></html>

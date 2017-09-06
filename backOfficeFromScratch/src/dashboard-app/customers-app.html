@@ -1,0 +1,351 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/google-chart/google-chart.html">
+
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+
+<link rel="stylesheet" type="text/css" href="/font.css">
+
+<dom-module id="customers-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      #main {
+        display: block;
+        margin-left: 260px;
+        padding-bottom: 20px;
+        height: 100%;
+        overflow: auto;
+
+        background-color: #EAEAEA;
+      }
+
+      .card {
+        display: inline-block;
+        vertical-align: top;
+        padding: 0;
+
+        text-align: center;
+
+        overflow: hidden;
+
+        border-color: grey;
+        border-style: solid;
+        border-width: 1px;
+
+        background-color: white;
+        box-shadow: 1px 1px 2px grey;
+      }
+
+      .large {
+        display: inline-block;
+        width: 70%;
+      }
+
+      paper-tabs {
+        padding: 5px;
+
+        background-color: #8BADCF;
+        color: white;
+        --paper-tabs-selection-bar-color: white;
+        /*--paper-tabs-selection-bar-color: radial-gradient(white, #8BADCF);*/
+      }
+
+      paper-tab {
+        border-style: none solid none none;
+        border-width: 2px;
+        border-color: white;
+      }
+
+      #mainIntel, #subIntel {
+        color: #6989A2;
+        margin: 0;
+      }
+
+      #mainIntel {
+        text-align: center;
+        font-size: 30px;
+      }
+
+      #subIntel {
+        font-size: 20px;
+      }
+
+      #wide{
+        display: block;
+        width: 100%;
+        height: 220px;
+      }
+
+      #pieChart {
+        display: inline-block;
+        width: 100%;
+        height: 200px;
+      }
+
+      .square {
+        width: 20%;
+        height: 220px;
+      }
+
+      #threeSquare {
+        min-height: 50px;
+        min-width: 50px;
+        margin: 0;
+        padding: 0;
+      }
+
+      #underChart {
+        display: block;
+        width: 100%;
+      }
+
+      #underChart .pieChart {
+        display: inline-block;
+        width: 30%;
+        height: 220px;
+      }
+
+      #marger, #margerTwo, #threeSquare, #margerThree, #margerFour, #margerFive, #margerSix {
+        display: none;
+      }
+
+      paper-tabs paper-tab.iron-selected {
+        background-color: #6989A2;
+        color: #86ACD1;
+      }
+
+    </style>
+
+<paper-tabs scrollable selected="7" fit-container>
+  <template is="dom-repeat" items="{{metricsData.values}}">
+    <paper-tab class="type" data="{{item}}" on-tap="reac">{{getDateNumber(item.ts)}}</paper-tab>
+  </template>
+</paper-tabs>
+
+  <div id="main">
+    <div class="card square" id="marger">
+      <p id="mainIntel">{{selectedObject.metrics.msg_SUM}}</p>
+      <p id="subIntel">Messages</p>
+    </div>
+
+    <div class="card large" id="margerTwo">
+      <google-chart
+        id="wide"
+        type="combo"
+        options='{"seriesType": "area", "series": {"0": {"type": "line"}}, "title": "Chat Data", "colors": ["#FF9E94", "#4C4149", "#6989A2", "grey", "#8BADCF"], "legend": "top"}'
+        cols='[{"label": "period", "type": "number"},{"label": "messages", "type": "number"},{"label": "chats", "type": "number"},{"label": "active chat", "type": "number"},{"label": "opened", "type": "number"}]'
+        data="{{chatTable}}">
+      </google-chart>
+    </div>
+
+          <div id="threeSquare">
+            <div class="card" id="margerThree">
+              <p id="mainIntel">{{messageProductStat}}</p>
+              <p id="subIntel">Message to get 1 product</p>
+            </div>
+
+            <div class="card" id="margerFour">
+              <google-chart
+                id="pieChart"
+                type="pie"
+                options='{"title": "Stat % ", "colors": ["#4C4149", "grey"], "legend": "bottom"}'
+                cols='[{"label": "status", "type": "string"},{"label": "stat", "type": "number"}]'
+                rows='[["bought", 120],["abandon", 70]]'>
+              </google-chart>
+            </div>
+
+            <div class="card" id="margerFive">
+              <google-chart
+                id="wide"
+                type="area"
+                options='{"title": "product Data", "colors": ["#FF9E94", "#4C4149", "#6989A2", "grey", "#8BADCF"], "legend": "top"}'
+                cols='[{"label": "period", "type": "number"},{"label": "added to cart", "type": "number"},{"label": "product displayed", "type": "number"},{"label": "product clicked", "type": "number"},{"label": "samples asked", "type": "number"}]'
+                data="{{productTable}}">
+              </google-chart>
+            </div>
+          </div>
+
+    <div class="card" id="margerSix">
+      <google-chart
+        id="wide"
+        type="line"
+        options='{"title": "media Data", "colors": ["#FF9E94", "#4C4149", "#6989A2", "grey", "#8BADCF"], "legend": "top"}'
+        cols='[{"label": "period", "type": "number"},{"label": "video watched", "type": "number"},{"label": "photo displayed", "type": "number"}, {"label": "period", "type": "number"}]'
+        data="{{mediaTable}}">
+      </google-chart>
+
+      <div id="underChart">
+        <google-chart
+          class="pieChart"
+          type="pie"
+          options='{"title": "Stat % ", "colors": ["#8BADCF", "grey"], "legend": "bottom"}'
+          cols='[{"label": "status", "type": "string"},{"label": "stat", "type": "number"}]'
+          rows='[["bought", 30],["abandon", 70]]'>
+        </google-chart>
+      
+        <google-chart
+          class="pieChart"
+          type="pie"
+          options='{"title": "Stat % ", "colors": ["#4C4149", "grey"], "legend": "bottom"}'
+          cols='[{"label": "status", "type": "string"},{"label": "stat", "type": "number"}]'
+          rows='[["bought", 120],["abandon", 70]]'>
+        </google-chart>
+      
+        <google-chart
+          class="pieChart"
+          type="pie"
+          options='{"title": "Stat % ", "colors": ["#FF9E94", "grey"], "legend": "bottom"}'
+          cols='[{"label": "status", "type": "string"},{"label": "stat", "type": "number"}]'
+          rows='[["bought", 480],["abandon", 70]]'>
+        </google-chart>
+      </div>
+    </div>
+  </div>
+
+  <iron-ajax
+    auto
+    url="http://54.171.115.230:8080/api/v1/entities/{{connId}}/metrics"
+    handle-as="json"
+    on-response="margerMaking"
+    debounce-duration="300"
+    last-response="{{metricsData}}"></iron-ajax>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'customers-app',
+      properties: {
+        connId: {
+          type: String,
+          value: "57d2c67d6165141b3d842987",
+        },
+        selectedObject: {
+          type: Object,
+        },
+        chatTable: {
+          type: Array,
+          value: [],
+        },
+        mediaTable: {
+          type: Array,
+          value: [],
+        },
+        productTable: {
+          type: Array,
+          value: [],
+        },
+        productMessageStat: {
+          type: Number,
+        },
+        messageProductStat: {
+          type: Number,
+        },
+      },
+      stringify: function(obj){ return JSON.stringify(obj); },
+      test: function(obj){
+        console.log('cust :'); 
+        console.log(obj);
+      },
+      getDateNumber: function(number){
+        var actual = new Date();
+        var dataDay = new Date(number);
+        var date;
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+        if(actual.getDate() == dataDay.getDate() && actual.getMonth() == dataDay.getMonth() && actual.getFullYear() == dataDay.getFullYear()){
+          date = 'Today';
+        }else if( (actual.getDate() - 1) == dataDay.getDate() && actual.getMonth() == dataDay.getMonth() && actual.getFullYear() == dataDay.getFullYear()){
+          date = 'Yesterday';
+        }else{
+          date = dataDay.getDate() + ' ' + months[dataDay.getMonth()];
+        }
+        return date;
+      },
+      reac: function(evt) {
+        this.selectedObject = evt.currentTarget.data;
+        var metrics = evt.currentTarget.data.metrics;
+
+        this.productMessageStat = Math.round(metrics.pDisp_SUM / metrics.msg_SUM * 100) /100;
+        this.messageProductStat = Math.round(metrics.msg_SUM / metrics.pDisp_SUM);
+
+        this.chatTable = [];
+        this.mediaTable = [];
+        this.productTable = [];
+
+        this.chatTable.push(["period", "messages", "chats", "active chat", "opened"]);
+        this.mediaTable.push(["period", "video watched", "photo displayed", "modals opened"]);
+        this.productTable.push(["period", "carted", "product disp.", "product clicked", "samples asked"]);
+
+        for (var i = 0; i < metrics.vidView.length; i++) {
+          this.chatTable.push([i, metrics.msg[i], metrics.newCh[i], metrics.chtAct[i], metrics.chOp[i]]);
+          this.mediaTable.push([i, metrics.vidView[i], metrics.phto[i], metrics.mdOp[i]]);
+          this.productTable.push([i, metrics.addTC[i], metrics.pDisp[i], metrics.pClck[i], metrics.smpl[i]]);
+        }
+      },
+      margerMaking: function() {
+        var width = window.innerWidth - 260;
+        var marge = width*2/100;
+
+        this.$.marger.style.marginTop = marge + 'px';
+        this.$.marger.style.marginLeft = marge + 'px';
+        this.$.marger.style.display = 'inline-block';
+
+        this.$.margerTwo.style.marginTop = marge + 'px';
+        this.$.margerTwo.style.marginLeft = marge + 'px';
+        this.$.margerTwo.style.display = 'inline-block';
+
+        this.$.threeSquare.style.marginTop = marge + 'px';
+        this.$.threeSquare.style.marginLeft = marge + 'px';
+        this.$.threeSquare.style.width = marge*23 + 'px';
+        this.$.threeSquare.style.display = 'inline-block';
+
+        this.$.margerThree.style.height = 200 + 'px';
+        this.$.margerThree.style.width = marge*10 + 'px';
+        this.$.margerThree.style.display = 'inline-block';
+
+        this.$.margerFour.style.height = 200 + 'px';
+        this.$.margerFour.style.marginLeft = marge + 'px';
+        this.$.margerFour.style.width = marge*10 + 'px';
+        this.$.margerFour.style.display = 'inline-block';
+
+        this.$.margerFive.style.height = 200 + 'px';
+        this.$.margerFive.style.width = marge*21 + 5 + 'px';
+        this.$.margerFive.style.marginTop = marge + 'px';
+        this.$.margerFive.style.display = 'block';
+
+        this.$.margerSix.style.marginTop = marge + 'px';
+        this.$.margerSix.style.marginLeft = -marge/2 + 'px';
+        this.$.margerSix.style.height = marge + 400 + 'px';
+        this.$.margerSix.style.width = marge*23 + 'px';
+        this.$.margerSix.style.display = 'inline-block';
+
+        if(this.metricsData)
+          this.loaded(this.metricsData.values[7].metrics);
+      },
+      loaded: function(data) {
+        var metrics = data;
+
+        this.productMessageStat = Math.round(metrics.pDisp_SUM / metrics.msg_SUM * 100) /100;
+        this.messageProductStat = Math.round(metrics.msg_SUM / metrics.pDisp_SUM);
+
+        this.chatTable = [];
+        this.mediaTable = [];
+        this.productTable = [];
+
+        this.chatTable.push(["period", "messages", "chats", "active chat", "opened"]);
+        this.mediaTable.push(["period", "video watched", "photo displayed", "modals opened"]);
+        this.productTable.push(["period", "carted", "product disp.", "product clicked", "samples asked"]);
+
+        for (var i = 0; i < metrics.vidView.length; i++) {
+          this.chatTable.push([i, metrics.msg[i], metrics.newCh[i], metrics.chtAct[i], metrics.chOp[i]]);
+          this.mediaTable.push([i, metrics.vidView[i], metrics.phto[i], metrics.mdOp[i]]);
+          this.productTable.push([i, metrics.addTC[i], metrics.pDisp[i], metrics.pClck[i], metrics.smpl[i]]);
+        }
+      }
+    });
+  </script>
+</dom-module>

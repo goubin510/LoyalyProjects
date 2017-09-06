@@ -1,0 +1,32 @@
+<div ng-controller="customersCtrl as current">
+	<p class="topTab">
+		<button ng-repeat="i in msg.values" ng-click="current.showTab(i.ts)" ng-class="{displayed: tab.ts == i.ts}" class="dayTabs"> {{current.getDateNumber(i.ts)}} </button>
+	</p>
+	<div>
+		<div class="card square">
+			<p class="mainIntel">{{tab.metrics.msg_SUM}}</p>
+			<p class="subIntel">messages</p>
+		</div>
+
+		<div class="card large">
+			<div id="chart1"></div>
+		</div>
+
+		<div class="card square">
+			<p class="mainIntel">{{tab.metrics.msg_SUM / tab.metrics.pDisp_SUM}}</p>
+			<p class="subIntel">messages / products</p>
+		</div>
+
+		<div class="card square">
+			<div id="chart2"></div>
+		</div>
+
+		<div class="card est">
+			<div id="chart3"></div>
+		</div>
+
+		<div class="card medium">
+			<div id="chart4"></div>
+		</div>
+	</div>
+</div>

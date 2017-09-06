@@ -1,0 +1,163 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/av-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/image-icons.html">
+<link rel="stylesheet" type="text/css" href="/font.css">
+
+
+<dom-module id="header-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      app-toolbar {
+        color: #fff;
+        background-color: #6d89a1;
+        height: 100px;
+        padding-left: 0px;
+      }
+
+      .headerBrandArea {
+        height: 100px;
+        width: 260px;
+        background-color: #4a4249;
+        padding: auto;
+      }
+
+      .headerBrandPicture {
+        height: 80px;
+        width: auto;
+        margin-left: 59px;
+      }
+
+      .adminButton {
+        margin: 10px;
+        margin-top: 60px;
+        color: #fff;
+
+        vertical-align: bottom;
+      }
+
+      .circle {
+        height: 40px;
+        width: 40px;
+        background-color: rgba(0,0,0,0);
+        color: #fff;
+
+        padding: 10px;
+        margin: 10px;
+        margin-right: 0px;
+
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ccc;
+        border-radius: 50%;
+
+        vertical-align: middle;
+      }
+
+      .circle .center {
+        cursor: pointer;
+      }
+
+      .center {
+        margin: auto;
+      }
+
+      .right {
+        margin-top: 50px;
+      }
+
+      iron-icon, a {
+        color: #fff;
+        vertical-align: bottom;
+        font-weight: 100;
+      }
+
+      #adminIcon{
+        color: red;
+      }
+
+      #adminText {
+        font-size: 20px;
+        font-weight: 400;
+        vertical-align: bottom;
+      }
+
+      span {
+        cursor: pointer;
+      }
+
+      a{
+        text-decoration: none;
+      }
+
+      #brandName {
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #outline {
+        --iron-icon-fill-color: rgba(0,0,0,0);
+        --iron-icon-stroke-color: white;
+      }
+
+
+    </style>
+
+    <app-toolbar>
+      <div class="headerBrandArea">
+        <p id="brandName">Beauty</p>
+      </div>
+
+      <a href="#/dashboard/customers" class="adminButton" on-tap="close">
+        <iron-icon icon="social:person-outline" id="  adminIcon"></iron-icon>
+
+        <span id="adminText">Admin</span>
+      </a>
+
+      <div class="center">
+        <iron-icon icon="av:equalizer" class="circle"></iron-icon>
+
+        <a href="#/question">
+          <iron-icon icon="av:web-asset" class="circle"></iron-icon>
+        </a>
+
+        <a href="#/cloud"><iron-icon icon="icons:cloud-queue" class="circle"></iron-icon></a>
+
+        <a href="#/categoriesEdit">
+          <iron-icon icon="image:tune" class="circle"></iron-icon>
+        </a>
+      </div>
+
+      <div class="right">
+        <iron-icon icon="icons:search" ></iron-icon>
+
+        <iron-icon icon="icons:favorite-border" ></iron-icon>
+
+        <a href="#/dashboard/customers" on-tap="close">
+          <iron-icon icon="icons:clear" ></iron-icon>
+        </a>
+      </div>
+    </app-toolbar>
+
+    </template>
+
+    <script>
+      Polymer({
+        is: 'header-app',
+        properties: {
+          prop1: {
+            type: String,
+            value: 'Header',
+          },
+        },
+        close: function(){ localStorage.clear(); },
+      });
+    </script>
+  </dom-module>

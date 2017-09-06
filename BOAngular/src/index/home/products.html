@@ -1,0 +1,21 @@
+<div ng-controller="productsCtrl as current">
+	<div class="selectedContent" style="margin-top: 40px;">
+		<div class="listContent">
+			<button disabled="true">Most displayed product</button>
+		</div>
+
+		<div ng-repeat="single in msg.topDisplayedByProd" class="listContent">
+			<button>{{single}}</button>
+		</div>
+	</div>
+
+	<div class="selectedContent" style="margin-top: 40px;">
+		<div class="listContent">
+			<button disabled="true">Most viewed product</button>
+		</div>
+
+		<div ng-repeat="single in msg.topViewedByProd" class="listContent">
+			<button>{{single}}</button>
+		</div>
+	</div>
+</div>

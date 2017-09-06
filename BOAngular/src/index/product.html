@@ -1,0 +1,239 @@
+<div ng-controller="productCtrl as current">
+
+	<div>
+		<img src="{{img}}" class="img-thumbnail imgBlock">
+		<div class="block" style="vertical-align: bottom">
+			<quote>name</quote>
+			<textarea ng-model="msg.name"></textarea>
+			 
+		</div>
+		<button class="btn bottom update" ng-click="current.update()">Update</button>
+	</div>
+
+
+	<div class="productMenu">
+		<button class="dayTabs" ng-click="current.showTab(0)">Global</button>
+		<button class="dayTabs" ng-click="current.showTab(1)">Features</button>
+		<button class="dayTabs" ng-click="current.showTab(2)">Colors</button>
+		<button class="dayTabs" ng-click="current.showTab(3)">Cross selling</button>
+		<button class="dayTabs" ng-click="current.showTab(4)">Application</button>
+	</div>
+
+	<div>
+		<div class="productTabs" ng-show="tab == 0">
+			<div class="tallBlock">
+				<quote>Long description</quote>
+				<textarea ng-model="msg.lgDesc"></textarea>
+			</div>
+
+			<div style="display: inline-block; max-width: 75%;">
+				<div class="block">
+					<quote>Short description</quote>
+					<textarea ng-model="msg.shDesc"></textarea>
+				</div>
+
+				<div class="block">
+					<quote>Price</quote>
+					<textarea ng-model="msg.price"></textarea>
+				</div>
+
+				<div class="block">
+					<quote>Active</quote>
+					<textarea ng-model="msg.active"></textarea>
+				</div>
+
+				<div class="block">
+					<quote>Url</quote>
+					<textarea ng-model="msg.url"></textarea>
+				</div>
+
+				<div class="block">
+					<quote>Last update</quote>
+					<textarea ng-model="msg.lastUpdate"></textarea>
+				</div>
+
+				<hr>
+
+				<div class="block">
+					<quote>Main cat.</quote>
+					<textarea ng-model="msg.mainCat"></textarea>
+				</div>
+
+				<div class="block">
+					<quote>Sub cat.</quote>
+					<textarea ng-model="msg.subCat"></textarea>
+				</div>
+
+				<div class="block">
+					<quote>Type cat.</quote>
+					<textarea ng-model="msg.typeCat"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div class="productTabs" ng-show="tab == 1">
+			<div class="largeBlock">
+				<quote>Tags</quote>
+				<div class="single">
+					<input type="text" ng-model="newTag">
+					<button ng-click="current.add('tags', newTag)">+</button>
+				</div>
+
+				<div ng-repeat="val in msg.tags track by $index" class="single">
+					{{val}} <button ng-click="current.remove('tags', val)")>X</button>
+				</div>
+			</div>
+
+			<div class="largeBlock">
+				<quote>Finish</quote>
+				<div class="single">
+					<input type="text" ng-model="newFinish">
+					<button ng-click="current.add('finish', newFinish)">+</button>
+				</div>
+
+				<div ng-repeat="val in msg.features.finish" class="single">
+					{{val}} <button ng-click="current.remove('finish', val)")>X</button>
+				</div>
+			</div>
+
+			<div class="blockContainer">
+
+				<div class="block">
+					<quote>Intensity</quote>
+					<textarea ng-model="msg.features.intensity"></textarea>
+				</div>
+
+				<div class="block">
+					<quote>Texture</quote>
+					<textarea ng-model="msg.features.texture"></textarea>
+				</div>
+
+			</div>
+
+			<div class="largeBlock">
+				<quote>Skin type</quote>
+				<div class="single">
+					<input type="text" ng-model="newSkinTypes">
+					<button ng-click="current.add('skinTypes', newSkinTypes)">+</button>
+				</div>
+
+				<div ng-repeat="val in msg.features.skinTypes" class="single">
+					{{val}} <button ng-click="current.remove('skinTypes', val)")>X</button>
+				</div>
+			</div>
+
+			<div class="largeBlock">
+				<quote>Sun protection force</quote>
+				<div class="single">
+					<input type="text" ng-model="newSpf">
+					<button ng-click="current.add('spf', newSpf)">+</button>
+				</div>
+
+				<div ng-repeat="val in msg.features.spf" class="single">
+					{{val}} <button ng-click="current.remove('spf', val)")>X</button>
+				</div>
+			</div>
+
+			<div class="blockContainer">
+
+				<div class="block">
+					<quote>Coverage</quote>
+					<textarea ng-model="msg.features.coverage"></textarea>
+				</div>
+
+				<div class="block">
+					<quote>Age</quote>
+					<textarea ng-model="msg.features.age"></textarea>
+				</div>
+				
+			</div>
+
+			<div class="block">
+				<quote>Longevity</quote>
+				<textarea ng-model="msg.features.longevity"></textarea>
+			</div>
+
+			<div class="block">
+				<quote>BrushType</quote>
+				<textarea ng-model="msg.features.brushType"></textarea>
+			</div>
+
+			<div class="block">
+				<quote>Dermatologic</quote>
+				<textarea ng-model="msg.features.dermatologic"></textarea>
+			</div>
+		</div>
+
+		<div class="productTabs" ng-show="tab == 2">
+			<div class="dropdown">
+			  <button class="dropdown-toggle" data-toggle="dropdown">
+				  {{current.getColorName()}}
+				  <span class="caret"></span>
+			  </button>
+
+			  <ul class="dropdown-menu">
+			  	<li>
+			    	<button ng-click="current.showColor('add')">add</button>
+			  	</li>
+			    <li ng-repeat="single in msg.colors">
+			    	<button ng-click="current.showColor(single)">{{single.code}}</button>
+			    </li>
+			  </ul>
+			</div>
+
+			<div class="block">
+				<quote>Img</quote>
+				<textarea ng-model="color.img" ng-change="current.updateColor()"></textarea>
+			</div>
+
+			<div class="block">
+				<quote>ImgRet</quote>
+				<textarea ng-model="color.imgRet" ng-change="current.updateColor()"></textarea>
+			</div>
+
+			<div class="block">
+				<quote>ImgSel</quote>
+				<textarea ng-model="color.imgSel" ng-change="current.updateColor()"></textarea>
+			</div>
+
+			<div class="block">
+				<quote>Hex</quote>
+				<textarea ng-model="color.hex" ng-change="current.updateColor()"></textarea>
+			</div>
+		</div>
+
+		<div class="productTabs" ng-show="tab == 3">
+			<div class="largeBlock">
+				<quote>Cross seling</quote>
+				<div class="single">
+					<input type="text" ng-model="newCross">
+					<button ng-click="current.add('crossProds', newCross)">+</button>
+				</div>
+
+				<div class="single" ng-repeat="prod in msg.crossProds">
+					{{prod}} <button ng-click="current.remove('crossProds', prod)")>X</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="productTabs" ng-show="tab == 4">
+			<div class="dropdown">
+			  <button class="dropdown-toggle" data-toggle="dropdown">
+				  Video list
+				  <span class="caret"></span>
+			  </button>
+
+			  <ul class="dropdown-menu">
+			    <li ng-repeat="single in msg.application.videoTip">
+			    	<button>{{single}}</button>
+			    </li>
+			  </ul>
+
+			</div>
+			<div class="block">
+				<quote>Tips</quote>
+				<textarea ng-model="msg.application.tips"></textarea>
+			</div>
+		</div>
+	</div>
+</div>

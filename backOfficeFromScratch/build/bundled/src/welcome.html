@@ -1,0 +1,95 @@
+<!DOCTYPE html><html><head>
+	<title>Dashboard .. Loyaly</title>
+	<style type="text/css">
+		#fond, img {
+			position: fixed;
+			left: 0;
+			right: 0;
+			z-index: 1;
+
+			width: 100%;
+			height: auto;
+			filter:blur(7px);
+		}
+		#darkness {
+			margin: 0px;
+			top: 0;
+			left: 0;
+			z-index: 2;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			opacity: 0.5;
+		}
+		#over {
+			top: 50%;
+			left: 40%;
+			z-index: 3;
+			position: fixed;
+			margin: auto;
+		}
+		.butt, .input{
+			padding: .75rem;
+			margin: .375rem;
+
+			background-color: transparent;
+			border-radius: 4px;
+		}
+
+		.butt:focus, .input:focus {
+			outline: none;
+		}
+
+		.butt {
+			border: 2px solid #f35626;
+			line-height: 1.375;
+			padding-left: 1.5rem;
+			padding-right: 1.5rem;
+
+			font-weight: 700;
+
+			color: red;
+
+			cursor: pointer;
+			-webkit-animation: hue 60s infinite linear;
+		}
+
+		.butt--primary {
+			background-color: red;
+			color: #fff;
+		}
+		.input {
+			border: 1px solid #c0c8c9;
+			border-radius: 4px;
+		}
+		hr {
+			margin-top: 1.5rem;
+			border: none;
+			margin-top: 0px;
+			height: 1px;
+			background-color: #c0c8c9;
+			background: white; /* For browsers that do not support gradients */
+			background: -webkit-radial-gradient(rgba(255,255,255,1),rgba(255,255,255,0)); /* Safari 5.1 to 6.0 */
+			background: -o-radial-gradient(rgba(255,255,255,1),rgba(255,255,255,0)); /* For Opera 11.6 to 12.0 */
+			background: -moz-radial-gradient(rgba(255,255,255,1),rgba(255,255,255,0)); /* For Firefox 3.6 to 15 */
+			background: radial-gradient(rgba(255,255,255,1),rgba(255,255,255,0)); /* Standard syntax */
+		}
+	</style>
+</head>
+<body>
+	<div id="fond">
+		<img src="../images/background.png">
+	</div>
+	<dir id="darkness"></dir>
+	<div id="over">
+		<input type="text" name="Brand" class="input">
+		<a href="/">
+			<button class="butt">
+				Start ...
+			</button>
+		</a>
+		<hr>
+	</div>
+
+</body></html>

@@ -1,0 +1,13 @@
+<div ng-controller="questionCtrl as current">
+	<div style="display: inline-block; margin: 10px;" class="searchField">
+		<p>Add question : </p>
+		<input type="text" name="newQ" ng-model="typed">
+		<button class="btn" ng-click="current.addQ(typed)">+</button>
+	</div>
+
+	<div class="selectedContent" style="margin-top: 40px;">
+		<div ng-repeat="single in questions" class="listContent">
+			<button>{{single}}</button>
+		</div>
+	</div>
+</div>

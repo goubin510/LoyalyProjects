@@ -1,0 +1,390 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../../bower_components/google-chart/google-chart.html">
+
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="stylesheet" type="text/css" href="/font.css">
+
+<dom-module id="products-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      p {
+        font-size: 17px;
+      }
+
+      #main {
+        display: block;
+        margin-left: 260px;
+        background-color: #EAEAEA;
+        padding-bottom: 20px;
+      }
+
+      .list {
+        display: inline-block;
+        margin-left: 2%;
+        padding-left: 10px;
+        width: 400px;
+
+        background-color: white;
+        vertical-align: top;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        border-width: 1px;
+        border-style: solid;
+        border-color: grey;
+      }
+
+      li {
+        font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
+        border-bottom: 1px solid #ccc;
+      }
+
+      li:last-child {
+        border: none;
+      }
+
+      li paper-button {
+        text-decoration: none;
+        color: #000;
+        display: block;
+      }
+
+      li paper-button:hover {
+        background: #f6f6f6;
+      }
+
+      paper-input {
+        display: block;
+        margin-left: 2%;
+        width: 400px;
+      }
+
+      #results {
+        display: block;
+        margin-left: 1%;
+        width: 40%;
+        z-index: 2;
+        position: absolute;
+        background-color: white;
+      }
+
+      paper-tabs {
+        padding: 5px;
+        margin-left: 1%;
+        background-color: #8BADCF;
+        color: white;
+        --paper-tabs-selection-bar-color: white;
+        --paper-tab-ink: white;
+      }
+
+      paper-tab {
+        border-style: none solid none none;
+        border-width: 2px;
+        border-color: white;
+      }
+
+      .bottom {
+        position: static;
+      }
+
+      .card {
+        display: inline-block;
+        vertical-align: top;
+        margin-left: 1%;
+        padding: 0;
+
+        height: 200px;
+        overflow: hidden;
+
+        border-color: grey;
+        border-style: solid;
+        border-width: 1px;
+
+        background-color: white;
+        box-shadow: 1px 1px 3px grey;
+      }
+
+      #mainIntel, #subIntel {
+        color: #6989A2;
+      }
+
+      #mainIntel {
+        text-align: center;
+        font-size: 30px;
+        margin: 0px;
+      }
+
+      #subIntel {
+        font-size: 20px;
+        margin: 0px;
+      }
+
+      #wide{
+        width: 100%;
+        height: 200px;
+      }
+
+      #pieChart {
+        display: inline-block;
+        width: 100%;
+      }
+
+      #counters {
+        display: inline-block;
+        margin-left: 1%;
+        padding: 0px;
+      }
+
+      #statCounter, #counters {
+        width: 20%;
+      }
+
+      #halfTop, #halfDown {
+        display: block;
+        margin-left: 0px;
+      }
+
+      #lineChart {
+        width: 50%;
+      }
+
+      #bottomChart {
+        width: 93%;
+      }
+    </style>
+
+    <div id="main">
+      <div class="list" id="displayedList">
+        <p>Most propose products</p>
+        <ul>
+        <!-- proposé -->
+          <template is="dom-repeat" items="{{topProduct.topDisplayedByProd}}">
+            <li>
+              <paper-button data="{{item.mainId}}" on-tap="reac">{{item.code}}</paper-button>
+            </li>
+          </template>
+        </ul>
+      </div>
+
+      <div class="list" id="viewedList">
+        <p>Most inspected products</p>
+        <ul>
+        <!-- afficher dans le modal -->
+          <template is="dom-repeat" items="{{topProduct.topViewedByProd}}">
+            <li><paper-button data="{{item.mainId}}" on-tap="reac">{{item.code}}</paper-button></li>
+          </template>
+        </ul>
+      </div>
+
+      <paper-input label="Search" on-input="refresh" id="inputField" on-focus="showResults"></paper-input>
+
+      <div id="content">
+        <div id="results">
+          <ul>
+            <template is="dom-repeat" items="{{answer.results}}">
+              <li><paper-button data="{{item._id}}" on-tap="reac">{{item.name}}</paper-button></li>
+            </template>
+          </ul>
+        </div>
+      </div>
+
+      <paper-tabs scrollable fit-container>
+        <template is="dom-repeat" items="{{product.values}}">
+          <paper-tab class="type" data="{{item}}" on-tap="reac">{{getDateNumber(item.ts)}}</paper-tab>
+        </template>
+      </paper-tabs>
+
+        <div class="card" id="statCounter">
+            <google-chart
+              id="pieChart"
+              type="pie"
+              options='{"title": "Stat % ", "colors": ["grey", "#8BADCF"], "legend": "none", "height": "200", "width": "200"}'
+              cols='[{"label": "status", "type": "string"},{"label": "stat", "type": "number"}]'
+              rows='[["rejected", 30],["carted", 70]]'>
+            </google-chart>
+        </div>
+
+        <div id="counters">
+          <div class="card" id="halfTop">
+            <p id="mainIntel">{{sampledRatioDispStat}}</p>
+            <p id="subIntel">Ratio sampled / Disp</p>
+          </div>
+
+          <div class="card" id="halfDown">
+            <p id="mainIntel">{{sampledRatioClckStat}}</p>
+            <p id="subIntel">Ratio sampled / Clck</p>
+          </div>
+        </div>
+
+        <div class="card" id="lineChart">
+          <google-chart
+            id="wide"
+            type="combo"
+            options='{"seriesType": "area", "series": {"0": {"type": "line"}}, "title": "Chat Data", "colors": ["#FF9E94", "#4C4149", "#6989A2", "grey", "#8BADCF"], "legend": "top"}'
+            cols='[{"label": "period", "type": "number"},{"label": "sample asked", "type": "number"},{"label": "rejected", "type": "number"},{"label": "carted", "type": "number"}]'
+            data="{{productShopTable}}">
+          </google-chart>
+        </div>
+
+        <div class="card" id="bottomChart">
+          <google-chart
+            id="wide"
+            type="combo"
+            options='{"seriesType": "area", "series": {"0": {"type": "line"}}, "title": "Chat Data", "colors": ["#FF9E94", "#4C4149", "#6989A2", "grey", "#8BADCF"], "legend": "top"}'
+            cols='[{"label": "period", "type": "number"},{"label": "clicked", "type": "number"},{"label": "viewed", "type": "number"},{"label": "displayed", "type": "number"}]'
+            data="{{productChatTable}}">
+          </google-chart>
+        </div>
+    </div>
+
+  <iron-ajax
+  id="getProduct"
+  url=""
+  handle-as="json"
+  content-type="application/json"
+  on-response="buildTable"
+  debounce-duration="300"
+  last-response="{{product}}"></iron-ajax>
+
+  <iron-ajax
+  id="ajax"
+  url=""
+  handle-as="json"
+  content-type="application/json"
+  debounce-duration="300"
+  last-response="{{answer}}"></iron-ajax>
+
+  <iron-ajax
+  auto
+  url="http://54.171.115.230:8080/api/v1/entities/{{connId}}/products/top"
+  handle-as="json"
+  on-response="margeMaking"
+  debounce-duration="300"
+  last-response="{{topProduct}}"></iron-ajax>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'products-app',
+      properties: {
+        connId: {
+          type: String,
+          value: "57d2c67d6165141b3d842987",
+        },
+        productShopTable: {
+          type: Array,
+          value: [],
+        },
+        productChatTable: {
+          type: Array,
+          value: [],
+        },
+        cartedRatioDispStat: {
+          type: Number,
+        },
+        cartedRatioClckStat: {
+          type: Number,
+        },
+        sampledRatioDispStat: {
+          type: Number,
+        },
+        sampledRatioClckStat: {
+          type: Number,
+        },
+      },
+      showResults: function(){ this.$.results.style.display = "block";},
+      hideResults: function(){ this.$.results.style.display = "none";},
+      stringify: function(obj){ return JSON.stringify(obj); },
+      reac: function(evt) {
+        this.$.getProduct.url = "http://54.171.115.230:8080/api/v1/entities/" + this.connId + "/products/" + evt.currentTarget.data + "/metrics";
+        this.$.getProduct.generateRequest();
+        this.hideResults();
+      },
+      margeMaking: function(){
+        var width = window.innerWidth - 260;
+        var marge = width*2/100;
+
+        this.$.displayedList.style.marginTop = marge + 'px';
+        this.$.viewedList.style.marginTop = marge + 'px';
+
+        this.$.statCounter.style.marginTop = marge/2 + 'px';
+        this.$.counters.style.marginTop = marge/2 + 'px';
+        this.$.halfDown.style.marginTop = marge/2 + 'px';
+        this.$.lineChart.style.marginTop = marge/2 + 'px';
+        this.$.bottomChart.style.marginTop = marge/2 + 'px';
+
+        this.$.halfTop.style.height = (200 - marge/2 -2)/2 + 'px';
+        this.$.halfDown.style.height = (200 - marge/2 -2)/2 + 'px';
+      },
+      getDateNumber: function(number){
+        var actual = new Date();
+        var dataDay = new Date(number);
+        var date;
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+        if(actual.getDate() == dataDay.getDate() && actual.getMonth() == dataDay.getMonth() && actual.getFullYear() == dataDay.getFullYear()){
+          date = 'Today';
+        }else if( (actual.getDate() - 1) == dataDay.getDate() && actual.getMonth() == dataDay.getMonth() && actual.getFullYear() == dataDay.getFullYear()){
+          date = 'Yesterday';
+        }else{
+          date = dataDay.getDate() + ' ' + months[dataDay.getMonth()];
+        }
+        return date;
+      },
+      buildTable: function() {
+        this.cartedRatioDispStat = Math.round(this.product.values[0].metrics.addTC_SUM / this.product.values[0].metrics.disp_SUM * 100) /100;
+        this.cartedRatioClckStat = Math.round(this.product.values[0].metrics.addTC_SUM / this.product.values[0].metrics.clck_SUM * 100) /100;
+        this.sampledRatioDispStat = Math.round(this.product.values[0].metrics.smpl_SUM / this.product.values[0].metrics.disp_SUM * 100) /100;
+        this.sampledRatioClckStat = Math.round(this.product.values[0].metrics.smpl_SUM / this.product.values[0].metrics.clck_SUM * 100) /100;
+
+        this.productShopTable = [];
+        this.productChatTable = [];
+
+        this.productShopTable.push(["period", "cicked", "viewed", "displayed"]);
+        this.productChatTable.push(["period", "clicked", "viewed", "displayed"]);
+
+        for (var i = 0; i < this.product.values[0].metrics.smpl.length; i++) {
+          this.productShopTable.push([i, this.product.values[0].metrics.smpl[i], this.product.values[0].metrics.rej[i], this.product.values[0].metrics.addTC[i]]);
+          this.productChatTable.push([i, this.product.values[0].metrics.clck[i], this.product.values[0].metrics.view[i], this.product.values[0].metrics.disp[i]]);
+        }
+      },
+      refresh: function(){
+        var searchString = this.$.inputField.value.split(' ');
+        var finalString = '';
+
+        if(this.$.inputField.value.length == 0){
+          this.hideResults();
+        }else{
+          this.showResults();
+        }
+
+        if(searchString.length > 1){
+          for (var i = 0; i < searchString.length; i++) {
+            if(searchString[i] != "")
+              finalString += searchString[i];
+            if((i < searchString.length - 1) &&(searchString[i + 1] != ""))
+              finalString += '-';
+          }
+        }else{
+          finalString = searchString[0];
+        }
+
+        this.$.ajax.url = "http://54.171.115.230:8080/api/v1/entities/" + this.connId + "/products/search?text=" + finalString;
+        if(this.$.inputField.value)
+          this.$.ajax.generateRequest();
+      },
+    });
+  </script>
+</dom-module>

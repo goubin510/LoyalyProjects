@@ -1,0 +1,31 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="stylesheet" type="text/css" href="/font.css">
+
+<dom-module id="application-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    
+    <paper-input label="tip" value="{{productIntel.application.applicationTip::input}}"></paper-input>
+
+  	<div class="list">
+  		<paper-dropdown-menu label="Video list">
+  			<paper-listbox class="dropdown-content">
+  				<template is="dom-repeat" items="{{items.application.videoTip}}">
+  					<paper-item>{{item}}</paper-item>
+  				</template>
+  			</paper-listbox>
+  		</paper-dropdown-menu>
+  	</div>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'application-app',
+    });
+  </script>
+</dom-module>

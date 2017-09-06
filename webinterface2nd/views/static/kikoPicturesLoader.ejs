@@ -1,0 +1,182 @@
+<div id="textGoesHere"></div>
+<iframe src="" sandbox name="myFrame" id="urlGoesHere" height="200" width="200" onload="getData();"></iframe>
+
+<script type="text/javascript">
+
+	var links = ["/en-ee/make-up/eyes/High-Pigment-Wet-and-Dry-Eyeshadow/p-KM00313003","/en-ee/make-up/face/Skin-Tone-Corrector-Primer/p-KM00108001","/en-ee/make-up/face/Skin-Tone-Corrector-Primer/p-KM00108001","/en-ee/make-up/face/Skin-Tone-Corrector-Primer/p-KM00108001","/en-ee/make-up/face/Mat-Base-Corrector-Primer/p-KM0010800400100","/en-ee/make-up/face/Perfect-Base-Corrector/p-KM0010800800000","/en-ee/make-up/face/City-Filter-Sunscreen/p-KM0010800700000","/en-ee/make-up/face/Sunshine-DD-Cream-SPF-30/p-KC03901013","/en-ee/make-up/face/Sunshine-Cream-Foundation-SPF-20/p-KC03901011","/en-ee/make-up/face/Glacial-Light-Soft-Sifter-Foundation/p-KC03601011","/en-ee/make-up/face/Liquid-Skin-Second-Skin-Foundation/p-KM00101023","/en-ee/make-up/face/CC-Cream-Cushion-System/p-KM00101029","/en-ee/make-up/face/Unlimited-Foundation-SPF-15/p-KM00101021","/en-ee/make-up/face/Universal-Fit-Hydrating-Foundation/p-KM00101017","/en-ee/make-up/face/Skin-Evolution-Foundation-SPF-10/p-KM00101015","/en-ee/make-up/face/BB-Cream-SPF-15/p-KM00101013","/en-ee/make-up/face/Anti-Age-Foundation-SPF-15/p-KM00101012","/en-ee/make-up/face/3D-Lifting-Foundation-SPF-15/p-KM00101009","/en-ee/make-up/face/Full-Coverage-Concealer/p-KM00102003","/en-ee/make-up/face/Skin-Evolution-Concealer/p-KM00102007","/en-ee/make-up/face/Natural-Concealer/p-KM00102001","/en-ee/make-up/face/Dark-Circle-Tone-Eraser/p-KM00102015","/en-ee/make-up/face/Dark-Circle-Concealer/p-KM00102014","/en-ee/make-up/face/Mat-Mousse-Foundation/p-KM001010180","/en-ee/make-up/face/Weightless-Perfection-Wet-And-Dry-Powder-Foundation/p-KM00101104","/en-ee/make-up/face/Nourishing-Perfection-Cream-Compact-Foundation/p-KM00101030","/en-ee/make-up/face/Sunshine-Powder-Foundation-SPF-20/p-KC03901012","/en-ee/make-up/face/Soft-Focus-Foundation/p-KM00101008","/en-ee/make-up/face/Velvet-Loose-Mineral-Beauty-Powder/p-KC03601031","/en-ee/make-up/face/Soft-Light-Powder/p-KM00103002","/en-ee/make-up/face/Matte--Fusion-Pressed-Powder/p-KM00103006","/en-ee/make-up/face/Colour-Correction-Powder/p-KM0010800600100","/en-ee/make-up/face/Radiant-Fusion-Baked-Powder/p-KM00103005","/en-ee/make-up/face/Sculpting-Touch-Creamy-Stick-Contour/p-KM00106005","/en-ee/make-up/face/Desert-Dunes-Baked-Bronzer/p-KC03901051","/en-ee/make-up/face/All-Stars-Face-Palette/p-KC03801011","/en-ee/make-up/face/Flawless-Fusion--Bronzer-Powder/p-KM00105004","/en-ee/make-up/face/Blending-Wave-Multicolor-Blush/p-KC03601041","/en-ee/make-up/face/Rebel-Bouncy-Blush/p-KC03201041","/en-ee/make-up/face/Desert-Dunes-Trio-Baked-Blush/p-KC03901042","/en-ee/make-up/face/Free-Spirit-Lips-%26-Cheeks-/p-KC03901041","/en-ee/make-up/face/Velvet-Touch-Creamy-Stick-Blush/p-KM00104003","/en-ee/make-up/face/Shade-Fusion-Trio-Blush/p-KM00104005","/en-ee/make-up/face/Desert-Moon-Highlighter/p-KC0390106100133","/en-ee/make-up/face/Perfect-Eyes-Duo-Highlighter-Pencil/p-KM0030800600033","/en-ee/make-up/face/Soft-Focus-Concealer/p-KM00102004","/en-ee/make-up/face/Colour-Correction-Concealer-Wheel/p-KM0010200600100","/en-ee/make-up/face/Radiant-Touch-Creamy-Stick-Highlighter/p-KM00106003","/en-ee/make-up/face/Invisible-Powder/p-KM0010800300000","/en-ee/make-up/face/Make-Up-Fixer/p-KM0050201900021","/en-ee/make-up/eyes/Perfect-Eyes-Duo-Highlighter-Pencil/p-KM0030800600033","/en-ee/make-up/eyes/Eye-Base-Primer/p-KM0031000300121","/en-ee/make-up/eyes/Pearly-Eye-Base/p-KM0031000300221","/en-ee/make-up/eyes/Mixing-Solution/p-KM0031000200033","/en-ee/make-up/eyes/Metallic-Shine-Eyeshadow/p-KC03203061","/en-ee/make-up/eyes/In-The-Shade-Eyeshadow-And-Kajal/p-KC03903031","/en-ee/make-up/eyes/Artist-Stroke-Mineral-Loose-Eyeshadow/p-KC03603051","/en-ee/make-up/eyes/Prom-Queen-Eyeshadow-Palette/p-KC03803091","/en-ee/make-up/eyes/Double-Dare-Eyeshadow-%26-Eyeliner/p-KC03803071","/en-ee/make-up/eyes/Water-Eyeshadow/p-KM00312001","/en-ee/make-up/eyes/Cream-Crush-Lasting-Colour-Eyeshadow/p-KM00306005","/en-ee/make-up/eyes/Long-Lasting-Stick-Eyeshadow/p-KM00306002","/en-ee/make-up/eyes/Colour-Sphere-Duo-Mat%26Pearly-Eyeshadow/p-KM00304003","/en-ee/make-up/eyes/Color-Sphere-Duo-Eyeshadow/p-KM00304002","/en-ee/make-up/eyes/Colour-Sphere-Eyeshadow/p-KM00304001","/en-ee/make-up/eyes/Pigment-Loose-Eyeshadow/p-KC01403051","/en-ee/make-up/eyes/Eyeshadow/p-KM00305001","/en-ee/make-up/eyes/Color-Fever-Eyeshadow-Palette/p-KM00309001","/en-ee/make-up/eyes/Infinity-Eyeshadow/p-KM00313000","/en-ee/make-up/eyes/Eyetech-Look-Eyeshadow/p-KM00307002","/en-ee/make-up/eyes/Pigment-Loose-Eyeshadow-Fluo/p-KC0140fluo","/en-ee/make-up/eyes/Kajal/p-KM0030301710033","/en-ee/make-up/eyes/Fine-Art-Eye-Pencil/p-KC03603031","/en-ee/make-up/eyes/Glitter-Eyepencil/p-KM0030302400033","/en-ee/make-up/eyes/Smoky-Eye-Pencil/p-KM0030302300033","/en-ee/make-up/eyes/Everlasting-Kajal/p-KM0030302200033","/en-ee/make-up/eyes/Oversize-Kajal/p-KM0030302100033","/en-ee/make-up/eyes/Smart-Eye-Pencil/p-KM00303010","/en-ee/make-up/eyes/Automatic-Precision-Eyeliner-and-Kh%C3%B4l/p-KM00303008","/en-ee/make-up/eyes/Colour-Kajal/p-KM003030011","/en-ee/make-up/eyes/Intense-Colour-Long-Lasting-Eyeliner/p-KM00303020","/en-ee/make-up/eyes/Deep-Black-Kajal/p-KM0030301200100","/en-ee/make-up/eyes/Longeyes-Plus-Active-Mascara/p-KM0030105600033","/en-ee/make-up/eyes/Unmeasurable-Length-Fibers-Extension-Effect-Mascara/p-KM0030105900044","/en-ee/make-up/eyes/Unmeasurable-Length-Waterproof-Mascara/p-KM0030105800044","/en-ee/make-up/eyes/Unmeasurable-Length-Mascara/p-KM0030105700044","/en-ee/make-up/eyes/Curling-Top-Coat-Mascara/p-KM0030104600021","/en-ee/make-up/eyes/Building-Base-Coat-Mascara/p-KM0030105400033","/en-ee/make-up/eyes/Volume-Top-Coat-Mascara/p-KM00301012","/en-ee/make-up/eyes/Super-Colour-Mascara/p-KM00301008","/en-ee/make-up/eyes/Luxurious-Lashes-Waterproof-Mascara/p-KM0030103200100","/en-ee/make-up/eyes/Luxurious-Lashes-Extra-Volume-Brush-Mascara/p-KM0030103100100","/en-ee/make-up/eyes/Ultra-Tech-WP-Mascara/p-KM0030102700100","/en-ee/make-up/eyes/Unforgettable-Wp-Mascara/p-KM0030101700100","/en-ee/make-up/eyes/Extra-Sculpt-Waterproof-Mascara/p-KM0030105200033","/en-ee/make-up/eyes/Extra-Sculpt-Volume-Mascara/p-KM0030105100033","/en-ee/make-up/eyes/Volume-Attraction-Mascara/p-KM0030103800000","/en-ee/make-up/eyes/Glitter-Top-Coat-Mascara/p-KM0030105000021","/en-ee/make-up/eyes/30-Days-Extension---Daily-Treatment-Mascara/p-KM0030104100100","/en-ee/make-up/eyes/30-Days-Extension---Night-Treatment-Booster/p-KM0030104000100","/en-ee/make-up/eyes/Pro-Gel-Mascara/p-KM0030103300100","/en-ee/make-up/eyes/Luxurious-Lashes-Maxi-Brush-Mascara/p-KM0030103000000","/en-ee/make-up/eyes/Ultra-Tech-Mascara/p-KM0030102800100","/en-ee/make-up/eyes/Unforgettable-Mascara/p-KM0030103400100","/en-ee/make-up/eyes/Volumeyes-Plus-Active-Mascara/p-KM0030103500000","/en-ee/make-up/eyes/Volume-%26-Definition-Top-Coat-Mascara/p-KM0030104200021","/en-ee/make-up/eyes/Endless-Sky-Volume-Effect-Mascara/p-KC0390301100133","/en-ee/make-up/eyes/Out-Of-Bounds-Eyeliner-Pen/p-KC0390302100133","/en-ee/make-up/eyes/Signature-Eyemarker/p-KC0360303200133","/en-ee/make-up/eyes/Ultimate-Pen-Long-Wear-Eyeliner/p-KM0030201300133","/en-ee/make-up/eyes/Liquid-Intense-Eyeliner/p-KC03203021","/en-ee/make-up/eyes/Deep-Black-Eye-Marker/p-KM0030201600033","/en-ee/make-up/eyes/Super-Colour-Eyeliner/p-KM00302007","/en-ee/make-up/eyes/Glitter-Eyeliner/p-KM00302002","/en-ee/make-up/eyes/Definition-Eyeliner/p-KM0030200500100","/en-ee/make-up/eyes/Daring-Look-Eye-Marker/p-KM0030201100100","/en-ee/make-up/eyes/Precision-Eyeliner/p-KM0030200900100","/en-ee/make-up/eyes/Definition-Waterproof-Eyeliner/p-KM0030200800100","/en-ee/make-up/eyes/Lasting-Gel-Eyeliner/p-KM0030201200100","/en-ee/make-up/eyes/Hi---Brow-Expert-Eyebrow-Kit/p-KC03803081","/en-ee/make-up/eyes/Eyebrow-Marker/p-KM00308002","/en-ee/make-up/eyes/Precision-Eyebrow-Pencil/p-KM00308001","/en-ee/make-up/eyes/Eyebrow-Designer/p-KM0030800800100","/en-ee/make-up/eyes/Eyebrow-Expert-Styling-Kit/p-KM00308007","/en-ee/make-up/eyes/Eyebrow-Wax-Fixing-Pencil/p-KM0030800500000","/en-ee/make-up/eyes/Eyebrow-Sculpt-Automatic-Pencil/p-KM00308013","/en-ee/make-up/eyes/Eyebrow-Filler-Light-Touch-Pencil/p-KM00308012","/en-ee/make-up/eyes/Eyebrow-Fibers-Coloured-Mascara/p-KM00308011","/en-ee/make-up/lips/Lip-Base-Primer/p-KM0020600100100","/en-ee/make-up/lips/Invisible-Lip-Liner/p-KM0020600200100","/en-ee/make-up/lips/Urban-Sheen-Lipgloss/p-KC03802021","/en-ee/make-up/lips/Pencil-Lip-Gloss/p-KM00203005","/en-ee/make-up/lips/3D-Instant-Volume-Lipgloss/p-KM00202015","/en-ee/make-up/lips/Unlimited-Lipgloss/p-KM00202007","/en-ee/make-up/lips/Extra-Volume-Lip-gloss/p-KM00202005","/en-ee/make-up/lips/Supergloss/p-KM00202002","/en-ee/make-up/lips/Colour-Twister-Lipgloss/p-KC0330202","/en-ee/make-up/lips/pH-Lip-Enhancer/p-KM0020201610021","/en-ee/make-up/lips/Creamy-Lipgloss/p-KM00202009","/en-ee/make-up/lips/BB-Lip-Glaze/p-KM00202017","/en-ee/make-up/lips/Colour-Click-Lipstick/p-KC03602011","/en-ee/make-up/lips/Velvet-Passion-Matte-Lipstick/p-KM00201020","/en-ee/make-up/lips/Mirage-Lip-Stylo/p-KC03902011","/en-ee/make-up/lips/Smooth-Temptation-Lipstick/p-KM00201022","/en-ee/make-up/lips/Double-Match-Lipstick-%26-Lipliner/p-KC03802011","/en-ee/make-up/lips/Glossy-Dream-Sheer-Lipstick/p-KM00201019","/en-ee/make-up/lips/Gossamer-Emotion-Creamy-Lipstick/p-KM00201018","/en-ee/make-up/lips/Long-Lasting-Colour-Lip-Marker/p-KM002010131","/en-ee/make-up/lips/Ultra-Glossy-Stylo-SPF-15/p-KM00201010","/en-ee/make-up/lips/Double-Touch-Lipstick/p-KM00201011","/en-ee/make-up/lips/Smart-Lipstick/p-KM002010129","/en-ee/make-up/lips/Unlimited-Stylo/p-KM00201015","/en-ee/make-up/lips/Crystal-Sheer---Glossy-Lipstick/p-KMSHEERLIP10","/en-ee/make-up/lips/Velvet-Mat---Satin-Lipstick/p-KMMATLIPST10","/en-ee/make-up/lips/Fine-Art-Lip-Pencil/p-KC03602031","/en-ee/make-up/lips/Smart-Lip-Pencil/p-KM00203007","/en-ee/make-up/lips/Automatic-Precision-Lip-Liner/p-KM00203004","/en-ee/make-up/lips/Everlasting-Colour-Precision-Lip-Liner/p-KM00203010","/en-ee/make-up/lips/Creamy-Colour-Comfort-Lip-Liner/p-KM00203009","/en-ee/make-up/hands/Candy-Canes/p-KM0040100903","/en-ee/make-up/hands/Candy-Sprinkles/p-KM0040100901","/en-ee/make-up/hands/Frozen-Smoothies/p-KM0040100900","/en-ee/make-up/hands/Power-Pro-Nail-Lacquer/p-KMPOWER","/en-ee/make-up/hands/Perfect-Gel-Duo/p-KM00404001","/en-ee/make-up/hands/Nail-Lacquer/p-KM00401001","/en-ee/make-up/hands/Quick-Dry-Nail-Lacquer/p-KM004010018","/en-ee/make-up/hands/Ready-to-Go-French-Manicure/p-KM004010084","/en-ee/make-up/hands/Ready-to-Go-Art-Coat/p-KM004010083","/en-ee/make-up/hands/Ready-to-Go-Art/p-KM00401006","/en-ee/make-up/hands/Ready-To-Go-Colour/p-KM004010081","/en-ee/make-up/hands/Nail-Art-Magnet/p-KM00503014","/en-ee/make-up/hands/Nail-Lacquer-Thinner/p-KM0040300400100","/en-ee/make-up/hands/Strengthener-Base-Coat/p-KM0040200600033","/en-ee/make-up/hands/BB-Base-Coat/p-KM0040200700033","/en-ee/make-up/hands/Fast-%26-Shiny-Base-And-Top-Coat/p-KM0040200900033","/en-ee/make-up/hands/White-Look-Base-Coat/p-KM0040200800033","/en-ee/make-up/hands/No-More-Biting-Nail-Lacquer/p-KM0040201400033","/en-ee/make-up/hands/Color-Refresher-Nail-Polish/p-KM0040201300033","/en-ee/make-up/hands/First-Step-Cleanser/p-KM0040201200033","/en-ee/make-up/hands/Gel-Effect-Top-Coat/p-KM0040201100033","/en-ee/make-up/hands/Matte-Effect-Top-Coat/p-KM0040201000033","/en-ee/make-up/hands/Nail-%26-Cuticle-Scrub-Pen/p-KM0040201600033","/en-ee/make-up/hands/Intense-Care-Oil-Pen/p-KM0040201500033","/en-ee/make-up/hands/Nail-Cuticle-Scrub%26Care-Pen/p-KM0040200500021","/en-ee/make-up/hands/French-Manicure-Lunettes/p-KM0050300600033","/en-ee/make-up/hands/French-Manicure-White-Pencil/p-KM0040500100121","/en-ee/make-up/hands/Nail-Cuticle-Nourishing-Oil/p-KM0040200400100","/en-ee/make-up/hands/White-French-Manicure-Pen/p-KM0040100300100","/en-ee/make-up/hands/Nail-Polish-Fixer/p-KM0050201000121","/en-ee/make-up/hands/Nail-Polish-Drying-Drops/p-KM0050302500021","/en-ee/make-up/hands/Nail-Polish-Remover-Fast-%26-Easy-Acetone-Free/p-KM0040301200044","/en-ee/make-up/hands/Nail-Polish-Remover-Express/p-KM0040301100033","/en-ee/make-up/hands/Nail-Polish-Remover-Universal/p-KM0040300500033","/en-ee/make-up/hands/Nail-Polish-Remover-Gentle/p-KM0040300600033","/en-ee/make-up/hands/Nail-Polish-Remover-Travel-Wipes/p-KM0040301000000","/en-ee/make-up/hands/Nail-Corrector-Pen/p-KM0040300800001","/en-ee/make-up/hands/Nail-Polish-Remover-Fast-%26-Easy/p-KM0040300800000","/en-ee/skin-care/face/Pure-Clean-Essence/p-KS0200504100033","/en-ee/skin-care/face/Pure-Clean-Milk-%26-Tone/p-KS0200504000033","/en-ee/skin-care/face/Pure-Clean-Milk-%26-Tone-Mini/p-KS0200503900033","/en-ee/skin-care/face/Pure-Clean-Water/p-KS0200503800033","/en-ee/skin-care/face/Pure-Clean-Eyes-%26-Lips/p-KS0200503700033","/en-ee/skin-care/face/Pure-Clean-Eyes-%26-Lips-Mini/p-KS0200503600033","/en-ee/skin-care/face/Pure-Clean-Scrub-%26-Peel/p-KS0200503500033","/en-ee/skin-care/face/Pure-Clean-Wipes/p-KS0200503400033","/en-ee/skin-care/face/Pure-Clean-Wipes-Mini/p-KS0200503300033","/en-ee/skin-care/face/Pure-Clean-Powder/p-KS0200503100033","/en-ee/skin-care/face/Pure-Clean-Foam/p-KS0200502900033","/en-ee/skin-care/face/Pure-Clean-Gel/p-KS0200502800033","/en-ee/skin-care/face/Pure-Clean-Cream/p-KS0200502700033","/en-ee/skin-care/face/Sublime-Youth-Mask/p-KS0200601300033","/en-ee/skin-care/face/Sublime-Youth-Neck/p-KS0200601200033","/en-ee/skin-care/face/Sublime-Youth-Eyes/p-KS0200601100033","/en-ee/skin-care/face/Sublime-Youth-Serum/p-KS0200601000033","/en-ee/skin-care/face/Sublime-Youth-Night/p-KS0200600900033","/en-ee/skin-care/face/Sublime-Youth-Day/p-KS0200600800033","/en-ee/skin-care/face/Shine-Refine-Mask/p-KS0200800900033","/en-ee/skin-care/face/Shine-Refine-Papers/p-KS0200801000033","/en-ee/skin-care/face/Shine-Refine-Spot/p-KS0200800800033","/en-ee/skin-care/face/Shine-Refine-Day/p-KS0200800700033","/en-ee/skin-care/face/Shine-Refine-Tonic/p-KS0200800600033","/en-ee/skin-care/face/Hydra-Pro-Mask/p-KS0200106400033","/en-ee/skin-care/face/Hydra-Pro-Eyes/p-KS0200106300033","/en-ee/skin-care/face/Hydra-Pro-Glow/p-KS0200106200033","/en-ee/skin-care/face/Hydra-Pro-Matte/p-KS0200106100033","/en-ee/skin-care/face/Hydra-Pro-Day/p-KS0200106000033","/en-ee/skin-care/face/Bright-Lift-Eyes/p-KS0200201600033","/en-ee/skin-care/face/Bright-Lift-Night/p-KS0200201400033","/en-ee/skin-care/face/Bright-Lift-Matte/p-KS0200201300033","/en-ee/skin-care/face/Bright-Lift-Day/p-KS0200201200033","/en-ee/skin-care/face/Bright-Lift-Mask/p-KS0200201700033","/en-ee/skin-care/face/Skin-Trainer-Eyes/p-KS0200106800044","/en-ee/skin-care/face/Skin-Trainer-/p-KS0200107400044","/en-ee/skin-care/face/Bright-Lift-Serum/p-KS0200201500033","/en-ee/skin-care/face/Blooming-Glow-Revitalizing-Face-Serum/p-KS0200106700033","/en-ee/skin-care/face/Skin-Trainer-CC-Blur/p-KS02001069","/en-ee/skin-care/face/Skin-Trainer-Cream/p-KS0200107500044","/en-ee/skin-care/lips/Night-Balm/p-KS0200101000033","/en-ee/skin-care/lips/Glossy-Balm/p-KS0200102600000","/en-ee/skin-care/lips/Kiss-Balm/p-KS02001027","/en-ee/skin-care/lips/Heatwave--Lip-Oil/p-KS02001080","/en-ee/skin-care/lips/Lip-Volume/p-KS0200101200033","/en-ee/skin-care/lips/Lip-Relief-SPF-15/p-KS0200101100004","/en-ee/skin-care/lips/Lip-Balm-SPF-15/p-KS0200101000000","/en-ee/skin-care/lips/Lip-Scrub/p-KS0200104300021","/en-ee/skin-care/body/Body-Scrub/p-KS0210201400000","/en-ee/skin-care/body/Silhouette-Design/p-KS0210201100000","/en-ee/skin-care/body/Skin-Trainer-Body/p-KS0210107900021","/en-ee/skin-care/hands/Intensive-Hand-Gloves/p-KS0230100800033","/en-ee/skin-care/hands/Hydrating-Hand-Fluid/p-KS0230100300000","/en-ee/skin-care/hands/Intensive-Foot-Socks/p-KS0230100700033","/en-ee/skin-care/hands/Hand%26Foot-Stone-Scrub/p-KS0230100600021","/en-ee/skin-care/hands/Foot%26Heel-Relief-Cream/p-KS0230100500021","/en-ee/skin-care/fragrances/Oasis-Sunset-Eau-De-Toilette/p-KS0210109600033","/en-ee/skin-care/fragrances/Sahara-Sun-Eau-De-Toilette/p-KS0210109500033","/en-ee/accessories/accessories-face/Double-Mirror/p-KM0050500600033","/en-ee/accessories/accessories-face/Foundation-Sponges-02/p-KM0050203000033","/en-ee/accessories/accessories-face/Make-Up-Blender/p-KM0050202800033","/en-ee/accessories/accessories-face/Precision-Make-Up-Blender/p-KM0050202900033","/en-ee/accessories/accessories-face/Powder-Puff/p-KM0050201800000","/en-ee/accessories/accessories-face/Precision-Foundation-Sponges/p-KM0050201100000","/en-ee/accessories/accessories-face/Foundation-Sponges/p-KM0050200500000","/en-ee/accessories/accessories-face/Fluid-Foundation-Sponge/p-KM0050201600000","/en-ee/accessories/accessories-face/Compact-Foundation-Sponge/p-KM0050201500000","/en-ee/accessories/accessories-face/Pointed-Tweezers/p-KM0050201400033","/en-ee/accessories/accessories-face/Tweezers/p-KM0050200200033","/en-ee/accessories/accessories-face/Precision-Tweezers/p-KM0050201300033","/en-ee/accessories/accessories-face/Cleansing-Cloth/p-KM0050203100033","/en-ee/accessories/accessories-face/Cleansing-Sponges/p-KM0050202300033","/en-ee/accessories/accessories-face/Cleansing-Face-Brush/p-KM0050202100033","/en-ee/accessories/accessories-face/Natural-Sponge/p-KM0050202500000","/en-ee/accessories/accessories-eye/Shade-Selection-03-Empty-Eyeshadow-Palette/p-KM0051000600033","/en-ee/accessories/accessories-eye/Eyes-Clics-01/p-KM0051000100000","/en-ee/accessories/accessories-eye/Sophisticated-False-Eyelashes/p-KM00504005","/en-ee/accessories/accessories-eye/Natural-False-Eyelashes/p-KM00504004","/en-ee/accessories/accessories-eye/Eyelash-Curler/p-KM0050202000033","/en-ee/accessories/accessories-eye/Double-Sharpener/p-KM0050200400000","/en-ee/accessories/accessories-eye/Sharpener/p-KM0050200300000","/en-ee/accessories/accessories-hands/Nail-Polish-Fixer/p-KM0050201000121","/en-ee/accessories/accessories-hands/Nail-Polish-Drying-Drops/p-KM0050302500021","/en-ee/accessories/accessories-hands/Nail-File-06-%E2%80%93-Glossing-Buffer/p-KM0050302100033","/en-ee/accessories/accessories-hands/Nail-File-07---Emery-Boards/p-KM0050302200033","/en-ee/accessories/accessories-hands/Nail-File-04---Universal/p-KM0050301900033","/en-ee/accessories/accessories-hands/Nail-File-02---Medium/p-KM0050302400033","/en-ee/accessories/accessories-hands/Nail-File-01---Coarse/p-KM0050301600033","/en-ee/accessories/accessories-hands/Nail-File-08---Glass/p-KM0050301500033","/en-ee/accessories/accessories-hands/Nail-File-05-%E2%80%93-Diamond/p-KM0050302000033","/en-ee/accessories/accessories-hands/Nail-File-03---Fine/p-KM0050301800033","/en-ee/accessories/accessories-hands/Nail-File-09---Travel-Nail-File/p-KM0050303600033","/en-ee/accessories/accessories-hands/Nail-File-10---Ergonomic-Buffer-3-In-1/p-KM0050303500033","/en-ee/accessories/accessories-hands/Nail-And-Cuticle-Stone/p-KM0050303400033","/en-ee/accessories/accessories-hands/Nail-Buffer/p-KM0050301000000","/en-ee/accessories/accessories-hands/Cuticle-Nipper/p-KM0050301100033","/en-ee/accessories/accessories-hands/Nail-Scissors/p-KM0050300900033","/en-ee/accessories/accessories-hands/Cuticle-Trimmer/p-KM0050300400033","/en-ee/accessories/accessories-hands/Manicure-Sticks/p-KM0050300700033","/en-ee/accessories/accessories-hands/Nail-Clippers-Big/p-KM0050303900033","/en-ee/accessories/accessories-hands/Nail-Clippers-Small/p-KM0050303800033","/en-ee/accessories/accessories-hands/Toe-Separator/p-KM0050302300033","/en-ee/accessories/accessories-hands/Manicure-Helper/p-KM0050303700033","/en-ee/accessories/accessories-hands/Nail-Polish-Remover-Fast-%26-Easy-Acetone-Free/p-KM0040301200044","/en-ee/accessories/accessories-hands/Nail-Polish-Remover-Express/p-KM0040301100033","/en-ee/accessories/accessories-hands/Nail-Polish-Remover-Universal/p-KM0040300500033","/en-ee/accessories/accessories-hands/Nail-Polish-Remover-Gentle/p-KM0040300600033","/en-ee/accessories/accessories-hands/Nail-Polish-Remover-Travel-Wipes/p-KM0040301000000","/en-ee/accessories/accessories-hands/Nail-Corrector-Pen/p-KM0040300800001","/en-ee/accessories/accessories-hands/Nail-Polish-Remover-Fast-%26-Easy/p-KM0040300800000","/en-ee/accessories/accessories-hands/Nails-Brush-400/p-KM0050101140033","/en-ee/accessories/accessories-hands/Nail-Art-Stickers/p-KM0050302","/en-ee/accessories/brushes/Brush-Cleanser/p-KM0050202600021","/en-ee/accessories/brushes/Travel-Brush-Set/p-KM0050100700033","/en-ee/accessories/brushes/Lips-300/p-KM0050100830000","/en-ee/accessories/brushes/Eyes-203/p-KM0050100920300","/en-ee/accessories/brushes/Perfect-Eyes-Brush-Kit/p-KM0050101500033","/en-ee/accessories/brushes/Smoky-Eyes-Brush-Kit/p-KM0050101400033","/en-ee/accessories/brushes/Eyes-213/p-KM0050100921300","/en-ee/accessories/brushes/Eyes-212/p-KM0050100921200","/en-ee/accessories/brushes/Eyes-202/p-KM0050100920200","/en-ee/accessories/brushes/Eyes-211/p-KM0050100921100","/en-ee/accessories/brushes/Eyes-210/p-KM0050100921000","/en-ee/accessories/brushes/Eyes-209/p-KM0050100920900","/en-ee/accessories/brushes/Eyes-208/p-KM0050100920800","/en-ee/accessories/brushes/Eyes-207/p-KM0050100920700","/en-ee/accessories/brushes/Eyeshadow-Applicators/p-KM0050200100000","/en-ee/accessories/brushes/Maxi-Eyeshadow-Applicators/p-KM0050202400000","/en-ee/accessories/brushes/Eyes-200/p-KM0050100920000","/en-ee/accessories/brushes/Eyes-201/p-KM0050100920100","/en-ee/accessories/brushes/Eyes-204/p-KM0050100920400","/en-ee/accessories/brushes/Eyes-205/p-KM0050100920500","/en-ee/accessories/brushes/Eyes-206/p-KM0050100920600","/en-ee/accessories/brushes/Foundation-Face-Brush/p-KC0390501200033","/en-ee/accessories/brushes/Face-Brush/p-KC0390501100033","/en-ee/accessories/brushes/Fusion-01-Powder-Brush/p-KM0050101600033","/en-ee/accessories/brushes/Face-106/p-KM0050100910600","/en-ee/accessories/brushes/Face-104/p-KM0050100910400","/en-ee/accessories/brushes/Face-103/p-KM0050100910300","/en-ee/accessories/brushes/Face-107/p-KM0050100910721","/en-ee/accessories/brushes/Face-102/p-KM0050100910200","/en-ee/accessories/brushes/Face-100/p-KM0050100910000","/en-ee/accessories/brushes/Face-105/p-KM0050100910500","/en-ee/accessories/brushes/Face-109/p-KM0050100910921","/en-ee/accessories/brushes/Face-108/p-KM0050100910821","/en-ee/accessories/brushes/Face-101/p-KM0050100910100","/en-ee/accessories/brushes/Brush-Protecting-Nets/p-KM0050101300033","/en-ee/accessories/brushes/Brush-Holder/p-KM0050200900033","/en-ee/accessories/travel-containers/100-ml-Travel-Bottle/p-KM0050500500000","/en-ee/accessories/travel-containers/50-ml-Travel-Bottle/p-KM0050500400000","/en-ee/accessories/travel-containers/30-ml-Travel-Jar/p-KM0050500300000","/en-ee/accessories/travel-containers/15-ml-Travel-Jar/p-KM0050500200000","/en-ee/accessories/travel-containers/10-ml-Travel-Jar/p-KM0050500100000","/en-ee/accessories/makeup-cases/Travel-Brush-Set/p-KM0050100700033","/en-ee/accessories/makeup-cases/Pochette/p-KC0390506100033","/en-ee/accessories/makeup-cases/Artist-Pochette/p-KC0360506100033","/en-ee/accessories/makeup-cases/Campus-Idol-Pochette/p-KC0380506100133","/en-ee/accessories/makeup-cases/Pochette-Extra-Large/p-KM0050700300000","/en-ee/accessories/makeup-cases/Beauty-Twin-Set/p-KM00507004","/en-ee/accessories/makeup-cases/Pochette-Large/p-KM0050700200000","/en-ee/accessories/makeup-cases/Pochette-Medium/p-KM0050700100000","/en-ee/accessories/makeup-cases/Pochette-Small/p-KM0050700000000","/en-ee/accessories/makeup-cases/Solar-Tote-Bag-/p-KM0050700900033","/en-ee/sun-protection/sun-protection-line/Solar-Protect-Intensifier-SPF-6/p-KS0220108100033","/en-ee/sun-protection/sun-protection-line/Solar-Protect--Spray-SPF-20-/p-KS0220108500033","/en-ee/sun-protection/sun-protection-line/Solar-Protect--Lotion-SPF-15/p-KS0220108400033","/en-ee/sun-protection/sun-protection-line/Solar-Protect-Serum-SPF-15/p-KS0220107900033","/en-ee/sun-protection/sun-protection-line/Solar-Protect-Balm-SPF-20/p-KS02201074","/en-ee/sun-protection/sun-protection-line/Solar-Protect-Glow-SPF-30/p-KS0220108800033","/en-ee/sun-protection/sun-protection-line/Solar-Protect--Lotion-SPF-30/p-KS0220108300033","/en-ee/sun-protection/sun-protection-line/Solar-Protect--Cream-SPF-50-/p-KS0220108200033","/en-ee/sun-protection/sun-protection-line/Solar-Protect-Stick-SPF-50/p-KS0220108000033","/en-ee/sun-protection/sun-protection-line/Solar-Protect-Set/p-KS0220107600033","/en-ee/sun-protection/after-sun/Solar-Revive-Gel/p-KS0220109000033","/en-ee/sun-protection/after-sun/Solar-Revive-Lotion/p-KS0220108900033","/en-ee/sun-protection/hair/Solar-Haircare-Oil-SPF-6/p-KS0220107800033","/en-ee/sun-protection/hair/Solar-Haircare-Serum/p-KS0220107700033","/en-ee/sun-protection/self-tanning-products/Sunless-Tan-Cream/p-KS0210109400033","/en-ee/sun-protection/self-tanning-products/Sunless-Tan-Mousse/p-KS0210109300033","/en-ee/sun-protection/self-tanning-products/Sunless-Tan-Applicator/p-KM005080100000"];
+
+	var erased = [];
+	var multyColorResults = [], uniqueColorResults = [];
+	var finalArray = [];
+	var pager = 0;
+
+	var urlCat = links[pager].split('/');
+	var finalUrl = "/" + urlCat[1] + "/" + urlCat[urlCat.length - 2] + "/" + urlCat[urlCat.length -1];
+	document.getElementById('urlGoesHere').src = "http://www.kikocosmetics.com" + finalUrl;
+
+	function getData() {
+
+			// get the source code
+			var iframe = window.frames[0].document.body.innerHTML;
+
+			if(iframe.search('Sorry, this product is currently not available') > 0){
+				erased.push(links[pager]);
+
+			}else{
+
+				var product = {'url': links[pager]};
+
+				product.realUrl = finalUrl;
+
+				product.name = '';
+				var name = links[pager].split('/');
+				name = name[name.length - 2].split('-');
+				for (var i = 0; i < name.length; i++) {
+					product.name += name[i] + " ";
+				}
+
+				var categories = [];
+				var deb = iframe.search('breadcrumbs'), fin;
+				var selectedArea = iframe.substring(deb);
+
+				while(selectedArea.search('href=') < selectedArea.search('</p>')){
+					deb = selectedArea.search('href="') + 'href="'.length;
+					selectedArea = selectedArea.substring(deb);
+					deb = selectedArea. search('">') + '">'.length;
+					fin = selectedArea.search('<');
+					categories.push(selectedArea.substring(deb,fin));
+
+					selectedArea = selectedArea.substring(fin);
+				}
+				product.cat = categories;
+
+				if(iframe.search('select-options-box') < 0){
+					selectedArea = iframe.substring(iframe.search('data-lazy="true"'));
+					selectedArea = selectedArea.substring(selectedArea.search('<span'), selectedArea.search('#k-product-retina"') + '#k-product-retina"'.length);
+
+					selectedArea = selectedArea.substring(selectedArea.search('data-src="') + 'data-src="'.length);
+					product.mainPic = selectedArea.substring(0, selectedArea.search('"'));$
+
+					for (var i = selectedArea.length - 1; i >= 0; i--) {
+						if(selectedArea[i] == '='){
+							deb = i;
+							i=0;
+						}
+					}
+					product.mainPicRetina = selectedArea.substring(deb + 2, selectedArea.length - 1);
+					product.mainColorName = null;
+
+					uniqueColorResults.push(product);
+				}else{
+					selectedArea = iframe.substring(iframe.search('select-options-box'));
+					deb = selectedArea.search('<option') + '<option'.length;
+					fin = selectedArea.search('</select>');
+					selectedArea = selectedArea.substring(deb, fin);
+
+					var selectOption = selectedArea.split('</option>');
+					var variation = [];
+
+					selectedArea = iframe.substring(iframe.search('palette-items'));
+					selectedArea = selectedArea.substring(selectedArea.search('<li class'));
+					selectedArea = selectedArea.substring(0, selectedArea.search('class="actions"'));
+					var miniatureList = selectedArea.split('</li>');
+
+					var offset = 0;
+
+					for (var i = 0; i < selectOption.length - 1; i++) {
+						var sampleData = {};
+
+						if(miniatureList[i + offset].search('clear') > 0) {
+							offset++ ;
+						}
+
+						if(selectOption[i].search('retina=""') < 0){
+							deb = selectOption[i].search('retina="') + 'retina="'.length;
+							selectOption[i] = selectOption[i].substring(deb);
+							fin = selectOption[i].search('"');
+
+							sampleData.picRetina = selectOption[i].substring(0, fin);
+						}
+
+						if(selectOption[i].search('desktop=""') < 0){
+							deb = selectOption[i].search('desktop="') + 'desktop="'.length;
+							selectOption[i] = selectOption[i].substring(deb);
+							fin = selectOption[i].search('"');
+
+							sampleData.pic = selectOption[i].substring(0, fin);
+						}
+
+						if(miniatureList[i + offset].search('href=""') < 0){
+							deb = miniatureList[i + offset].search('href="') + 'href="'.length;
+							miniatureList[i + offset] = miniatureList[i + offset].substring(deb);
+							fin = miniatureList[i + offset].search('"');
+
+							sampleData.selectorPic = miniatureList[i + offset].substring(0, fin);
+							sampleData.hex = null;
+						}
+
+						for (var j = selectOption[i].length - 1; j >= 0; j--) {
+							if(selectOption[i][j] == '>'){
+								deb = j;
+								j=0;
+							}
+						}
+						sampleData.name = selectOption[i].substring(deb);
+
+						variation.push(sampleData);
+					}
+
+					product.mainPic = variation[0].pic;
+					product.mainPicRetina = variation[0].picRetina;
+					product.mainColorName = variation[0].name;
+
+					product.colours = variation;
+
+					multyColorResults.push(product);
+				}
+
+
+
+			}
+
+			pager ++;
+
+			if(pager < links.length){
+
+				var urlCat = links[pager].split('/');
+				finalUrl = "/" + urlCat[1] + "/" + urlCat[urlCat.length - 2] + "/" + urlCat[urlCat.length -1];
+				document.getElementById('urlGoesHere').src = "http://www.kikocosmetics.com" + finalUrl;
+
+			}else{
+				alert('done');
+				alert('404 : ' + erased.toString());
+
+				document.getElementById('textGoesHere').innerHTML = "<h1>Products with mutiple Colors</h1>";
+				document.getElementById('textGoesHere').innerText += JSON.stringify(multyColorResults);
+				document.getElementById('textGoesHere').innerHTML += "<br/><br/><hr><h1>Products with a unique Color</h1>";
+				document.getElementById('textGoesHere').innerText += JSON.stringify(uniqueColorResults);
+
+				finalArray.push(multyColorResults);
+				finalArray.push(uniqueColorResults);
+				alert(JSON.stringify(finalArray));
+
+			}
+	}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

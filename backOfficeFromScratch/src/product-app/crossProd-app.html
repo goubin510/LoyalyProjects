@@ -1,0 +1,211 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<link rel="stylesheet" type="text/css" href="/font.css">
+
+<dom-module id="crossProd-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+    .card {
+      display: inline-block;
+
+      border-style: none;
+      border-width: 1px;
+
+      vertical-align: middle;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    .mainInput {
+      display: inline-block;
+
+      vertical-align: top;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    #mainProductField {
+      display: block;
+
+      margin-left: 70px;
+      margin-right: 10px;
+    }
+
+    .mainInput {
+      display: inline-block;
+    }
+
+    button {
+      border-style: none;
+      background-color: white;
+    }
+
+    #menuOption {
+      display: block;
+      width: 50px;
+      height: 50px;
+
+      background-color: white;
+      color: grey;
+
+      box-shadow: 1px 1px 3px grey;
+      font-size: 15px;
+    }
+
+    #producMenu {
+      float: left;
+    }
+
+    #results {
+      display: block;
+    }
+
+    .east, .west {
+      display: inline-block;
+      margin: 0px;
+      width: 60%;
+      vertical-align: top;
+    }
+
+    .east {
+      border-color: grey;
+      border-width: 1px;
+      border-style: solid;
+
+      right: 10px;
+      text-align: left;
+      width: 37%;
+      padding: 5px;
+    }
+
+    .west .card {
+      background-color: white;
+      border-style: solid;
+    }
+
+    paper-textarea {
+      float: left;
+      height: 160px;
+    }
+
+    iron-image {
+      display: inline-block;
+      margin: 5px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #727272;
+    }
+
+    #titleCard {
+      display: inline-block;
+
+      border-style: none;
+      border-width: 1px;
+
+      vertical-align: middle;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    </style>
+
+      <div class="west">
+        <div id="titleCard">Cross products :</div><br/>
+        <template is="dom-repeat" items="{{items.crossProds}}">
+          <div class="card">{{item.name}} <button on-tap="delCrossProd" data="{{item}}">X</button></div>
+        </template>
+      </div>
+
+    <div class="east">
+      <paper-input label="Search" on-input="refresh" id="inputField"></paper-input>
+
+      <div id="results">
+          <template is="dom-repeat" items="{{answer.results}}">
+            <paper-button class="card" data="{{item}}"  on-tap="addCrossProd">{{item.name}}</paper-button>
+          </template>
+      </div>
+    </div>
+
+  <iron-ajax
+  auto
+  id="ajax"
+  url=""
+  handle-as="json"
+  content-type="application/json"
+  debounce-duration="300"
+  last-response="{{answer}}"></iron-ajax>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'crossProd-app',
+      properties: {
+        connId: {
+          type: String,
+          value: "57d2c67d6165141b3d842987",
+        },
+      },
+      stringify: function(obj){ return JSON.stringify(obj); },
+      delCrossProd: function(evt){
+        console.log(evt.currentTarget.data);
+        var index = this.items.crossProds.indexOf(evt.currentTarget.data);
+        this.splice('items.crossProds', index, 1);
+      },
+      addCrossProd: function(evt){
+        var data = evt.currentTarget.data;
+        var toAdd = {};
+        toAdd.name = data.name;
+        toAdd._id = data._id;
+        console.log(toAdd);
+        if(this.items.crossProds.indexOf(toAdd) < 0){
+          this.push('items.crossProds', toAdd);
+        }else{conole.log('already in');}
+      },
+      refresh: function(){
+        var searchString = this.$.inputField.value.split(' ');
+        var finalString = '';
+        if(searchString.length > 1){
+          for (var i = 0; i < searchString.length; i++) {
+              finalString += searchString[i];
+            if((i < searchString.length - 1) || (searchString[i + 1] != ' '))
+              finalString += '-';
+          }
+        }else{
+          finalString = searchString[0];
+        }
+
+        this.$.ajax.url = "http://54.171.115.230:8080/api/v1/entities/" + this.connId + "/products/search?text=" + searchString;
+        if(this.$.inputField.value)
+          this.$.ajax.generateRequest();
+      },
+    });
+  </script>
+</dom-module>

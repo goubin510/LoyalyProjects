@@ -1,0 +1,37 @@
+<html><head><link rel="import" href="../../bower_components/polymer/polymer.html">
+
+</head><body><dom-module id="footer-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .loyalyLogo {
+        position: relative;
+        width: 90%;
+        height: auto;
+        margin-left: 5%;
+        margin-right: 5%;
+        top: 30%;
+      }
+
+      .footer {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        height: 80px;
+        width: 260px;
+
+        background-color: #fff;
+      }
+    </style>
+    <div class="footer">
+      <img src="/images/loyalyLogo.png" class="loyalyLogo">
+    </div>
+
+  </template>
+
+  <script>Polymer({is:"footer-app"});</script>
+</dom-module>
+</body></html>

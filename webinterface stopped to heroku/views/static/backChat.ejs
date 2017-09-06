@@ -1,0 +1,124 @@
+<input id="testTest" style="display:none" value="<%= req.session.id %>"></input>
+
+<div class="container">
+  <div class="jumbotron">
+    <h1 align="center">API Back chat</h1>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-sm-3">
+    <form>
+      <select multiple class="form-control"  size="10" id="sel1" onchange="ticked()">
+      </select>
+    </form>
+    <div class="btn-group">
+      <button class="btn btn-success" onclick="update()">Refresh</button>
+      <button class="btn btn-danger" onclick="turnOff()">Turn off conv.</button>
+    </div>
+  </div>
+
+  <div class="col-sm-1"></div>
+
+  <div class="col-sm-6">
+    <div id="chatBox" style="background-color: grey; height: 300px">No user selected</div>
+
+    <form action="/chat/answer" method="POST" align="right">
+      <input type="text" name="name" readonly="true" value="admin">
+      <input type="text" name="sessionId" style="display:none" readonly="true" id="sessionIdSpot">
+      <input type="text" name="message" placeholder="your message" required="true">
+
+      <input type="submit" class="btn" value="send">
+    </form>
+  </div>
+
+  <div class="col-sm-2">
+
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  var r;
+
+  onload = function setUp() {
+    update();
+  }
+
+  function update(){
+    var research = "https://secret-castle-99611.herokuapp.com/chatsession?connected=true";
+    var apiContent = new XMLHttpRequest();
+    apiContent.open("GET", research, false);
+    apiContent.send(null);
+    r = JSON.parse(apiContent.response);
+
+
+      var pseudo;
+      document.getElementById('sel1').innerHTML = "";
+
+      for (var i = 0; i < r.length; i++) {
+        pseudo = getpseudo(r[i].sessionId);
+
+        document.getElementById('sel1').innerHTML += "<option value='" + i + "'>" + i + " : " + pseudo + "</option>";
+      }
+
+  }
+
+  function getpseudo(sessionId) {
+    var request = "https://secret-castle-99611.herokuapp.com/chat/?sessionId=" + sessionId;
+    var Content = new XMLHttpRequest();
+    Content.open("GET", request, false);
+    Content.send(null);
+    var jsonBack = JSON.parse(Content.response);
+
+    if(!jsonBack.length){
+      return "undifined";
+    }
+
+    return jsonBack[0].name;
+  }
+
+  function ticked() {
+    var chan = document.getElementById('sel1').value;
+    document.getElementById('sessionIdSpot').value = r[chan].sessionId;
+
+    var requestChat = "https://secret-castle-99611.herokuapp.com/chat/?sessionId=" + r[chan].sessionId;
+    var ContentChat = new XMLHttpRequest();
+    ContentChat.open("GET", requestChat, false);
+    ContentChat.send(null);
+    var jsonBackChat = JSON.parse(ContentChat.response);
+
+    document.getElementById('chatBox').innerHTML = "";
+    for (i = 0; i < jsonBackChat.length; i++) {
+      if(jsonBackChat[i].name == jsonBackChat[0].name){
+        document.getElementById('chatBox').innerHTML += jsonBackChat[i].name + " : " + jsonBackChat[i].message + "<br/>";
+      }else{
+        document.getElementById('chatBox').innerHTML += "-> " + jsonBackChat[i].message + "<br/>";
+      }
+    }
+  }
+
+  function turnOff() {
+    var selected = document.getElementById('sel1').value;
+    var delRequest = "https://secret-castle-99611.herokuapp.com/chatsession/update/" + r[selected].id + "?connected=false";
+    var ContentDel = new XMLHttpRequest();
+    ContentDel.open("GET", delRequest, false);
+    ContentDel.send(null);
+
+    update();
+  }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

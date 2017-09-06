@@ -1,0 +1,194 @@
+<html><head><link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
+
+<link rel="import" href="customers-app.html">
+<link rel="import" href="products-app.html">
+<link rel="import" href="words-app.html">
+
+</head><body><dom-module id="dashboard-app">
+  <template>
+    <style type="text/css">
+
+    #menu {
+      float: left;
+      width: 260px;
+      height: 100%;
+      background-color: white;
+    }
+
+    #menuSub {
+      position: static;
+
+      border-style: solid;
+      border-width: 10px 1px 1px 1px;
+      border-color: #8BADCF grey grey grey;
+
+      width: 100%;
+      bottom: 80px;
+      box-shadow: 1px 1px 3px grey;
+
+      height: 300px;
+    }
+
+    .card {
+      vertical-align: top;
+      float: left;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: grey;
+
+      min-height: 100px;
+      min-width: 200px;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 5px;
+      overflow: auto;
+
+      box-shadow: 1px 1px 3px grey;
+    }
+
+    .widder {
+      vertical-align: top;
+      float: left;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: grey;
+
+      min-height: 100px;
+      min-width: 300px;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 5px;
+      overflow: auto;
+
+      box-shadow: 1px 1px 3px grey;
+    }
+
+    .higher {
+      vertical-align: top;
+      float: left;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: grey;
+
+      min-height: 200px;
+      min-width: 200px;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 5px;
+      overflow: auto;
+
+      box-shadow: 1px 1px 3px grey;
+    }
+
+    #dashboard {
+      position: absolute;
+      margin-left: 260px;
+      margin-right: 8px;
+      height: 100%;
+      width: auto;
+      overflow: hidden;
+
+      background-color: #ececec;
+    }
+
+    button {
+      border-style: none;
+      background-color: white;
+    }
+
+    #home {
+      display: block;
+      width: 100%;
+      height: 100px;
+
+      background-color: white;
+      color: #4a4249;
+
+      box-shadow: 1px 1px 3px grey;
+
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    span, button, dd {
+      cursor: pointer;
+    }
+
+    dt, dd {
+      list-style-type: none;
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #6989A2;
+    }
+
+    dd {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: grey;
+    }
+
+    #pages dt {
+      margin-left: 65px;
+    }
+
+    #menuSub dt {
+      margin-left: 65px;
+    }
+
+    #renverser {
+      transform: rotate(180deg);
+    }
+
+    </style>
+
+    <div id="menu">
+      <div id="home">
+        <button id="home" onclick="dashboardCall()"> <iron-icon icon="icons:home"></iron-icon> HOME</button>
+      </div>
+
+      <dl id="pages">
+        <dt>Products</dt>
+
+        <dd><span onclick="categoriesCall()"><iron-icon id="renverser" icon="icons:change-history"></iron-icon> Categories</span></dd>
+
+        <dd><span onclick="searchCall()"><iron-icon id="renverser" icon="icons:change-history"></iron-icon> Search</span></dd>
+      </dl>
+
+      <div id="menuSub">
+        <dl>
+          <dt>Insights</dt>
+
+          <dd on-tap="dashboardCustomers"><iron-icon id="renverser" icon="icons:change-history"></iron-icon> Customers</dd>
+          <dd on-tap="dashboardProducts"><iron-icon id="renverser" icon="icons:change-history"></iron-icon> Products</dd>
+          <dd on-tap="dashboardWords"><iron-icon id="renverser" icon="icons:change-history"></iron-icon> Words</dd>
+        </dl>
+      </div>
+    </div>
+
+        <iron-ajax auto="" url="http://54.171.115.230:8080/api/v1/entities/" handle-as="json" debounce-duration="300" last-response="{{connectionIntel}}"></iron-ajax>
+
+        <iron-ajax auto="" url="http://54.171.115.230:8080/api/v1/entities/{{connId}}" handle-as="json" debounce-duration="300" last-response="{{brandIntel}}"></iron-ajax>
+
+      <iron-pages selected="0" id="dashboardTabs">
+        <customers-app></customers-app>
+        <products-app></products-app>
+        <words-app></words-app>
+      </iron-pages>
+
+  </template>
+
+<script>function dashboardCall(){var s=document.querySelector("iron-pages");s.selectIndex(0);var e=document.getElementById("dashboardTabs");e.selectIndex(0)}Polymer({is:"dashboard-app",stringify:function(s){return JSON.stringify(s)},dashboardCustomers:function(s){this.$.dashboardTabs.selectIndex(0)},dashboardProducts:function(s){this.$.dashboardTabs.selectIndex(1)},dashboardWords:function(s){this.$.dashboardTabs.selectIndex(2)},properties:{connId:{type:String,value:sessionId}}});</script>
+</dom-module></body></html>

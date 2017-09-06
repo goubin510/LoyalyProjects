@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head>
+    <title>backOffice</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="manifest" href="/manifest.json">
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="/bower_components/iron-pages/iron-pages.html">
+
+    <link rel="import" href="/src/footer-app/footer-app.html">
+    <link rel="import" href="/src/header-app/header-app.html">
+    <link rel="import" href="/src/dashboard-app/dashboard-app.html">
+    <link rel="import" href="/src/product-app/product-app.html">
+    <link rel="import" href="/src/categories-app/categories-app.html">
+    <link rel="import" href="/src/search-app/search-app.html">
+    <style>
+      body {
+        background-color: white;
+        font: 12px Montserrat, sans-serif;
+      }
+
+      iron-pages {
+        position: static;
+        margin-bottom: 80px;
+      }
+    </style>
+  </head>
+  <body>
+
+  
+    <header-app></header-app>
+    
+      <iron-pages selected="0">
+        <dashboard-app data="{{productId}}"></dashboard-app>
+        <product-app data="{{productId}}"></product-app>
+        <categories-app data="{{productId}}"></categories-app>
+        <search-app data="{{productId}}"></search-app>
+      </iron-pages>
+
+  
+    <footer-app></footer-app>
+
+  
+
+
+<script>var sessionId;window.onload=function(){var e="http://54.171.115.230:8080/api/v1/entities/",s=new XMLHttpRequest;s.onreadystatechange=function(){if(4==s.readyState&&200==s.status){var e=JSON.parse(s.response);sessionId=e.results[0]._id}},s.open("GET",e,!1),s.send()};</script>
+
+
+</body></html>

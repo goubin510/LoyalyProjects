@@ -1,0 +1,125 @@
+<html><head><link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/google-chart/google-chart.html">
+
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+
+</head><body><dom-module id="customers-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      .card {
+        display: inline-block;
+        vertical-align: top;
+        margin: 5px;
+        padding: 5px;
+
+        border-color: grey;
+        border-style: solid;
+        border-width: 1px;
+
+        background-color: white;
+        box-shadow: 1px 1px 3px grey;
+      }
+
+      paper-tabs {
+        background-color: #8BADCF;
+        color: white;
+        --paper-tabs-selection-bar-color: white;
+        --paper-tab-ink: white;
+      }
+
+      #main {
+        display: block;
+        margin-left: 260px;
+
+        background-color: #EAEAEA;
+
+      }
+
+      #mainIntel, #subIntel {
+        font: 12px Montserrat, sans-serif;
+        color: #6989A2;
+      }
+
+      #mainIntel {
+        text-align: center;
+        font-size: 30px;
+        margin: 0px;
+      }
+
+      #subIntel {
+        font-size: 20px;
+        margin: 0px;
+      }
+
+      #wide{
+        width: 600px;
+        height: 200px;
+      }
+
+      #pieChart {
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+      }
+
+    </style>
+
+<paper-tabs scrollable="">
+  <template is="dom-repeat" items="{{metricsData.values}}">
+    <paper-tab class="type" data="{{item}}" on-tap="reac">{{getDateNumber(item.ts)}}</paper-tab>
+  </template>
+</paper-tabs>
+
+  <div id="main">
+    <div class="card">
+      <p id="mainIntel">{{selectedObject.metrics.msg_SUM}}</p>
+      <p id="subIntel">Messages</p>
+    </div>
+    <div class="card">
+      <p id="mainIntel">{{productMessageStat}}</p>
+      <p id="subIntel">Product / messages</p>
+    </div>
+
+    <div class="card">
+      <p id="mainIntel">{{messageProductStat}}</p>
+      <p id="subIntel">Message to get 1 product</p>
+    </div>
+
+    <div class="card">
+      <google-chart id="wide" type="combo" options="{&quot;seriesType&quot;: &quot;area&quot;, &quot;series&quot;: {&quot;0&quot;: {&quot;type&quot;: &quot;line&quot;}}, &quot;title&quot;: &quot;Chat Data&quot;, &quot;colors&quot;: [&quot;#FF9E94&quot;, &quot;#4C4149&quot;, &quot;#6989A2&quot;, &quot;grey&quot;, &quot;#8BADCF&quot;], &quot;legend&quot;: &quot;top&quot;}" cols="[{&quot;label&quot;: &quot;period&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;messages&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;chats&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;active chat&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;opened&quot;, &quot;type&quot;: &quot;number&quot;}]" data="{{chatTable}}">
+      </google-chart>
+    </div>
+
+    <div class="card">
+      <google-chart id="wide" type="line" options="{&quot;title&quot;: &quot;media Data&quot;, &quot;colors&quot;: [&quot;#FF9E94&quot;, &quot;#4C4149&quot;, &quot;#6989A2&quot;, &quot;grey&quot;, &quot;#8BADCF&quot;], &quot;legend&quot;: &quot;top&quot;}" cols="[{&quot;label&quot;: &quot;period&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;video watched&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;photo displayed&quot;, &quot;type&quot;: &quot;number&quot;}, {&quot;label&quot;: &quot;period&quot;, &quot;type&quot;: &quot;number&quot;}]" data="{{mediaTable}}">
+      </google-chart>
+    </div>
+
+    <div class="card">
+      <google-chart id="wide" type="area" options="{&quot;title&quot;: &quot;product Data&quot;, &quot;colors&quot;: [&quot;#FF9E94&quot;, &quot;#4C4149&quot;, &quot;#6989A2&quot;, &quot;grey&quot;, &quot;#8BADCF&quot;], &quot;legend&quot;: &quot;top&quot;}" cols="[{&quot;label&quot;: &quot;period&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;added to cart&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;product displayed&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;product clicked&quot;, &quot;type&quot;: &quot;number&quot;},{&quot;label&quot;: &quot;samples asked&quot;, &quot;type&quot;: &quot;number&quot;}]" data="{{productTable}}">
+      </google-chart>
+    </div>
+
+    <div class="card">
+        <google-chart id="pieChart" type="pie" options="{&quot;title&quot;: &quot;Stat % &quot;, &quot;colors&quot;: [&quot;#8BADCF&quot;, &quot;grey&quot;], &quot;legend&quot;: &quot;bottom&quot;}" cols="[{&quot;label&quot;: &quot;status&quot;, &quot;type&quot;: &quot;string&quot;},{&quot;label&quot;: &quot;stat&quot;, &quot;type&quot;: &quot;number&quot;}]" rows="[[&quot;bought&quot;, 30],[&quot;abandon&quot;, 70]]">
+        </google-chart>
+      
+        <google-chart id="pieChart" type="pie" options="{&quot;title&quot;: &quot;Stat % &quot;, &quot;colors&quot;: [&quot;#4C4149&quot;, &quot;grey&quot;], &quot;legend&quot;: &quot;bottom&quot;}" cols="[{&quot;label&quot;: &quot;status&quot;, &quot;type&quot;: &quot;string&quot;},{&quot;label&quot;: &quot;stat&quot;, &quot;type&quot;: &quot;number&quot;}]" rows="[[&quot;bought&quot;, 120],[&quot;abandon&quot;, 70]]">
+        </google-chart>
+      
+        <google-chart id="pieChart" type="pie" options="{&quot;title&quot;: &quot;Stat % &quot;, &quot;colors&quot;: [&quot;#FF9E94&quot;, &quot;grey&quot;], &quot;legend&quot;: &quot;bottom&quot;}" cols="[{&quot;label&quot;: &quot;status&quot;, &quot;type&quot;: &quot;string&quot;},{&quot;label&quot;: &quot;stat&quot;, &quot;type&quot;: &quot;number&quot;}]" rows="[[&quot;bought&quot;, 480],[&quot;abandon&quot;, 70]]">
+        </google-chart>
+      </div>
+  </div>
+
+      <iron-ajax auto="" url="http://54.171.115.230:8080/api/v1/entities/{{connId}}/metrics" handle-as="json" debounce-duration="300" last-response="{{metricsData}}"></iron-ajax>
+
+  </template>
+  <script>Polymer({is:"customers-app",properties:{connId:{type:String,value:sessionId},selectedObject:{type:Object},chatTable:{type:Array,value:[]},mediaTable:{type:Array,value:[]},productTable:{type:Array,value:[]},productMessageStat:{type:Number},messageProductStat:{type:Number}},stringify:function(e){return JSON.stringify(e)},getDateNumber:function(e){var t,a=new Date,r=new Date(e),s=["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"];return t=a.getDate()==r.getDate()&&a.getMonth()==r.getMonth()&&a.getFullYear()==r.getFullYear()?"Today":a.getDate()-1==r.getDate()&&a.getMonth()==r.getMonth()&&a.getFullYear()==r.getFullYear()?"Yesterday":r.getDate()+" "+s[r.getMonth()]},reac:function(e){this.selectedObject=e.currentTarget.data;var t=e.currentTarget.data.metrics;this.productMessageStat=Math.round(t.pDisp_SUM/t.msg_SUM*100)/100,this.messageProductStat=Math.round(t.msg_SUM/t.pDisp_SUM),this.chatTable=[],this.mediaTable=[],this.productTable=[],this.chatTable.push(["period","messages","chats","active chat","opened"]),this.mediaTable.push(["period","video watched","photo displayed","modals opened"]),this.productTable.push(["period","carted","product disp.","product clicked","samples asked"]);for(var a=0;a<e.currentTarget.data.metrics.vidView.length;a++)this.chatTable.push([a,t.msg[a],t.newCh[a],t.chtAct[a],t.chOp[a]]),this.mediaTable.push([a,t.vidView[a],t.phto[a],t.mdOp[a]]),this.productTable.push([a,t.addTC[a],t.pDisp[a],t.pClck[a],t.smpl[a]])}});</script>
+</dom-module>
+</body></html>

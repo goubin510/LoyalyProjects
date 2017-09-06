@@ -1,0 +1,51 @@
+<div class="container">
+	<div class="jumbotron">
+		<h1>give us Your opinion</h1>
+		<pre id="questionSpot"></pre>
+	</div>
+</div>
+
+
+
+<form action="/answer/create" method="POST">
+
+	<p>
+		idd : <input type="int" name="idd" id="idd" readonly="true" required="true">
+		&nbsp; iddQuestion : <input type="int" name="iddQuestion" id="iddQuestion" readonly="true" required="true">
+	</p>
+
+	<input type="text" name="name" placeholder="your name" required="true">
+	<input type="text" name="content" placeholder="your answer" required="true">
+
+	<input type="submit" value="add answer" onclick="update()" >
+</form>
+
+<script>
+	onload = function setUp() {
+		var apiContent = new XMLHttpRequest();
+		apiContent.open("GET", 'http://localhost:1337/data/579f314bf21ccb251ac1a0f7', false);
+		apiContent.send(null);
+		var jsonContent = JSON.parse(apiContent.response);
+		document.getElementById('idd').value = parseInt(jsonContent.nbAnswer) +1;
+
+		var random = Math.floor(Math.random() * jsonContent.nbQuestion) + 1;
+		var requete = 'http://localhost:1337/question?idd=' + random;
+
+		var apiQuestion = new XMLHttpRequest();
+		apiQuestion.open("GET", requete, false);
+		apiQuestion.send(null);
+		var jsonQuestion = JSON.parse(apiQuestion.response);
+
+		document.getElementById("iddQuestion").value = jsonQuestion[0].idd;
+		document.getElementById("questionSpot").innerHTML = jsonQuestion[0].question;
+	};
+
+		function update(){
+		var iddValeur = document.getElementById("idd").value;
+		var requete = 'http://localhost:1337/data/update/579f314bf21ccb251ac1a0f7?nbAnswer=' + iddValeur;
+
+		var apiActu = new XMLHttpRequest();
+		apiActu.open("GET", requete, false);
+		apiActu.send(null);
+	};
+</script>

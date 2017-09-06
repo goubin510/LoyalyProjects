@@ -1,0 +1,67 @@
+<div class='container'>
+	<h1><%= product.name %> </h1>
+</div>
+
+<form>
+	<textarea placeholder="what tags do you want to add" id="tagsArea"></textarea>	
+	<input  class="btn btn-info" value="test" onclick="newEntry()">
+</form>
+
+<div id= "cible"></div>
+
+<script type="text/javascript">
+
+function newEntry() {
+	var aString = document.getElementById("tagsArea").value + " ";	
+	var startId = 0, value = 0; tagWord = "";
+
+		for (var i = 0; i < aString.length; i++) {
+
+			if(aString[i] === ' '){
+
+				if(startId == i){
+					startId ++;
+				}else{
+					for (var j = startId; j < i; j++) {
+						value = startId + j;
+						tagWord[j] = aString[value];
+						alert();
+					}
+					addTag(tagWord);
+					tagWord = "";
+					startId = i;
+				}
+			}
+		}
+}
+
+function addTag(tag) {
+	alert(tag);
+}
+
+</script>
+
+<!-- ----------------------------------------------
+
+  window.onload function update(){
+    var research = "http://localhost:1337/chat/?sessionId=" + sessionId;
+    var apiContent = new XMLHttpRequest();
+    apiContent.open("GET", research, false);
+    apiContent.send(null);
+    var r = JSON.parse(apiContent.response);
+    
+    if(r.length){
+      document.getElementById('name').value = r[0].name ;
+      document.getElementById('chatbox').innerHTML = "";
+      for (i = 0; i < r.length; i++) {
+        if(r[i].name == r[0].name){
+          document.getElementById('chatbox').innerHTML += r[i].name + " : " + r[i].message + "<br/>";
+        }else {
+          document.getElementById('chatbox').innerHTML += "-> " + r[i].message + "<br/>";
+        }
+      }
+    }
+  }
+
+
+  -->

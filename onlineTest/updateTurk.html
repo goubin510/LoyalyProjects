@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Beauty Quiz</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    
+    <style>
+        body {
+            text-align: center;
+            background-color: #D7F5EE;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            color: #004438;
+        }
+        div {
+            display: block;
+            text-align: left;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p, input {
+            margin-bottom: 0px;
+        }
+        #questionForm, #questionFormTuto2, #questionFormTuto3, #textField2, #textField3, #subTuto2, #subTuto3, #legend, #legend2, #legend3, #tutoNavigation, #statementHelpDiv {
+            display: none;
+        }
+        #tutoNavigation {
+            position: fixed;
+            top: 50%;
+            right: 10%;
+        }
+        #tutoNext {
+            color: white;
+            background-color: #F90074;
+            font-size: 20px;
+        }
+        .validate {
+            background-color: #E7457A;
+            color: white;
+
+            border-style: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            padding: 7px;
+            padding-right: 20px;
+            padding-left: 20px;
+
+            font-size: 20px;
+            font-family: "Montserrat";
+        }
+        InputDiv{
+            display: inline-block;
+        }
+        input[name=text]{
+            background-color: #E9F4F1;
+            font: inherit;
+            color: #578579;
+
+            height: 30px;
+            width: 50%;
+            
+            border-radius: 5px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #CEE6DE;        
+        }
+        textarea {
+            background-color: #E9F4F1;
+            font: inherit;
+            color: #578579;
+
+            resize: both;
+            max-width: 100%;
+            max-height: 200px;
+            height: 100px;
+            width: 75%;
+            
+            border-radius: 5px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #CEE6DE;        
+        }
+        input:focus, textarea:focus {
+            outline-color: #CEE6DE;
+        }
+        .main {
+            border-color: #EBF9F5;
+            border-style: solid;
+            border-radius: 10px;
+            border-width: 10px;
+            
+            margin-bottom: 10px;
+            padding: 10px;
+            
+            background-color: white;
+        }
+        .testPart {
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+        #info, #info2, #info3 {
+            margin-bottom: 10px;
+        }
+        u:hover {
+            color: blue;
+        }
+        #navigation {
+            position: absolute;
+            top: 5px;
+            right: 20%;
+        }
+        #navigation {
+            position: absolute;
+            top: 5px;
+            left: 20%;
+        }
+        #help {
+            display: none;
+            background-color: white;
+            padding: 5px;
+            margin-bottom: 10px;
+            
+            color: grey;
+            
+            border-style: solid;
+            border-width: 5px;
+            border-radius: 5px;
+            border-color: #E8FAF5;
+        }
+        strong {
+            font-weight: 700;
+            color: #666666;
+        }
+        .evalConvA {
+            margin-left: 10px;
+            color: #00997a;
+        }
+        u, #legend, #legend3 {
+            display: inline-block;
+            vertical-align: top;
+        }
+        u:hover {
+            color: #004839;
+        }
+        #validation, #validation2, #validation3 {
+            display: block;
+            text-align: right; 
+        }
+        .examples {
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .intel {
+            text-align: center;
+            color: grey;
+            margin-bottom: 15px;
+        }
+        .infoIcon {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+
+            border-style: solid;
+            border-width: 1px;
+            border-color: black;
+            border-radius: 50%;
+            
+            color: black;
+            font-size: 20px;
+            text-align: center;
+        }
+        .respondedType {
+            margin-left: 200px;
+        }
+        #statementHelpDiv {
+            background-color: white;
+            color: grey;
+            
+            position: fixed;
+            top: 20%;
+            left: 40%;
+            right: 10%;
+            
+            border-style: solid;
+            border-width: 5px;
+            border-radius: 5px;
+            border-color: #E6E6E6;
+                        
+            padding: 5px;
+        }
+        #evalTxt {
+            margin-left: 220px;
+            margin-top: 10px;
+            background-color: #E7F5F1;
+            
+            border-color: #C8E8DF;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 5px;
+            
+            color: #49897A;
+        }
+        #question {
+            font-size: 17px;
+        }
+        .multiEvaluation {
+            text-indent: -150px;
+            margin-left: 150px;
+        }
+        input.best {
+            margin-left: 10px;
+        }
+        input.good {
+            margin-left: 55px;
+        }
+        input.bad {
+            margin-left: 20px;
+            margin-right: 15px;
+        }
+        #addAnswerToMultiEval {
+            border-style: none;
+            background-color: white;
+        }
+        #addAnswerToMultiEval:hover {
+            text-decoration: underline;
+        }
+        .propProduct {
+            display: block;
+            position: absolute;
+
+            width: 40%;
+            margin-top: -67px;
+            margin-left: 100px;
+
+            background-color: white;
+            border-style: none;
+        }
+        .propProduct button {
+            display: block;
+            width: 100%;
+
+            border-radius: 0px;
+            border-style: none none solid solid;
+            border-width: 1px;
+            padding-bottom: 5px;
+
+            opacity: 1;
+            background-color: white;
+
+        }
+    </style>
+    <script>
+        var intro = "<p>Hello,<br/>To help us know more about you, please write down the <u>userId</u> that has been given previously.</p><br><p>Your answers will be validated. Only correct answers will be accepted. Incorrect and inacurate answers will not be paid.</p>";
+        var newbie = "<p>Hey !<br/> You look new here. We will first ask you a few question to evaluate your knowledge.</p>";
+        var worker = "<p>Hey !<br/> We remember you, we're loading your previous session.</p>";
+        var ended = "<p>Hey !<br/> It seems that you already finished our quiz.</p>";
+        var endedTuto = "<p>Hey !<br/> It seems that you already finished our tutorial.</p>";
+        var sorry = "<p>Sorry ...<br/> It seems that you don't have the knowledge to keep going.</p>";
+        var bravo = "<p>Great !<br/> It seems that you have the knowledge to keep going.</p>";
+        var evalPLS = "<p>Can you please evaluate our suggestion ?</p>";
+        
+        var helpTrickyPart = "<p>Before the next part starts, here is a tutorial on how it works, and what we expect as answers.</p><br><p>In this questionnaire you will be asked to answer questions as a shop assistant working for a cosmetic brand.</p><br><p>You will be asked three different types of questions. Questions like the ones below that can be answered with a statement</p><br><p>1) Questions that can be answered with a <strong>statement</strong> <br>2) Questions that can be answered with a <strong>product</strong> <br>3) Questions that need <strong>completing</strong>.</p>";
+        
+        var assisstantConsign = "<p class='intel'><span class='infoIcon'>&#8505;</span> : As a shop assistant in a beauty store, which of the following options would you choose to answer the previous question ?</p>";
+        var customerConsign = "<p class='intel'><span class='infoIcon'>&#8505;</span> : As a customer, which of the following options would you choose to answer the previous question ?</p>";
+        
+        var statementAnswerHelp = "<p>The Questions below can all be answered with a single sentence or statement. Here are a few examples that we already filled for you.</p>"
+        var fakeTrickyQuestion = "<p>Are your products tested on animals ? </p>";
+        var helpTrickyPart2 = "<p>Second type of question: Questions that can be answered clearly with a specific product.</p>";
+        var fakeTrickyQuestion2 = "<p>I am looking for brush, waterproof and non-glitter eyeliner.</p>";
+        var helpTrickyPart3 = "<p>Please can you ask a question that will increase your knowledge of what customers are looking for as if they were in a store. In some cases you might be asked to answer a question as a customer.</p>";
+        var fakeTrickyQuestion3 = "<p>Do you have black eye pencil ? </p>";
+        
+        var helpEval = "<p>In this case, you will rate someone else answer, depending on what you think, tick the button that reflect your opinion if you think the answer is relevant and helpful, tick correct otherwise tick incorrect.</p>";
+        var evalInfo = "<p><u>Customer</u> : Good afternoon, I'd like to find an everlasting nail polish.<br><hr>Our suggested answer is : <br>" + "<span class='respondedType'>a. <input type='radio' checked> statement <u class='helpStatement'>?</u><br></span>" + "<span class='respondedType'>b. <input type='radio' disabled> product<br></span>" + "<span class='respondedType'>c. <input type='radio' disabled> personal sentence</span>";
+        
+        var helpEvalMulti = "<p>In this other case, you will rate several people answers, depending on what you think, tick the option that reflect your opinion if you think the answer is relevant and helpful, tick good otherwise tick bad. and if you think one of those answer is more helpful than this others tick best.</p>";
+        var evalInfoMulti = "<p>select the best and the good reply to this sentence :<br><br>- Please could you advise me on which is the best foundation colour for my skin</p>";
+        
+        var RespondHelp = "<p>Now that you evaluate the user answer, you can respond to the question that was asked.</p>";
+        
+        var endedHelp = "<p>THE END.<br>You're done with this tutorial, thanks for your attention, I hope you understood everything otherwise just reload the page, this will restart the tutorial... Good luck for our real quiz.</p>";
+        
+        var nextable = true;
+        var tutoBool = false;
+        var endedBool = false;
+        var redir = "";
+        var step = 0;
+        var evaluationTypeWas = "";
+        var pastMsg = [];
+        
+        var supposeToDo = "";
+        var toGo = 0;
+        
+        var request = "http://54.171.115.230:8080/survey";
+        var sessionId = "57d2c67d6165141b3d842987";
+        var data = {};
+        var status = "init";
+        
+        $(document).ready(function() {
+            $("#info").html(intro);
+            $("#info").css("display", "block");
+            $("#InputDiv").html("<input name=text type='text' id='textField'><div class='propProduct'></div>");
+            $("#InputDiv").css("display", "block");
+            $("#textField").attr("placeholder", "userId");
+            
+            $("#validate, #validate2, #validate3, #tutoNext").on("click", function(){
+                
+                if($("#textField").val())
+                    data.message = $("#textField").val();
+                
+                if(status == "ongoing" && data.answerType == undefined)
+                    delete data.message;
+                
+                if(endedBool){
+                    data.comment = data.message;
+                    delete data.message;
+                    
+                    $.ajax({
+                        url: request,
+                        type: "POST",
+                        dataType: "json",
+                        data: data,
+                        contentType: "application/x-www-form-urlencoded",
+                        success: function(result){
+                            document.location = redir;
+                        },
+                        error: function(error){
+                            console.log(error);
+                        }
+                    });
+                }
+                
+                if(tutoBool){
+                    step++;
+                    $("#titleSec").html("Beauty Quiz <br> Tutorial");
+                    $("#info").html("");
+                    $("#info").css("display", "none");
+                    $("#help").html("");
+                    $("#help").css("display", "none");
+                    
+                    $("body").css("background", "#E6E6E6");
+                    $("#subTuto2").css("display", "none");
+                    $("#subTuto3").css("display", "none");
+                    $("#InputDiv").html("");
+                    $("#InputDiv").css("display", "none");
+                    $("#info2").css("display", "none");
+                    $("#info3").css("display", "none");
+                    $("#questionForm").css("display", "none");
+                    $("#questionForm").html("");
+                    $("#questionForm2").css("display", "none");
+                    $("#questionForm2").html("");
+                    $("#questionFormTuto2").css("display", "none");
+                    $("#questionFormTuto3").css("display", "none");
+                    
+                    $("#textField, #textField2, #textField3").val("");
+                    $("#textField, #textField2, #textField3").attr("readonly", "true");
+
+                    if(step == 1){
+                        $(".examples").css("background-color", "#E6E6E6");
+                        $("#help").html(helpTrickyPart);
+                        $("#help").css("display", "block");
+                        $("#validate").css("display", "none");
+                        
+                        $("#validate, #validate2, #validate3").css("background-color", "grey");
+                        $("#validate, #validate2, #validate3").attr("disabled", "true");
+                        $("#tutoNavigation").css("display", "inline-block");
+                        
+                        
+                    }else if(step == 2){
+                        $(".examples").css("background-color", "#D7F5EE");
+                        
+                        $("#validate").css("display", "inline-block");
+                        
+                        $("#info2").css("display", "block");
+                        $("#info3").css("display", "block");
+                        $("#subTuto2").css("display", "block");
+                        $("#subTuto3").css("display", "block");
+                        $("#inputFields").css("display", "block");
+                        $("#questionForm").css("display", "block");
+                        $("#questionFormTuto2").css("display", "block");
+                        $("#questionFormTuto3").css("display", "block");
+                        
+                        
+                        var toAdd = "";
+                        toAdd += "a. <input type='radio' name='radioButton' value='generic' checked> statement <u class='helpStatement'>?</u><br>";
+                        toAdd += "b. <input type='radio' name='radioButton' value='product' disabled> product<br>";
+                        toAdd += "c. <input type='radio' name='radioButton' value='continue' disabled> personal sentence<br>";
+                        
+                        $("#help").html(statementAnswerHelp);
+                        $("#help").css("display", "block");
+                        $("#info").html("Question : <br>" + fakeTrickyQuestion);
+                        $("#info").css("display", "block");
+                        $("#info2").html("Question : <br><p>Do you sell online? </p>");
+                        $("#info2").css("display", "block");
+                        $("#info3").html("Question : <br><p>Is your mascara hypoallergenic? </p>");
+                        $("#info3").css("display", "block");
+                        $("#questionForm").html("Answer : <br>" + assisstantConsign + toAdd);
+                        $("#questionForm").css("display", "block");
+                        $("#questionFormTuto2").html("Answer : <br>" + assisstantConsign + toAdd);
+                        $("#questionFormTuto2").css("display", "block");
+                        $("#questionFormTuto3").html("Answer : <br>" + assisstantConsign + toAdd);
+                        $("#questionFormTuto3").css("display", "block");
+
+                    }else if(step == 3){
+                        $("#info2").css("display", "block");
+                        $("#info3").css("display", "block");
+                        $("#subTuto2").css("display", "block");
+                        $("#subTuto3").css("display", "block");
+                        $("#questionFormTuto2").css("display", "block");
+                        $("#questionFormTuto3").css("display", "block");
+                        
+                        $("#help").html(helpTrickyPart2);
+                        $("#help").css("display", "block");
+                        $("#info").html("Question : <br>" + fakeTrickyQuestion2);
+                        $("#info").css("display", "block");
+                        $("#info2").html("Question : <br><p>Do you have  fuchsia volumizing lip gloss ? </p>");
+                        $("#info2").css("display", "block");
+                        $("#info3").html("Question : <br><p>I need a spray make up fixer. </p>");
+                        $("#info3").css("display", "block");
+
+                        
+                        var toAdd = "";
+                        toAdd += "a. <input type='radio' name='radioButton' value='generic' disabled> statement <u class='helpStatement'>?</u><br>";
+                        toAdd += "b. <input type='radio' name='radioButton' value='product' checked> product<br>";
+                        toAdd += "c. <input type='radio' name='radioButton' value='continue' disabled> personal sentence<br>";
+                        
+                        $("#InputDiv").html("<input name=text type='text' id='textField'><input name=text type='text' id='textField'><div class='propProduct'></div>");
+                        $("#InputDiv").css("display", "block");
+                        $("#textField").css("position", "relative");
+                        $("#textField").css("top", "-69px");
+                        $("#textField").css("margin-left", "100px");
+                        
+                        $("#textField2").css("display", "inline-block");
+                        $("#textField2").css("position", "relative");
+                        $("#textField2").css("top", "-47px");
+                        $("#textField2").css("margin-left", "100px");
+                        $("#textField2").css("height", "30px");
+                        $("#textField2").css("width", "50%");
+                        $("#textField2").css("resize", "none");
+                        
+                        $("#textField3").css("display", "inline-block");
+                        $("#textField3").css("position", "relative");
+                        $("#textField3").css("top", "-47px");
+                        $("#textField3").css("margin-left", "100px");
+                        $("#textField3").css("height", "30px");
+                        $("#textField3").css("width", "50%");
+                        $("#textField3").css("resize", "none");
+                        
+                        $("#textField").attr("placeholder", "product name");
+                        $("#textField2").attr("placeholder", "product name");
+                        $("#textField3").attr("placeholder", "product name");
+                        
+                        $("#inputFields").css("display", "block");
+                        $("#questionForm").css("display", "block");
+                        $("#questionForm").html("Answer : <br>" + assisstantConsign + toAdd);
+                        $("#questionForm").css("display", "block");
+                        $("#questionFormTuto2").html("Answer : <br>" + assisstantConsign + toAdd);
+                        $("#questionFormTuto2").css("display", "block");
+                        $("#questionFormTuto3").html("Answer : <br>" + assisstantConsign + toAdd);
+                        $("#questionFormTuto3").css("display", "block");
+
+                    }else if(step == 4){
+                        $("#textField, #textField2, #textField3").css("resize", "both");
+                        $("#textField, #textField2, #textField3").css("width", "75%");
+                        $("#textField, #textField2, #textField3").css("height", "100px");
+                        
+                        $("#info2").css("display", "block");
+                        $("#info3").css("display", "block");
+                        $("#subTuto2").css("display", "block");
+                        $("#subTuto3").css("display", "block");
+                        $("#questionFormTuto2").css("display", "block");
+                        $("#questionFormTuto3").css("display", "block");
+                        
+                        $("#help").html(helpTrickyPart3);
+                        $("#help").css("display", "block");
+                        $("#info").html("Question : <br>" + fakeTrickyQuestion3);
+                        $("#info").css("display", "block");
+                        $("#info2").html("Question : <br><p>Hello i am looking for an eyeliner.</p>");
+                        $("#info2").css("display", "block");
+                        $("#info3").html("Question : <br><p><u>Customer</u> : Do you have a black eyeliner?</p><p class='evalConvA'><u>Shop assistant</u> : Sure for the inner or outer Lid?</p><p><u>Customer</u> : Outer</p><p class='evalConvA'><u>Shop assistant</u> : Would you prefer soft or accurate eyeliner?</p>");
+                        $("#info3").css("display", "block");
+
+                        
+                        var toAdd = "";
+                        toAdd += "a. <input type='radio' name='radioButton' value='generic' disabled> statement <u class='helpStatement'>?</u><br>";
+                        toAdd += "b. <input type='radio' name='radioButton' value='product' disabled> product<br>";
+                        toAdd += "c. <input type='radio' name='radioButton' value='continue' checked> personal sentence<br>";
+
+                        $("#InputDiv").html("<textarea type='text' id='textField'></textarea>");
+                        $("#InputDiv").css("display", "block");
+                        $("#textField").val("Sure, for the inner or outer lid?");
+                        $("#textField").attr("readonly", "true");
+                        
+                        $("#textField2").css("display", "inline-block");
+                        $("#textField2").val("what type of eyeliner do you usually use? A brush or a felt tip ?");
+                        $("#textField2").css("position", "static");
+                        $("#textField2").css("margin-left", "0px");
+                        
+                        $("#textField3").css("display", "inline-block");
+                        $("#textField3").val("accurate");
+                        $("#textField3").css("position", "static");
+                        $("#textField3").css("margin-left", "0px");
+                        
+                        $("#legend3").css("display", "inline-block");
+                        $("#legend3").html("<u>Customer</u> : ");
+                        $("#legend3").css("display", "block");
+
+                        $("#inputFields").css("display", "block");
+                        $("#questionForm").css("display", "block");
+                        $("#questionForm").html("Answer : <br>" + assisstantConsign + toAdd);
+                        $("#questionForm").css("display", "block");
+                        $("#questionFormTuto2").html("Answer : <br>" + assisstantConsign + toAdd);
+                        $("#questionFormTuto2").css("display", "block");
+                        $("#questionFormTuto3").html("Answer : <br>" + customerConsign + toAdd);
+                        $("#questionFormTuto3").css("display", "block");
+
+                    }else if(step == 5){
+                        $("#inputFields").css("display", "block");
+                        $("#questionForm").css("display", "block");
+                        $("#subTuto2").html("");
+                        $("#subTuto3").html("");
+                        
+                        var toAddInput = "<input type='radio' name='radioButton' value='0'> incorrect<br>";
+                        toAddInput += "<input type='radio' name='radioButton' value='4'> correct<br>";
+
+                        $("#help").html(helpEval);
+                        $("#help").css("display", "block");
+                        $("#info").html(evalInfo);
+                        $("#info").css("display", "block");
+                        $("#questionForm").html("Can you please evaluate our suggestion ? <br><br>" + toAddInput);
+                    }else if(step == 6){
+                        var toAdd = "";
+                        toAdd += "Best &nbsp;&nbsp;&nbsp; Good | Bad : Answer... <br>";
+                        
+                        toAdd += "<p class='multiEvaluation'>";
+                        toAdd += "<input type='radio' class='best' checked>";
+                        toAdd += "<input type='radio' class='good' checked>";
+                        toAdd += "<input type='radio' class='bad' disabled>";
+                        toAdd += "statement";
+                        toAdd += "</p>";
+                        
+                        toAdd += "<p class='multiEvaluation'>";
+                        toAdd += "<input type='radio' class='best' disabled>";
+                        toAdd += "<input type='radio' class='good' checked>";
+                        toAdd += "<input type='radio' class='bad' disabled>";
+                        toAdd += "product";
+                        toAdd += "</p>";
+                        
+                        toAdd += "<p class='multiEvaluation'>";
+                        toAdd += "<input type='radio' class='best' disabled>";
+                        toAdd += "<input type='radio' class='good' checked>";
+                        toAdd += "<input type='radio' class='bad' disabled>";
+                        toAdd += "product : makeUp";
+                        toAdd += "</p>";
+                        
+                        toAdd += "<p class='multiEvaluation'>";
+                        toAdd += "<input type='radio' class='best' disabled>";
+                        toAdd += "<input type='radio' class='good' disabled>";
+                        toAdd += "<input type='radio' class='bad' checked>";
+                        toAdd += "the sky is blue";
+                        toAdd += "</p>";
+                        
+                        toAdd += "<br><p>Want to add your own answer ? ";
+                        toAdd += "<input type='checkbox' checked disabled><br>";
+                        toAdd += "</p>";
+                        
+                        $("#questionForm").html(toAdd);
+                        $("#questionForm").css("display", "block");
+                        
+
+                        var toAdd = "";
+                        toAdd += "<input type='radio' name='evalButton' value='generic' checked> statement <u class='helpStatement'>?</u><br>";
+                        toAdd += "<input type='radio' name='evalButton' value='product' disabled> product<br>";
+                        toAdd += "<input type='radio' name='evalButton' value='continue' disabled> personal sentence<br>";
+
+                        $("#questionForm2").html(toAdd);
+                        $("#questionForm2").css("display", "block");
+                    
+                        $("#help").html(helpEvalMulti);
+                        $("#help").css("display", "block");
+                        $("#info").html(evalInfoMulti);
+                        $("#info").css("display", "block");
+                    }else{
+                        $("body, .examples").css("background", "#D0F8EF");
+                        
+                        $("#validate, #validate2, #validate3").css("background-color", "#F90074");
+                        $("#validate, #validate2, #validate3").removeAttr("disabled")
+                        $("#tutoNavigation").css("display", "none");
+                        
+                        $("#help").html(endedHelp);
+                        $("#help").css("display", "block");
+                        $("#info").html(endedTuto);
+                        $("#info").css("display", "block");
+                        $("#inputFields").css("display", "none");
+                        $("#validate").text("Start the Quiz");
+                        
+                        tutoBool = false;
+                    }
+                    
+                    $(".helpStatement").on("mouseenter", function(){
+                        $("#statementHelpDiv").css("display", "block");
+                    });
+                    $(".helpStatement").on("mouseleave", function(){
+                        $("#statementHelpDiv").css("display", "none");
+                    });
+                    
+                }else{
+                    if((data.answerType == "generic" || data.answerType == "product" || data.answerType == "continue") && (data.message == "" || data.message == undefined)){
+
+                        console.log(data);
+                        
+                    }else{
+                        $("#help").css("display", "none");
+                        $("#validate").text("Next");
+
+                        console.log(data);
+
+                        $.ajax({
+                            url: request,
+                            type: "POST",
+                            dataType: "json",
+                            data: data,
+                            contentType: "application/x-www-form-urlencoded",
+                            success: function(result){
+                                delete data.testId;
+                                delete data.message;
+                                delete data.questionId;
+                                delete data.answerType;
+                                delete data.evaluationId;
+                                delete data.evaluationResult;
+                                delete data.evaluations;
+
+                                $("input").val("");
+                                $("#titleSec").html("Beauty Quiz");
+                                $("#questionForm").css("display", "none");
+                                $("#questionForm").html("");
+                                $("#questionForm2").css("display", "none");
+                                $("#questionForm2").html("");
+                                $("#InputDiv").html("");
+                                $("#InputDiv").css("display", "none");
+
+                                if(supposeToDo == "bestGoodBad")
+                                    supposeToDo = "";
+
+                                if(status == "init"){
+                                    $("#validate").text("Next");
+
+                                    if(result.status == "new"){
+                                        if(result.message)
+                                            $("#info").html(result.message);
+                                        else $("#info").html(newbie);
+                                        $("#info").css("display", "block");
+                                        $("#inputFields").css("display", "none");
+
+                                    }else if(result.final == true){
+                                        redir = result.redurl;
+                                        endedBool = true;
+                                        if(result.message)
+                                            $("#info").html(result.message);
+                                        else $("#info").html(ended);
+                                        $("#info").css("display", "block");
+                                        $("#inputFields").css("display", "none");
+
+                                    }else{
+                                        if(result.message)
+                                            $("#info").html(result.message);
+                                        else $("#info").html(worker);
+                                        $("#info").css("display", "block");
+                                        $("#inputFields").css("display", "none");
+
+                                    }
+
+                                    request += "/" + result.sessionId;
+                                    status = result.status;
+                                }else status = result.status;
+
+                                if(result.options){
+                                    if(status == "testing" && result.options.length){
+                                        $("#info").html("Question : <br><p id='question'>" + result.test + "</p>");
+                                        $("#info").css("display", "block");
+                                        data.testId = result.testId;
+
+                                        var toAdd = "";
+                                        for(var i = 0; i < result.options.length; i++){
+                                            toAdd += "<p class='testPart'><input type='radio' name='radioButton' value='" + result.options[i].value + "'>   " + result.options[i].value + "</p>";
+                                        }
+                                        $("#inputFields").css("display", "block");
+                                        $("#questionForm").css("display", "block");
+                                        $("#questionForm").html("Answer : <br>" + toAdd);
+                                        $("#questionForm").css("display", "block");
+                                    }
+                                }else if(status == "rejected"){
+
+                                    if(result.message)
+                                        $("#info").html(result.message);
+                                    else $("#info").html(sorry);
+                                    $("#info").css("display", "block");
+
+                                }else if(status == "approved"){
+                                    tutoBool = true;
+
+                                    if(result.message)
+                                        $("#info").html(result.message);
+                                    else $("#info").html(bravo);
+                                    $("#info").css("display", "block");
+                                    $("#inputFields").css("display", "none");
+
+                                }else if(status == "ongoing" && result.questionId){
+                                    var toAdd = "";
+                                    var toAddInput = "";
+
+                                    if(result.evaluationId || result.evaluationArray){
+                                        if(result.evaluationId)
+                                            data.evaluationId = result.evaluationId;
+                                        if(result.questionId)
+                                            data.questionId = result.questionId;
+
+                                        if(result.evaluationArray.length){
+                                            supposeToDo = "bestGoodBad";
+
+                                            toGo = 0;
+                                            $("#validate").attr("disabled", "true");
+                                            $("#validate").css("background-color", "grey");
+
+                                            toAdd += "<p>select the best and the good reply to this sentence : <br></p>";
+
+                                            if(result.pastMessages)
+                                                if(result.pastMessages.length)
+                                                    for(var i = 0; i < result.pastMessages.length; i++){
+                                                        if(i%2 == 0)
+                                                            toAdd += "<p><u>Customer</u> : ";
+                                                        else
+                                                            toAdd += "<p class='evalConvA'><u>Shop assistant</u> : ";
+                                                        toAdd += result.pastMessages[i] + "</p>";
+                                                    }
+
+                                            if(result.pastMessages){
+                                                if(result.pastMessages.length%2 == 0){
+                                                    toAdd += "<p><u>Customer</u> : ";
+                                                }else{
+                                                    toAdd += "<p class='evalConvA'><u>Shop assistant</u> : ";
+                                                }
+                                            }
+
+                                            toAdd += result.messages + "</p>";
+
+                                            $("#info").html(toAdd);
+                                            toAdd = "Best &nbsp;&nbsp;&nbsp; Good | Bad : Answer... <br>";
+                                            var prod = false;
+                                            var gen = false;
+
+                                            for(var i = 0; i < result.evaluationArray.length; i++){
+                                                if( (result.evaluationArray[i].sType == "product" && !prod ) || (result.evaluationArray[i].sType == "generic" && !gen ) || result.evaluationArray[i].sent) {
+                                                    toGo++;
+                                                    toAdd += "<p class='multiEvaluation'>";
+
+                                                    var content = result.evaluationArray[i].sent;
+                                                    if(content)
+                                                        content = content.replace("'", "+");
+
+                                                    toAdd += "<input type='radio' class='best' name='radioButton' value='" + result.evaluationArray[i].sType + ":" + content + ":" + result.evaluationArray[i].evaluationId + "'>";
+
+                                                    toAdd += "<input type='radio' class='good' name='goodBad" + i + "' value='" + result.evaluationArray[i].sType + ":" + content + ":" + result.evaluationArray[i].evaluationId + ":" + 4 + "'>";
+
+                                                    toAdd += "<input type='radio' class='bad' name='goodBad" + i + "' value='" + result.evaluationArray[i].sType + ":" + content + ":" + result.evaluationArray[i].evaluationId + ":" + 0 + "'>";
+
+                                                    if(result.evaluationArray[i].sType == "generic")
+                                                        toAdd += "statement";
+                                                    if(result.evaluationArray[i].sType == "product")
+                                                        toAdd += "product : ";
+
+                                                    if(result.evaluationArray[i].sent)
+                                                        toAdd += result.evaluationArray[i].sent + ".";
+
+                                                    toAdd += "</p>";
+                                                }
+                                                if(result.evaluationArray[i].sType == "product")
+                                                    prod = true;
+                                                if(result.evaluationArray[i].sType == "generic")
+                                                    gen = true;
+
+                                            }
+
+                                            toAdd += "<br><p>Want to add your own answer ? ";
+                                            toAdd += "<input type='checkbox' name='addAnswer' id='addPersonalAnswer'><br>";
+                                            toAdd += "</p>";
+
+                                            $("#inputFields").css("display", "block");
+                                            $("#questionForm").css("display", "block");
+                                            $("#questionForm").html(toAdd);
+
+                                        }else {
+
+                                            if(result.pastMessages){
+                                                pastMsg = result.pastMessages;
+
+                                                for(var i = 0; i < result.pastMessages.length; i++){
+                                                    if(i%2 == 0)
+                                                        toAdd += "<p><u>Customer</u> : ";
+                                                    else
+                                                        toAdd += "<p class='evalConvA'><u>Shop assistant</u> : ";
+                                                    toAdd += result.pastMessages[i] + "</p>";
+                                                }
+
+                                                if(result.pastMessages.length%2 == 0){
+                                                    toAdd += "<p><u>Customer</u> : ";
+                                                }else{
+                                                    toAdd += "<p class='evalConvA'><u>Shop assistant</u> : ";
+                                                }
+                                            }else{
+                                                toAdd += "<p><u>Customer</u> : ";
+                                            }
+
+                                            toAdd += result.messages + "</p>";
+                                            evaluationTypeWas = result.evaluationType;
+
+                                            var response = {"generic": "<span class='respondedType'>a. <input type='radio' checked> statement <u class='helpStatement'>?</u><br></span>" + 
+                                                            "<span class='respondedType'>b. <input type='radio' disabled> product<br></span>" + 
+                                                            "<span class='respondedType'>c. <input type='radio' disabled> personal sentence</span>",
+                                                            "product": "<span class='respondedType'>a. <input type='radio' disabled> statement <u class='helpStatement'>?</u><br></span>" + 
+                                                            "<span class='respondedType'>b. <input type='radio' checked> product  <input type='text value='" + result.evaluationText + "' placeholder='no product given' disabled><br></span>" + 
+                                                            "<span class='respondedType'>c. <input type='radio' disabled> personal sentence</span>",
+                                                            "continue": "<span class='respondedType'>a. <input type='radio' disabled> statement <u class='helpStatement'>?</u><br></span>" + 
+                                                            "<span class='respondedType'>b. <input type='radio' disabled> product<br></span>" + 
+                                                            "<span class='respondedType'>c. <input type='radio' checked> personal sentence </span><br><p id='evalTxt'>" + result.evaluationText + "</p>"}; 
+
+                                            toAdd += "<br><hr>Our suggested answer is : <br>" + response[result.evaluationType];
+
+                                            toAddInput += "<input type='radio' name='radioButton' value='0'> Incorrect<br>";
+                                            toAddInput += "<input type='radio' name='radioButton' value='4'> Correct<br>";
+
+                                            $("#inputFields").css("display", "block");
+                                            $("#questionForm").css("display", "block");
+
+                                            $("#questionForm").html(evalPLS + "<br>" + toAddInput);
+                                            $("#info").html(toAdd);
+                                            $("#info").css("display", "block");
+                                        }
+                                    }else {
+                                        var consign = "";
+
+                                        if(result.pastMessages){
+                                            for(var i = 0; i < result.pastMessages.length; i++){
+                                                if(i%2 == 0)
+                                                    toAdd += "<p><u>Customer</u> : ";
+                                                else
+                                                    toAdd += "<p class='evalConvA'><u>Shop assistant</u> : ";
+                                                toAdd += result.pastMessages[i] + "</p>";
+                                            }
+
+                                            if(result.pastMessages.length%2 == 0){
+                                                toAdd += "<p><u>Customer</u> : ";
+                                                $("#info").html("Question : <br>" + "<p>" + toAdd + result.messages + "</p>");
+                                                $("#info").css("display", "block");
+                                                consign = assisstantConsign;
+                                            }else{
+                                                toAdd += "<p class='evalConvA'><u>Shop assistant</u> : ";
+                                                $("#info").html("Question : <br>" + "<p>" + toAdd + result.messages + "</p>");
+                                                $("#info").css("display", "block");
+                                                consign = customerConsign;
+                                            }
+                                        }else{
+                                            $("#info").html("Question : <br>" + result.messages);
+                                            consign = assisstantConsign;
+                                        }
+
+                                        data.questionId = result.questionId;
+                                        toAdd = "";
+                                        if(result.pastMessages){
+                                            if((parseInt(result.pastMessages.length) + 2)%2 == 0){
+                                                toAdd += "a. <input type='radio' name='radioButton' value='generic'> statement <u class='helpStatement'>?</u><br>";
+                                                toAdd += "b. <input type='radio' name='radioButton' value='product'> product<br>";
+                                            }
+                                        }else{
+                                            toAdd += "a. <input type='radio' name='radioButton' value='generic'> statement <u class='helpStatement'>?</u><br>";
+                                            toAdd += "b. <input type='radio' name='radioButton' value='product'> product<br>";
+                                        }
+
+                                        toAdd += "c. <input type='radio' name='radioButton' value='continue'> personal sentence<br>";
+
+                                        $("#inputFields").css("display", "block");
+                                        $("#questionForm").css("display", "block");
+                                        $("#questionForm").html("Answer : <br>" + consign + toAdd);
+                                        $("#questionForm").css("display", "block");
+                                    }
+
+                                }else if(result.final == true){
+
+                                    if(result.message)
+                                        $("#info").html(result.message);
+                                    else $("#info").html(ended);
+                                    $("#info").css("display", "block");
+                                    $("#InputDiv").css("display", "block");
+                                    $("#inputFields").css("display", "block");
+                                    $("#InputDiv").html("If you have any comment about the quiz : <br><textarea placeholder='comment' type='text' id='textField'></textarea>");
+
+                                    if(result.redurl){
+                                        redir = result.redurl;
+                                        endedBool = true;
+                                    }else {
+                                        $("#validate").css("display", "none");
+                                    }
+                                }
+
+                                $(".helpStatement").on("mouseenter", function(){
+                                    $("#statementHelpDiv").css("display", "block");
+                                });
+                                $(".helpStatement").on("mouseleave", function(){
+                                    $("#statementHelpDiv").css("display", "none");
+                                });
+                            },
+                            error: function(error){
+                                console.log(error);
+                            }
+                        });
+                    }
+                }
+            });
+            
+            $('textarea, input').on('keypress', function(e) {
+              if ((e.keyCode || e.which) == 13) {
+                  if(status == "init")
+                    data.userId = $("#textField").val();
+                  $( "#validate" ).trigger( "click" );
+              }
+            });
+            
+            
+            $("#textField").on("keyup", function(){
+                if(status == "init")
+                    data.userId = $("#textField").val();
+                if(status == "ongoing" && !endedBool)
+                    data.message = $("#textField").val();
+            });
+            
+            $("#questionForm").on("click", function(evt){
+                $("#questionForm2").html("");
+                
+                if(supposeToDo == "bestGoodBad"){
+                    var arr = [];
+                    var temp = {};
+                    
+                    var allButton = $("input[name!=addAnswer]:checked");
+                    var bestButton = $("input[name=radioButton]:checked");
+                    
+                    if(allButton.length)
+                        for(var i = 0; i < allButton.length; i++)
+                            arr.push(allButton[i].value);
+                    
+                    if(bestButton.val())
+                        arr.splice(arr.indexOf(bestButton.val()), 1);
+                    
+                    if(arr.indexOf(bestButton.val() + ":0") > -1)
+                        arr.splice(arr.indexOf(bestButton.val() + ":0"), 1);
+                    if(arr.indexOf(bestButton.val() + ":4") > -1)
+                        arr.splice(arr.indexOf(bestButton.val() + ":4"), 1);
+                    
+                    if(bestButton.val())
+                        arr.push(bestButton.val() + ":4:true");
+                    
+                    if(arr.length)
+                        for(var i = 0; i < arr.length; i++)
+                            arr[i] = arr[i].split(':');
+                    
+                    var newArr = [];
+                    
+                    for(var i = 0; i < arr.length; i++){
+                        temp = {};
+                        newArr.push({});
+                        
+                        if(arr[i].length < 5)
+                            newArr[i].best = false;
+                            
+                        for(var j = 0; j < arr[i].length; j++){
+                            switch(j){
+                                case 0:
+                                    newArr[i].evalType = arr[i][j];
+                                    break;
+                                case 1:
+                                    if(arr[i][j])
+                                        newArr[i].evalText = arr[i][j].replace("+", "'");
+                                    break;
+                                case 2:
+                                    newArr[i].evalId = arr[i][j];
+                                    break;
+                                case 3:
+                                    newArr[i].evalResult = arr[i][j];
+                                    break;
+                                case 4:
+                                    if(arr[i][j])
+                                        newArr[i].best = true;
+                                    break;
+                                }
+                                    
+                            }
+                        }
+                    
+                    data.evaluations = JSON.stringify(newArr);
+                    
+                    if(newArr.length >= toGo){
+                        $("#validate").removeAttr("disabled");
+                        $("#validate").css("background-color", "#FF006B");
+                        var toAdd = "";
+                            
+                        if($("input[name=addAnswer]:checked").length == 1){
+                            toAdd += "<input type='radio' name='evalButton' value='generic'> statement <u class='helpStatement'>?</u><br>";
+                            toAdd += "<input type='radio' name='evalButton' value='product'> product<br>";
+                            toAdd += "<input type='radio' name='evalButton' value='continue'> personal sentence<br>";
+                        
+                            $("#questionForm2").html(toAdd);
+                            $("#questionForm2").css("display", "block");
+                        }else if ($("input[name=addAnswer]:checked").length == 0){
+                            $("#questionForm2").html("");
+                            $("#questionForm2").css("display", "none");
+                            $("#InputDiv").html("");
+                            $("#InputDiv").css("display", "none");
+                        }
+                    }else {
+                        $("#validate").attr("disabled", "true");
+                        $("#validate").css("background-color", "grey");
+                        $("#questionForm2").html("");
+                        $("#questionForm2").css("display", "none");
+                        $("#InputDiv").html("");
+                        $("#InputDiv").css("display", "none");
+                    }
+                
+                }else{
+                    var base = ["generic", "product", "continue"];
+                    if(status == "testing")
+                        data.message = $("input[name=radioButton]:checked").val();
+
+                    if(status == "ongoing" || step == 5 && $("input[name=radioButton]:checked").val() != undefined){
+                        if($("input[name=radioButton]:checked").val() == 0){
+                            data.evaluationResult = $("input[name=radioButton]:checked").val();
+
+                            var toAdd = "";
+                            if(evaluationTypeWas != "generic")
+                                toAdd += "<input type='radio' name='evalButton' value='generic'> statement <u class='helpStatement'>?</u><br>";
+                            if(evaluationTypeWas != "product")
+                                toAdd += "<input type='radio' name='evalButton' value='product'> product<br>";
+                            toAdd += "<input type='radio' name='evalButton' value='continue'> personal sentence<br>";
+
+                            var consign = "";
+                            if(pastMsg.length%2 == 0)
+                                consign = assisstantConsign;
+                            else consign = customerConsign;
+
+                            if($("input[name=radioButton]:checked").val() !== 0)
+                                $("#questionForm2").css("display", "block");
+
+                            $("#questionForm2").html("<br><p>What would you have responded ?</p>" + consign + toAdd);
+
+                        }else if($("input[name=radioButton]:checked").val() == 4){
+                            $("#InputDiv").html("");
+                            $("#InputDiv").css("display" ,"none");
+                            $("#questionForm2").css("display", "none");
+                            data.evaluationResult = $("input[name=radioButton]:checked").val();
+                            delete data.answerType;
+
+                        }else if(base.indexOf($("input[name=radioButton]:checked").val()) >= 0){
+                            data.answerType = $("input[name=radioButton]:checked").val();
+                            if($("input[name=radioButton]:checked").val() == "continue"){
+                                $("#InputDiv").html("<textarea type='text' id='textField'></textarea>");
+                                $("#InputDiv").css("display", "block");
+                                $("#textField").val("");
+                                $("#textField").attr("placeholder", "sentence");
+
+                            }else if($("input[name=radioButton]:checked").val() == "product"){
+                                $("#InputDiv").html("<input name=text type='text' id='textField'><div class='propProduct'></div>");
+                                $("#InputDiv").css("display", "block");
+                                $("#textField").val("");
+                                $("#textField").attr("placeholder", "product name");
+                                $("#textField").css("position", "relative");
+                                $("#textField").css("top", "-69px");
+                                $("#textField").css("margin-left", "100px");
+
+                            }else if($("input[name=radioButton]:checked").val() == "generic"){
+                                $("#InputDiv").html("<input name=text type='text' id='textField'><div class='propProduct'></div>");
+                                $("#InputDiv").css("display", "block");
+                                $("#textField").val("");
+                                $("#textField").attr("placeholder", "statement");
+                                $("#textField").css("position", "relative");
+                                $("#textField").css("top", "-89px");
+                                $("#textField").css("margin-left", "125px");
+                            }else{
+                                $("#InputDiv").html("");
+                                $("#InputDiv").css("display", "none");
+
+                            }
+                        }
+                        
+                        
+                    }
+
+                    $(".helpStatement").on("mouseenter", function(){
+                        $("#statementHelpDiv").css("display", "block");
+                    });
+                    $(".helpStatement").on("mouseleave", function(){
+                        $("#statementHelpDiv").css("display", "none");
+                    });
+                }
+                
+                $(".helpStatement").on("mouseenter", function(){
+                    $("#statementHelpDiv").css("display", "block");
+                });
+                $(".helpStatement").on("mouseleave", function(){
+                    $("#statementHelpDiv").css("display", "none");
+                });
+                
+                $("#questionForm2").on("click", function(){
+                    data.answerType = $("input[name=evalButton]:checked").val();
+
+                    if($("input[name=evalButton]:checked").val() == "continue"){
+                        $("#InputDiv").html("<textarea type='text' id='textField'></textarea>");
+                        $("#InputDiv").css("display", "block");
+                        $("#textField").attr("placeholder", "sentence");
+
+                    }else if($("input[name=evalButton]:checked").val() == "product"){
+                        $("#InputDiv").html("<input name=text type='text' id='textField'><div class='propProduct'></div>");
+                        $("#InputDiv").css("display", "block");
+                        $("#textField").val("");
+                        $("#textField").attr("placeholder", "product name");
+                        $("#textField").css("position", "relative");
+                        $("#textField").css("margin-left", "100px");
+
+                        if(evaluationTypeWas != "continue"){
+                            $("#textField").css("top", "-69px");
+                        }else{
+                            $("#textField").css("top", "-49px");
+                        }
+                    }else if($("input[name=evalButton]:checked").val() == "generic"){
+                        $("#InputDiv").html("<input name=text type='text' id='textField'>");
+                        $("#InputDiv").css("display", "block");
+                        $("#textField").val("");
+                        $("#textField").attr("placeholder", "statement");
+                        $("#textField").css("position", "relative");
+                        $("#textField").css("margin-left", "120px");
+
+                        if(evaluationTypeWas != "continue"){
+                            $("#textField").css("top", "-89px");
+                        }else{
+                            $("#textField").css("top", "-69px");
+                        }
+                    }else{
+                        $("#InputDiv").html("");
+                        $("#InputDiv").css("display", "none");
+
+                    }
+                });
+                
+            });
+            
+            $("#InputDiv").on("keyup", function(evt) {
+                if(evt.target.value != undefined && data.answerType == "product"){
+                    var searchString = evt.target.value.split(' ');
+                    var finalString = '';
+
+                    if(searchString.length > 1){
+                      for (var i = 0; i < searchString.length; i++) {
+                        if(searchString[i] != "")
+                          finalString += searchString[i];
+                        if((i < searchString.length - 1) &&(searchString[i + 1] != ""))
+                          finalString += '-';
+                      }
+                    }else{
+                      finalString = searchString[0];
+                    }
+
+                    $.ajax({
+                        method: "GET",
+                        url: "http://54.171.115.230:8080/api/v1/entities/" + sessionId + "/products/search?text=" + finalString,
+                        success: function(result){
+                            var toAdd = "";
+
+                            for (var i = 0; i < result.results.length; i++) {
+                                toAdd += "<button class='btnProdList'>" + result.results[i].name + "</button>";
+                            }
+
+                            $(".propProduct").html(toAdd);
+
+                            $(".btnProdList").on("click", function(evt){
+                                data.message = evt.currentTarget.innerText;
+                                $("#textField").val(evt.currentTarget.innerText);
+                                
+                                $(".propProduct").html("");
+                            });
+                        },
+                        error: function(error){
+                            console.log(error);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+    
+<body>
+    <div class="row" id="title">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <h1 id="titleSec">Beauty Quiz</h1>
+            <div id="help"></div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+    
+    <div class="row" >
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="examples">
+                <div id="info" class="main">JQuery is disable...</div>
+                
+                <div id="inputFields" class="main">
+                    <form id="questionForm"></form>
+                    <form id="questionForm2"></form>
+                    <div id="legend"></div>
+                    <div id="InputDiv"></div>
+                </div>
+
+                <div id="validation">
+                    <button id="validate" class="validate">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    
+    <div class="row" id="subTuto2">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="examples">
+                <div id="info2" class="main">JQuery is disable...</div>
+
+                <div id="inputFieldsTuto2" class="main">
+                    <form id="questionFormTuto2"></form>
+                    <div id="legend2"></div><textarea type="text" id="textField2" ></textarea>
+                </div>
+
+                <div id="validation2">
+                    <button id="validate2" class="validate">Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    
+    <div class="row" id="subTuto3">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="examples">
+                <div id="info3" class="main">JQuery is disable...</div>
+
+                <div id="inputFields3" class="main">
+                    <form id="questionFormTuto3"></form>
+                    <div id="legend3"></div><textarea type="text" id="textField3"></textarea>
+                </div>
+
+                <div id="validation3">
+                    <button id="validate3" class="validate">Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+    
+    <div id="tutoNavigation">
+        <button id='tutoNext' class="btn">&#8702;</button>
+    </div>
+                
+    <div id="statementHelpDiv">
+        <h4>Text specifically written by marketing department of the cosmetic brand.</h4>
+        <p>Are your products tested on Animals?<br>
+            Our products are not tested on animals. Since the inception of the company all our products are cruelty free.</p>
+        <br>
+        <p>Do you ship to foreign countries?<br>
+            We ship to most countries. Certain geographies may have restrictions or taxes to cosmetic products. We will inform you of restrictions before completing your order.</p>
+    </div>
+</body>
+</html>

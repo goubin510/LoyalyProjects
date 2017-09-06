@@ -1,0 +1,1470 @@
+No more data in response.
+
+    <!DOCTYPE html> 
+  <html xmlns:ng="http://angularjs.org" xmlns:fb="http://ogp.me/ns/fb#" lang="fr"><head>
+<script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"VwAEVlRXGwcBU1hWAQg="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(t){try{s.console&&console.log(t)}catch(e){}}var o,i=t("ee"),a=t(15),s={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(s.console=!0,o.indexOf("dev")!==-1&&(s.dev=!0),o.indexOf("nr_dev")!==-1&&(s.nrDev=!0))}catch(c){}s.nrDev&&i.on("internal-error",function(t){r(t.stack)}),s.dev&&i.on("fn-err",function(t,e,n){r(n.stack)}),s.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(s,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,o){try{d?d-=1:i("err",[o||new UncaughtException(t,e,n)])}catch(s){try{i("ierr",[s,(new Date).getTime(),!0])}catch(c){}}return"function"==typeof f&&f.apply(this,a(arguments))}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function o(t){i("err",[t,(new Date).getTime()])}var i=t("handle"),a=t(16),s=t("ee"),c=t("loader"),f=window.onerror,u=!1,d=0;c.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(8),t(7),"addEventListener"in window&&t(5),c.xhrWrappable&&t(9),u=!0)}s.on("fn-start",function(t,e,n){u&&(d+=1)}),s.on("fn-err",function(t,e,n){u&&(this.thrown=!0,o(n))}),s.on("fn-end",function(){u&&!this.thrown&&d>0&&(d-=1)}),s.on("internal-error",function(t){i("ierr",[t,(new Date).getTime(),!0])})},{}],3:[function(t,e,n){t("loader").features.ins=!0},{}],4:[function(t,e,n){function r(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var o=t("ee"),i=t("handle"),a=t(8),s=t(7),c="learResourceTimings",f="addEventListener",u="resourcetimingbufferfull",d="bstResource",l="resource",p="-start",h="-end",m="fn"+p,w="fn"+h,v="bstTimer",y="pushState";t("loader").features.stn=!0,t(6);var g=NREUM.o.EV;o.on(m,function(t,e){var n=t[0];n instanceof g&&(this.bstStart=Date.now())}),o.on(w,function(t,e){var n=t[0];n instanceof g&&i("bst",[n,e,this.bstStart,Date.now()])}),a.on(m,function(t,e,n){this.bstStart=Date.now(),this.bstType=n}),a.on(w,function(t,e){i(v,[e,this.bstStart,Date.now(),this.bstType])}),s.on(m,function(){this.bstStart=Date.now()}),s.on(w,function(t,e){i(v,[e,this.bstStart,Date.now(),"requestAnimationFrame"])}),o.on(y+p,function(t){this.time=Date.now(),this.startPath=location.pathname+location.hash}),o.on(y+h,function(t){i("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),f in window.performance&&(window.performance["c"+c]?window.performance[f](u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["c"+c]()},!1):window.performance[f]("webkit"+u,function(t){i(d,[window.performance.getEntriesByType(l)]),window.performance["webkitC"+c]()},!1)),document[f]("scroll",r,!1),document[f]("keypress",r,!1),document[f]("click",r,!1)}},{}],5:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&o(e)}function o(t){s.inPlace(t,[u,d],"-",i)}function i(t,e){return t[1]}var a=t("ee").get("events"),s=t(17)(a),c=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,e){if(t[1]){var n=t[1];if("function"==typeof n){var r=c(n,"nr@wrapped",function(){return s(n,"fn-",null,n.name||"anonymous")});this.wrapped=t[1]=r}else"function"==typeof n.handleEvent&&s.inPlace(n,["handleEvent"],"fn-")}}),a.on(d+"-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{}],6:[function(t,e,n){var r=t("ee").get("history"),o=t(17)(r);e.exports=r,o.inPlace(window.history,["pushState","replaceState"],"-")},{}],7:[function(t,e,n){var r=t("ee").get("raf"),o=t(17)(r),i="equestAnimationFrame";e.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],8:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function o(t,e,n){this.method=n,this.timerDuration="number"==typeof t[1]?t[1]:0,t[0]=a(t[0],"fn-",this,n)}var i=t("ee").get("timer"),a=t(17)(i),s="setTimeout",c="setInterval",f="clearTimeout",u="-start",d="-";e.exports=i,a.inPlace(window,[s,"setImmediate"],s+d),a.inPlace(window,[c],c+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(c+u,r),i.on(s+u,o)},{}],9:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",s)}function o(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,w,"fn-",s)}function i(t){v.push(t),h&&(g=-g,b.data=g)}function a(){for(var t=0;t<v.length;t++)r([],v[t]);v.length&&(v=[])}function s(t,e){return e}function c(t,e){for(var n in t)e[n]=t[n];return e}t(5);var f=t("ee"),u=f.get("xhr"),d=t(17)(u),l=NREUM.o,p=l.XHR,h=l.MO,m="readystatechange",w=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],v=[];e.exports=u;var y=window.XMLHttpRequest=function(t){var e=new p(t);try{u.emit("new-xhr",[e],e),e.addEventListener(m,o,!1)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(c(p,y),y.prototype=p.prototype,d.inPlace(y.prototype,["open","send"],"-xhr-",s),u.on("send-xhr-start",function(t,e){r(t,e),i(e)}),u.on("open-xhr-start",r),h){var g=1,b=document.createTextNode(g);new h(a).observe(b,{characterData:!0})}else f.on("fn-end",function(t){t[0]&&t[0].type===m||a()})},{}],10:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!e.aborted){if(n.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var i=o(t,this.lastSize);if(i&&(n.rxSize=i),this.sameOrigin){var a=t.getResponseHeader("X-NewRelic-App-Data");a&&(e.cat=a.split(", ").pop())}}else e.status=0;n.cbTime=this.cbTime,f.emit("xhr-done",[t],t),s("xhr",[e,n,this.startTime])}}}function o(t,e){var n=t.responseType;if("json"===n&&null!==e)return e;var r="arraybuffer"===n||"blob"===n||"json"===n?t.response:t.responseText;return h(r)}function i(t,e){var n=c(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}var a=t("loader");if(a.xhrWrappable){var s=t("handle"),c=t(11),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,l=t("id"),p=t(14),h=t(13),m=window.XMLHttpRequest;a.features.xhr=!0,t(9),f.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,p&&(p>34||p<10)||window.opera||t.addEventListener("progress",function(t){e.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],o=this;if(n&&r){var i=h(r);i&&(n.txSize=i)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof e.onload))&&o.end(e)}catch(n){try{f.emit("internal-error",[n])}catch(r){}}};for(var a=0;a<d;a++)e.addEventListener(u[a],this.listener,!1)}),f.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),f.on("xhr-load-added",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,e){var n=""+l(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],e)}),f.on("removeEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],e)}),f.on("fn-start",function(t,e,n){e instanceof m&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),f.on("fn-end",function(t,e){this.xhrCbStart&&f.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{}],11:[function(t,e,n){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!e.protocol||":"===e.protocol||e.protocol===n.protocol,a=e.hostname===document.domain&&e.port===n.port;return r.sameOrigin=i&&(!e.hostname||a),r}},{}],12:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[(new Date).getTime()].concat(s(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(15),s=t(16),c=t("ee").get("tracer"),f=NREUM;"undefined"==typeof window.newrelic&&(newrelic=f);var u=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit"],d="api-",l=d+"ixn-";a(u,function(t,e){f[e]=o(d+e,!0,"api")}),f.addPageAction=o(d+"addPageAction",!0),e.exports=newrelic,f.interaction=function(){return(new r).get()};var p=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(l+"tracer",[Date.now(),t,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[Date.now(),r,o],n),o)try{return e.apply(this,arguments)}finally{c.emit("fn-end",[Date.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){p[e]=o(l+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,(new Date).getTime()])}},{}],13:[function(t,e,n){e.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}},{}],14:[function(t,e,n){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),e.exports=r},{}],15:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],16:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],17:[function(t,e,n){function r(t){return!(t&&"function"==typeof t&&t.apply&&!t[a])}var o=t("ee"),i=t(16),a="nr@original",s=Object.prototype.hasOwnProperty,c=!1;e.exports=function(t){function e(t,e,n,o){function nrWrapper(){var r,a,s,c;try{a=this,r=i(arguments),s="function"==typeof n?n(r,a):n||{}}catch(u){d([u,"",[r,a,o],s])}f(e+"start",[r,a,o],s);try{return c=t.apply(a,r)}catch(l){throw f(e+"err",[r,a,l],s),l}finally{f(e+"end",[r,a,c],s)}}return r(t)?t:(e||(e=""),nrWrapper[a]=t,u(t,nrWrapper),nrWrapper)}function n(t,n,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<n.length;c++)s=n[c],a=t[s],r(a)||(t[s]=e(a,f?s+o:o,i,s))}function f(e,n,r){if(!c){c=!0;try{t.emit(e,n,r)}catch(o){d([o,e,n,r])}c=!1}}function u(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){d([r])}for(var o in t)s.call(t,o)&&(e[o]=t[o]);return e}function d(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=o),e.inPlace=n,e.flag=a,e}},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?s(t,a,i):i()}function n(n,r,o){t&&t(n,r,o);for(var i=e(o),a=l(n),s=a.length,c=0;c<s;c++)a[c].apply(i,r);var u=f[w[n]];return u&&u.push([v,n,r,i]),i}function d(t,e){m[t]=l(t).concat(e)}function l(t){return m[t]||[]}function p(t){return u[t]=u[t]||o(n)}function h(t,e){c(t,function(t,n){e=e||"feature",w[n]=e,e in f||(f[e]=[])})}var m={},w={},v={on:d,emit:n,get:p,listeners:l,context:e,buffer:h};return v}function i(){return new r}var a="nr@context",s=t("gos"),c=t(15),f={},u={},d=e.exports=o();d.backlog=f},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!g++){var t=y.info=NREUM.info,e=u.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){c(w,function(e,n){t[e]||(t[e]=n)});var n="https"===m.split(":")[0]||t.sslForHttp;y.proto=n?"https://":"http://",s("mark",["onload",a()],null,"api");var r=u.createElement("script");r.src=y.proto+t.agent,e.parentNode.insertBefore(r,e)}}}function o(){"complete"===u.readyState&&i()}function i(){s("mark",["domContent",a()],null,"api")}function a(){return(new Date).getTime()}var s=t("handle"),c=t(15),f=window,u=f.document,d="addEventListener",l="attachEvent",p=f.XMLHttpRequest,h=p&&p.prototype;NREUM.o={ST:setTimeout,CT:clearTimeout,XHR:p,REQ:f.Request,EV:f.Event,PR:f.Promise,MO:f.MutationObserver},t(12);var m=""+location,w={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-974.min.js"},v=p&&h&&h[d]&&!/CriOS/.test(navigator.userAgent),y=e.exports={offset:a(),origin:m,features:{},xhrWrappable:v};u[d]?(u[d]("DOMContentLoaded",i,!1),f[d]("load",r,!1)):(u[l]("onreadystatechange",o),f[l]("onload",r)),s("mark",["firstbyte",a()],null,"api");var g=0},{}]},{},["loader",2,10,4,3]);</script><meta charset="utf-8"/><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/><meta content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1" name="viewport"/><title>Rouge à lèvres mat - Velvet Passion Matte Lipstick - KIKO MILANO
+  </title><meta content="Rouge à lèvres mat - Velvet Passion Matte Lipstick - KIKO MILANO" property="og:title"/><meta content="KIKO lance le nouveau rouge à lèvres mat Velvet Passion Matte Lipstick : sa texture, onctueuse et ultra-fondante, offre à vos lèvres un effet mat intense. Achetez-le en ligne." name="description"/><meta content="KIKO lance le nouveau rouge à lèvres mat Velvet Passion Matte Lipstick : sa texture, onctueuse et ultra-fondante, offre à vos lèvres un effet mat intense. Achetez-le en ligne." property="og:description"/><meta content="" name="keywords"/><link type="image/x-icon" href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon.ico" rel="shortcut icon"/><link href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/apple-touch-icon-57x57.png" sizes="57x57" rel="apple-touch-icon"/><link href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/apple-touch-icon-114x114.png" sizes="114x114" rel="apple-touch-icon"/><link href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/apple-touch-icon-72x72.png" sizes="72x72" rel="apple-touch-icon"/><link href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/apple-touch-icon-144x144.png" sizes="144x144" rel="apple-touch-icon"/><link href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/apple-touch-icon-60x60.png" sizes="60x60" rel="apple-touch-icon"/><link href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/apple-touch-icon-120x120.png" sizes="120x120" rel="apple-touch-icon"/><link href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/apple-touch-icon-76x76.png" sizes="76x76" rel="apple-touch-icon"/><link href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/apple-touch-icon-152x152.png" sizes="152x152" rel="apple-touch-icon"/><link href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed"/><meta content="KIKO" name="application-name"/><meta content="KIKO" name="apple-mobile-web-app-title"/><link href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/favicon.ico" rel="shortcut icon"/><link sizes="160x160" href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/favicon-160x160.png" type="image/png" rel="icon"/><link sizes="96x96" href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/favicon-96x96.png" type="image/png" rel="icon"/><link sizes="16x16" href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/favicon-16x16.png" type="image/png" rel="icon"/><link sizes="32x32" href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/favicon-32x32.png" type="image/png" rel="icon"/><meta content="#000000" name="msapplication-TileColor"/><meta content="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/mstile-144x144.png" name="msapplication-TileImage"/><meta content="//d1ltdbx2fxfwcj.cloudfront.net/docroot/favicon/browserconfig.xml" name="msapplication-config"/><link href="http://www.kikocosmetics.com/fr-fr/maquillage/levres/rouges-a-levres/Velvet-Passion-Matte-Lipstick/p-KM00201020" rel="canonical"/><meta content="http://www.kikocosmetics.com/fr-fr/maquillage/levres/rouges-a-levres/Velvet-Passion-Matte-Lipstick/p-KM00201020" property="og:url"/><meta content="http://www.kikocosmetics.com//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h97/hbf/9358898102302/KM00201020principale_480Wx480H.jpg#k-listing-retina" property="og:image"/><meta content="website" property="og:type"/><meta content="product" name="twitter:card"/><meta content="@kikocosmeticsFR" name="twitter:site"/><meta content="Rouge à lèvres mat - Velvet Passion Matte Lipstick - KIKO MILANO" name="twitter:title"/><meta content="KIKO lance le nouveau rouge à lèvres mat Velvet Passion Matte Lipstick : sa texture, onctueuse et ultra-fondante, offre à vos lèvres un effet mat intense. Achetez-le en ligne." name="twitter:description"/><meta content="http://www.kikocosmetics.com//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h97/hbf/9358898102302/KM00201020principale_480Wx480H.jpg#k-listing-retina" property="twitter:image"/><meta content="Price" name="twitter:label1"/><meta content=" " name="twitter:data1"/><meta content="Category" name="twitter:label2"/><meta content="Rouges à lèvres" name="twitter:data2"/><script src="//cdn.gigya.com/js/gigya.js?apiKey=3_Lji07NNhp3zOmYznMO78jPjyLzQKlVJ6mS-HjXIjP-YifxbkpvOvumswMT9ECapF" type="text/javascript" id="gigya-api-key"></script><script type="text/javascript">
+      window.Kiko = window.Kiko || {};
+      window.Kiko.gigya = window.Kiko.gigya || {};
+      window.Kiko.gigya.followBarSettings = {
+  buttons: [{
+    provider: 'facebook',
+    actionURL: 'https://www.facebook.com/KikoMilanoFrance',
+    action: 'dialog'
+  }, {
+    provider: 'twitter',
+    action: 'dialog',
+    followUsers: 'KikoMilanoFR'
+  },  {
+    provider: 'googleplus',
+    actionURL: 'https://plus.google.com/110891441171332375321'
+  }, {
+    provider: 'Youtube',
+    actionURL: 'http://www.youtube.com/user/KIKOCOSMETICS?sub_confirmation=1'
+  }, {
+    provider: 'pinterest',
+    actionURL: 'https://www.pinterest.com/CosmeticsKIKO/'
+  },{
+    provider: 'custom',
+    actionURL: 'http://instagram.com/kikomilano',
+    iconURL: 'https://magnolia.kikocosmetics.com/mediaObject/kiko/img_sistema/social/instagram-rb/original/instagram-rb.png',
+    title: 'Instagram'
+  },{
+    provider: 'custom',
+    actionURL: 'http://www.kikocosmetics.com/fr-fr/snapchat.html',
+    iconURL: 'https://www.kikocosmetics.com/mediaObject/kiko/img_sistema/social/snapcode-small/original/snapcode-small.png',
+    title: 'Snapchat'
+  }]
+}
+;
+      window.Kiko.gigya.connectionProviders = 'facebook,twitter,googleplus' ||  'facebook,twitter,googleplus';
+      window.Kiko.gigya.shareButtons = '' ||  'Facebook-Like,Twitter-Tweet,google-plusone,Pinterest';
+      </script><script src="//d1ltdbx2fxfwcj.cloudfront.net/docroot/7.0.0/js/dist/libs.min.js" type="text/javascript">/**/</script><script src="//d1ltdbx2fxfwcj.cloudfront.net/docroot/7.0.0/js/dist/app.min.js" type="text/javascript">/**/</script>
+          <!-- default og:image -->
+<meta content="http://www.kikocosmetics.com/mediaObject/kiko/img_sistema/loghi/default-og-image/original/default-og-image.png" property="og:image" />
+
+<!-- apple fullscreen webapp settings -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Google Verification per Youtube -->
+<meta name="google-site-verification" content="7Im465f9RqAYnn9iyuGj7hTHFrQU6UXTSvwnv3MjunM" />
+
+<!-- Pinterest Verification -->
+<meta name="p:domain_verify" content="d16d623140497177747ffe810cf8b3b1"/>
+
+
+
+ 
+    <script splash="true" type="text/javascript">
+    jQuery(function(){
+      window.Kiko.init()
+    })
+  </script><link href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/7.0.0/css/main-1.css" rel="stylesheet" type="text/css"/><link href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/7.0.0/css/main-2.css" rel="stylesheet" type="text/css"/>
+          <!--[if IE ]>
+          <link type="text/css" rel="stylesheet" href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/7.0.0/css/ie.css" />
+          <![endif]-->
+          <link href="//cloud.typography.com/6436932/674586/css/fonts.css" type="text/css" rel="stylesheet"/>
+  	<!--[if lt IE 9]>
+  		<script src="//d1ltdbx2fxfwcj.cloudfront.net/docroot/7.0.0/js/lib/html5.js"></script>
+  	<![endif]-->
+	<!--[if IE 8]>
+		<link rel="stylesheet" type="text/css" href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/7.0.0/css/ie8.css" />
+	<![endif]-->
+	<!--[if IE 7]>
+    	<link rel="stylesheet" type="text/css" href="//d1ltdbx2fxfwcj.cloudfront.net/docroot/7.0.0/css/ie7.css" />
+	<![endif]-->
+  
+  <!--[if lte IE 8]>
+    <script>
+      document.createElement('ng-include');
+      document.createElement('ng-pluralize');
+      document.createElement('ng-view');
+
+      // Optionally these for CSS
+      document.createElement('ng:include');
+      document.createElement('ng:pluralize');
+      document.createElement('ng:view');
+    </script>
+  <![endif]-->
+  <script type="text/javascript">
+    var ctx = '';
+    var docroot = '//d1ltdbx2fxfwcj.cloudfront.net/docroot/7.0.0';
+    </script><!-- script head --><script>
+      window.tmParam = {
+        page_type : 'product' , // REQ 
+        alt_page_type : 'prod' , // REQ 
+        page_name : 'Prodotto', // REQ 
+        page_url : '/fr-fr/prodotto.html', // REQ
+        region : 'fr', // REQ when available,
+        customer_id : 'anonymous', // REQ when available
+        customer_type : 'anonymous', // REQ when available
+        user_logged_in : 'false',
+        page_name:'Rouge à lèvres mat - Velvet Passion Matte Lipstick - KIKO MILANO',
+        product_id:'KM00201020',
+        unique_product_id:'FRKM00201020',
+        product_category:'KIKMAKEUP_KIKOLABBR_KIKROSSET',
+      };
+      </script>
+    
+    <script>
+      (function(d,s){
+        var client = 'percassi';
+        var siteId = 35;
+    
+        //  do not edit
+        var a=d.createElement(s),b=d.getElementsByTagName(s)[0];
+        a.async=true;a.type='text/javascript';
+        a.src='//sec.levexis.com/clients/'+client+'/'+siteId+'.js';
+        a.tagman='st='+(+new Date())+'&c='+client+'&sid='+siteId;
+        b.parentNode.insertBefore(a,b);
+      })(document,'script');
+      </script><style type="text/css"> .labels .label-swatch_label { background-color: #6d68a6 }
+       .labels .label-2014_fall_label { background-color: #c3af78 }
+       .labels .label-Luxurious { background-color: #d5c89e }
+       .labels .label-Haute_punk { background-color: #ceb978 }
+       .labels .label-KIKCURPEL_KIKEDLIMC_KIKHAUPUN { background-color: #ceb978 }
+       .labels .label-HautePunk_label { background-color: #ceb978 }
+       .labels .label-BadGirl2 { background-color: #f0146e }
+       .labels .label-GenerationNext_MakeUp { background-color: #b8e2f0 }
+       .labels .label-GenerationNext_SkinCare { background-color: #b8e2f0 }
+       .labels .label-modern_tribe_collection { background-color: #c6a88c }
+       .labels .label-MiamiBeach_label { background-color: #ff70a8 }
+       .labels .label-RebelRomantic_label { background-color: #f5c3bc }
+       .labels .label-MidnightSiren_label { background-color: #5aa7d1 }
+       .labels .label-bff_collection_label { background-color: #ff0000 }
+       .labels .label-candy_bar { background-color: #b8e2f0 }
+       .labels .label-Wanderlust_label { background-color: #efc4a2 }
+       .labels .label-BeautyGames { background-color: #27daaf }
+       .labels .label-NeoNoir_makeup { background-color: #afbafb }
+       .labels .label-NeoNoir_Skincare { background-color: #afbafb }
+      </style></head><body data-splash-uuid="e1b3c3fe-651a-4b31-ad35-4924033b12b8" data-home-uuid="058917c4-3c1a-4115-b394-413a9477bfc9" data-privacy-page="/fr-fr/achats-securises/informations-sur-la-confidentialite.html" data-responsive="true" data-docroot="//d1ltdbx2fxfwcj.cloudfront.net/docroot" class="t-product "><div class="body-wrapper boris-closed" id="top"><div class="trackinghidden"></div><div class="message"></div><div data-open="true" class="js-top-promo top-promo expandable   with-shadow"><div data-dismiss=".top-promo" class="close"><span class="text">Fermer</span></div><div style="background-image: url(//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/fr/boris-V2/Promo_Mascara-BorisDesktop-FR/original/Promo_Mascara-BorisDesktop-FR.jpg)" data-image-css-mobile="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/fr/boris-V2/Promo_Mascara-BorisMobile-FR/original/Promo_Mascara-BorisMobile-FR.jpg" data-image-css="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/fr/boris-V2/Promo_Mascara-BorisDesktop-FR/original/Promo_Mascara-BorisDesktop-FR.jpg" class="cover"></div><div class="collapsed"><div class="container"><div class="js-text text" data-text-class-mobile="text-left" data-text-class="text-center" data-text-mobile="Tous les mascaras &agrave; SEULEMENT 3,90&euro;" data-text="Tous les mascaras &agrave; SEULEMENT 3,90&euro;. Profitez-en maintenant"><span class="text-inner">Tous les mascaras &agrave; SEULEMENT 3,90&euro;. Profitez-en maintenant</span><a class="btn btn-primary"></a></div></div><div class="js-remove remove"></div></div><div data-link="/fr-fr/maquillage/yeux/mascaras.html" class="expanded"><div class="container"></div></div></div><div class="superheader-wrapper"><div id="js-topbar" class="topbar-wrapper100"><div class="mykikobar-wrapper100"><div class="mykikobar container"><div class="mod-mykiko-nav"><h1 class="hide"><a href="/fr-fr/restricted/account.html"> Home</a></h1><nav><ul class="items js-mykiko-nav"><li class="item selected"><a class="link mykiko " href="/fr-fr/restricted/account.html"><span class="icon"></span> Home</a></li><li class="item "><a class="link account " href="/fr-fr/restricted/account/profile.html"><span class="icon"></span> Compte</a></li><li class="item "><a class="link address " href="/fr-fr/restricted/account/addresses.html"><span class="icon"></span> Adresses</a></li><li class="item "><a class="link payments " href="/fr-fr/restricted/account/payments.html"><span class="icon"></span> Modes de paiement</a></li><li class="item "><a class="link orders " href="/fr-fr/restricted/account/orders.html"><span class="icon"></span> Commandes</a></li><li class="item "><a class="link wishlist " href="/fr-fr/restricted/account/wishlist.html"><span class="icon"></span> Listes de souhaits</a></li><li class="item "><a class="link mypalette " href="/fr-fr/restricted/account/palettes.html"><span class="icon"></span> My palette</a></li><li class="item "><a class="link rewards " href="https://account.kikocosmetics.com/cas/registerUserLoyalty?service=http%3A%2F%2Fwww.kikocosmetics.com%2Ffr-fr%2Fprodotto.html%3Frefresh%3Dtrue&X-PERCASSI-COUNTRY=fr-fr"><span class="icon"></span> Rewards</a></li></ul></nav></div></div></div><div class="container"><div class="topbar grid_12"><ul class="promo-string" id="vertical-ticker"></ul><div class="utilsandco"><ul id="topbarUtils" class="utils"><li class="utils-item"><a class="utils-link login  " href="/fr-fr/authenticate/my-account"><span data-hover="S'identifier">S'identifier</span></a></li><li class="utils-item"><a class="utils-link registration" href="https://account.kikocosmetics.com/cas/newUserRegistration?service=http%3A%2F%2Fwww.kikocosmetics.com%2Ffr-fr%2F&X-PERCASSI-COUNTRY=fr-fr"><span data-hover="S'enregistrer">S'enregistrer</span></a></li><li class="utils-item"><a class="utils-link loyalty" href="/fr-fr/kiko-rewards.html"><span data-hover="KIKO Rewards">KIKO Rewards</span></a></li></ul><div class="cart cart-button"><a title="Panier" class="cart-icon" href="javascript:void();">
+                Panier
+                <span class="number n-prodotti">0</span></a><div data-updateurl="/fr-fr/action/miniCart?updating=" style="display:none" id="cart-popup"><div class="minicart"><div id="minicart-loading"></div><div class="summary noproduct"><p>Pas de produits dans le panier</p><a class="btn btn-primary" href="/fr-fr/cart.html">Panier</a><span class="label">Commande minimum EUR 25</span></div></div></div></div><div id="search-activator"><i class="icon"></i></div></div></div></div></div><div id="js-header" class="header-wrapper100"><header class="header container"><div data-logo-small="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/loghi/new/KIKO_logo_small_new/resolutions/res-o150x56/KIKO_logo_small_new.png" data-logo-big="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/loghi/new/KIKO_logo_big_new_V2/original/KIKO_logo_big_new_V2.png" id="logo" class="logo"><a href="/fr-fr/"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/loghi/new/KIKO_logo_big_new_V2/original/KIKO_logo_big_new_V2.png" alt="KIKO MILANO" title="KIKO MILANO" /></a></div><a class="menu-icon js-menu-trigger" href="#menu"></a><div class="cart cart-button tablet"><a title="Panier" class="cart-icon" href="/fr-fr/cart.html">
+          Panier
+          <span class="number n-prodotti">0</span></a><a title="Panier" id="search-activator-mobile" class="search-icon" href=""></a></div><div id="main-menu-nav" class="container-nav masklevel1"><div id="main-menu-nav-second-menu-panel" class="second-menu-panel"><button class="back js-back">Retour</button><div class="nav"></div></div><div id="main-menu-nav-third-menu-panel" class="third-menu-panel"><button class="back js-back">Retour</button><div class="nav"></div></div><div id="main-menu-nav-first-menu-panel" class="first-menu-panel"><nav class="nav"><ul style="z-index: 101" class="nav1"><li class="nav1-item subnav "><a class=" nav1-link" href="/fr-fr/maquillage.html"> Maquillage</a><div class="nav2-wrapper"><ul class="nav2 "><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/maquillage/visage.html"> Maquillage Visage</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/base.html"> Base</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/fonds-de-teint.html"> Fonds de teint</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/correcteurs.html"> Correcteurs</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/poudres.html"> Poudres</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/poudres-bronzantes.html"> Poudres bronzantes</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/fards-a-joues.html"> Fards à joues</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/poudres-illuminatrices.html"> Poudres illuminatrices</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/fixateurs.html"> Fixateurs</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/maquillage/yeux.html"> Maquillage Yeux</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/yeux/base.html"> Base</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/yeux/ombres-a-paupieres.html"> Ombres à paupières</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/yeux/crayons-yeux.html"> Crayons pour les yeux</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/yeux/mascaras.html"> Mascaras</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/yeux/eyeliners.html"> Eyeliners</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/yeux/sourcils.html"> Sourcils</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/maquillage/levres.html"> Lèvres</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/levres/base.html"> Base</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/levres/gloss-levres.html"> Gloss pour les lèvres</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/levres/rouges-a-levres.html"> Rouges à lèvres</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/levres/crayons-levres.html"> Crayons à lèvres</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/maquillage/mains.html"> Maquillage Mains</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/mains/vernis-a-ongles.html"> Vernis à ongles</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/mains/traitements-ongles.html"> Soins des ongles</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/mains/french-manucure.html"> French Manucure</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/mains/dissolvants.html"> Dissolvants</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/mains/fixateurs-de-vernis-a-ongles.html"> Fixateurs de vernis à ongles</a></li></ul></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/maquillage/palettes.html"> Palettes Clics System</a></li><li class="nav2-item subnav last"><a role="navigation" class="nav2-link" href="/fr-fr/maquillage/series-limitees.html"> Séries Limitées</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/series-limitees/neo-noir.html"> Neo Noir</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/series-limitees/the-beauty-games.html"> The Beauty Games</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/series-limitees/the-artist.html"> The Artist</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/series-limitees/campus-idol.html"> Campus Idol</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/series-limitees/rebel-romantic.html"> Rebel Romantic</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/series-limitees/on-the-go-minis.html"> On-The-Go Minis</a></li></ul></li><li class="image"><a class="adv" href="/fr-fr/nouveautes/unmeasurable-mascara.html"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/it/menu/MenuBanner_UnmeasurableMascara/original/MenuBanner_UnmeasurableMascara.jpg" alt="" title="" /></a></li></ul><div class="nav2-bottom-container"><div class="nav2-bottom-wrapper nav2-bottom-full"><ul class="nav2-bottom"><li class="nav2-bottom-item subnav  first"><div class="nav2-link">MEILLEURES VENTES</div><ul class="nav3"><li class="nav3-item"><a class="nav3-link" href="/fr-fr/meilleure-vente/meilleure-vente-maquillage.html">Meilleures ventes Maquillage</a></li><li class="nav3-item"><a class="nav3-link" href="/fr-fr/meilleure-vente/fan-favorites.html">Fan Favorites</a></li></ul></li></ul></div></div></div></li><li class="nav1-item subnav "><a class=" nav1-link" href="/fr-fr/soin-pour-la-peau.html"> Soin pour la peau</a><div class="nav2-wrapper"><ul class="nav2 "><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/soin-pour-la-peau/visage.html"> Soin du Visage</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/nettoyant.html"> Nettoyant</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/hydratant.html"> Hydratant</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/anti-imperfections.html"> Anti-imperfections</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/exfoliants.html"> Exfoliants</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/rides.html"> Rides</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/rides-visibles.html"> Rides visibles</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/masques.html"> Masques</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/serums.html"> Sérums</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/skin-trainer.html"> Skin Trainer</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/soin-pour-la-peau/levres.html"> Lèvres</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/levres/baume-a-levres.html"> Baumes à lèvres</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/levres/baumes-a-levres.html"> Spécifiques lèvres</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/soin-pour-la-peau/corps.html"> Corps</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/corps/soins-specifiques.html"> Soins spécifiques</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/soin-pour-la-peau/mains.html"> Mains et pieds</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/mains/creme-pour-les-mains.html"> Crème pour les mains</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/mains/assainissants.html"> Assainissants</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/mains/soins-pieds.html"> Produits pour le Soin des Pieds</a></li></ul></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/soin-pour-la-peau/parfums.html"> Parfums</a></li><li class="nav2-item subnav last"><a role="navigation" class="nav2-link" href="/fr-fr/soin-pour-la-peau/series-limitees.html"> Séries limitées</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/series-limitees/neo-noir.html"> Neo Noir</a></li></ul></li><li class="image"><a class="adv" href="/fr-fr/nouveautes/begin-with-skin/skin-trainer.html"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/it/menu/MenuBanner_SkinTrainer/original/MenuBanner_SkinTrainer.jpg" alt="" title="" /></a></li></ul><div class="nav2-bottom-container"><div class="nav2-bottom-wrapper nav2-bottom-full"><ul class="nav2-bottom"><li class="nav2-bottom-item subnav  first"><div class="nav2-link">MEILLEURES VENTES</div><ul class="nav3"><li class="nav3-item"><a class="nav3-link" href="/fr-fr/meilleure-vente/meilleure-vente-soins-de-la-peau.html">Meilleures ventes Soin de la peau</a></li><li class="nav3-item"><a class="nav3-link" href="/fr-fr/meilleure-vente/fan-favorites.html">Fan Favorites</a></li></ul></li></ul></div></div></div></li><li class="nav1-item subnav "><a class=" nav1-link" href="/fr-fr/accessoires.html"> Accessoires</a><div class="nav2-wrapper"><ul class="nav2 "><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/accessoires/accessoires-visage.html"> Visage</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-visage/applicateurs.html"> Applicateurs et Miroirs</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-visage/eponges-nettoyantes.html"> Éponges nettoyantes</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-visage/pinces-a-epiler.html"> Pinces à épiler</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-visage/paillettes-et-strass.html"> Paillettes et Strass</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/accessoires/accessoires-yeux.html"> Yeux</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-yeux/faux-cils.html"> Faux cils</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-yeux/recourbe-cils.html"> Recourbe-cils</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-yeux/taille-crayons.html"> Taille-crayons</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-yeux/palettes-ombres-a-paupieres.html"> Palettes Ombres à paupières</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/accessoires/accessoires-mains.html"> Mains et ongles</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-mains/limes.html"> Limes</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-mains/manucure.html"> Manucure</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-mains/dissolvants.html"> Dissolvants</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-mains/fixateurs-vernis-a-ongles.html"> Fixateurs pour vernis à ongles</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-mains/nail-art.html"> Nail Art</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/accessoires/pinceaux.html"> Pinceaux</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/pinceaux/pinceaux-yeux.html"> Pinceaux yeux</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/pinceaux/pinceaux-visage.html"> Pinceaux visage</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/pinceaux/pinceaux-levres.html"> Pinceaux lèvres</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/pinceaux/nettoyant-pinceaux.html"> Nettoyant pinceaux</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/pinceaux/set-pinceaux.html"> Set pinceaux</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/pinceaux/ceinture-a-pinceaux.html"> Accessoires pour pinceaux</a></li></ul></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/accessoires/accessoires-de-voyage.html"> Accessoires de voyage</a></li><li class="nav2-item  last"><a role="navigation" class="nav2-link" href="/fr-fr/accessoires/trousses-maquillage.html"> Trousses maquillage</a></li><li class="image"><a class="adv" href="/p-KM0050203100033.html"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/it/menu/MenuBanner_CleansingCloth/original/MenuBanner_CleansingCloth.jpg" alt="" title="" /></a></li></ul><div class="nav2-bottom-container"><div class="nav2-bottom-wrapper nav2-bottom-full"><ul class="nav2-bottom"><li class="nav2-bottom-item subnav  first"><div class="nav2-link">Meilleures Ventes</div><ul class="nav3"><li class="nav3-item"><a class="nav3-link" href="/fr-fr/meilleure-vente/meilleure-vente-accessoires.html">Meilleures ventes Accessoires</a></li><li class="nav3-item"><a class="nav3-link" href="/fr-fr/meilleure-vente/fan-favorites.html">Fan Favorites</a></li></ul></li></ul></div></div></div></li><li class="nav1-item subnav "><a class=" nav1-link" href="/fr-fr/produits-solaires.html"> Solaires</a><div class="nav2-wrapper"><ul class="nav2 "><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/produits-solaires/protection-solaire.html"> Protection solaire</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/produits-solaires/protection-solaire/faible-protection.html"> Faible Protection</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/produits-solaires/protection-solaire/moyenne-protection.html"> Moyenne Protection</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/produits-solaires/protection-solaire/haute-protection.html"> Haute Protection</a></li></ul></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/produits-solaires/apres-soleil.html"> Après-soleil </a></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/produits-solaires/cheveux.html"> Cheveux</a></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/produits-solaires/autobronzants.html"> Autobronzants</a></li><li class="nav2-item  last"><a role="navigation" class="nav2-link" href="/fr-fr/produits-solaires/accessoires.html"> Accessoires</a></li></ul></div></li><li class="nav1-item subnav "><a class=" nav1-link" href="/fr-fr/gift-card.html"> Gift Card</a><div class="nav2-wrapper"><ul class="nav2 "><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/gift-card/gift-card-physique.html"> Gift Card Physique</a></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/gift-card/online-gift-card.html"> Online Gift Card</a></li><li class="nav2-item  last"><a role="navigation" class="nav2-link" href="/fr-fr/gift-card/verification-de-credit.html"> Vérification de crédit</a></li></ul></div></li><li class="nav1-item nav1-item-more  "><a class="nav1-link minor" href="/fr-fr/nouveautes.html"> Nouveaut&eacute;s</a></li><li class="nav1-item subnav "><a class=" nav1-link" href="/fr-fr/promo-kiko.html"> Promotion</a><div class="nav2-wrapper"><ul class="nav2 "><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/promo-kiko/promo-actiglow.html"> Promo Actiglow + fond de teint </a></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/promo-kiko/promo-mascara.html"> Mascara à 3,90 €</a></li><li class="nav2-item  last"><a role="navigation" class="nav2-link" href="/fr-fr/promo-kiko/produits-en-promotion.html"> Tous les produits en promotion</a></li></ul></div></li><li class="nav1-item nav1-item-more  "><a class="nav1-link minor" href="/fr-fr/kikotrendsetters.html"> #kikotrendsetters</a></li></ul></nav></div></div></header></div></div><div class="boris-wrapper"></div><div class="container kiko-container "><div class="mod-breadcrumbs grid_12"><p class="breadcrumbs"><a href="/fr-fr/">KIKO</a><a href="/fr-fr/maquillage.html">Maquillage</a><a href="/fr-fr/maquillage/levres.html">Lèvres</a><a href="/fr-fr/maquillage/levres/rouges-a-levres.html">Rouges à lèvres</a><span class="current">Velvet Passion Matte Lipstick</span></p></div><div class="clear"></div><div id="js-menu-anchor" class="menu-anchor"><ul><li class="item1"><a href="#jumpto-product">Produit</a></li><li class="item2"><a href="#jumpto-description">DESCRIPTION</a></li><li class="item"><a href="#products-references-0">Produits recommandés</a></li><li class="item3"><a href="#reviews">Avis</a></li><li class="item4"><a href="#jumpto-focus">Approfondissements</a></li></ul></div><div id="jumpto-product" class="mod-detail-product-top nolabel js-product-detail"><a name="jumpto-product"></a><div class="pics"><div style="background-image:" class="promo-banner js-product-sticker"></div><div class="current-pic owl-carousel js-pics"><div style="position: relative"><a data-zoom-enabled="true" data-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h15/hc7/9358898364446/KM00201020principale_900Wx900H.jpg#k-zoom" title="zoom" href="#zoom"><meta itemprop="image" content="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h15/hc7/9358898364446/KM00201020principale_900Wx900H.jpg#k-zoom"/><span data-lazy="true" data-class="" data-title="Velvet Passion Matte Lipstick" data-alt="Velvet Passion Matte Lipstick" data-picture="true"><span data-image-type="desktop" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h86/hbc/9358898036766/KM00201020principale_390Wx390H.jpg#k-product"></span><span data-media="(min-width : 995px)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h86/hbc/9358898036766/KM00201020principale_390Wx390H.jpg#k-product" data-image-type="desktop"></span><span data-media="(min-width : 995px) and (min-resolution: 2dppx), (min-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h86/hbc/9358898036766/KM00201020principale_390Wx390H.jpg#k-product" data-image-type="desktop"></span><span data-media="(max-width : 767px) and (min-resolution: 2dppx), (max-width : 767px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h45/hc0/9358898167838/KM00201020principale_608Wx608H.jpg#k-product-retina" data-image-type="retina"></span><span data-media="(min-width : 768px) and (max-width : 995px) and (min-resolution: 2dppx), (min-width : 768px) and (max-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h45/hc0/9358898167838/KM00201020principale_608Wx608H.jpg#k-product-retina" data-image-type="retina"></span></span></a></div><div style="position: relative"><a data-zoom-enabled="true" data-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hbd/h5c/9358897315870/KM00201020secondario_900Wx900H.jpg#k-zoom" title="zoom" href="#zoom"><meta itemprop="image" content="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hbd/h5c/9358897315870/KM00201020secondario_900Wx900H.jpg#k-zoom"/><span data-lazy="true" data-class="" data-title="Velvet Passion Matte Lipstick" data-alt="Velvet Passion Matte Lipstick" data-picture="true"><span data-image-type="desktop" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hef/h52/9358897053726/KM00201020secondario_390Wx390H.jpg#k-product"></span><span data-media="(min-width : 995px)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hef/h52/9358897053726/KM00201020secondario_390Wx390H.jpg#k-product" data-image-type="desktop"></span><span data-media="(min-width : 995px) and (min-resolution: 2dppx), (min-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hef/h52/9358897053726/KM00201020secondario_390Wx390H.jpg#k-product" data-image-type="desktop"></span><span data-media="(max-width : 767px) and (min-resolution: 2dppx), (max-width : 767px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hed/h55/9358897119262/KM00201020secondario_608Wx608H.jpg#k-product-retina" data-image-type="retina"></span><span data-media="(min-width : 768px) and (max-width : 995px) and (min-resolution: 2dppx), (min-width : 768px) and (max-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hed/h55/9358897119262/KM00201020secondario_608Wx608H.jpg#k-product-retina" data-image-type="retina"></span></span></a></div></div><div class="js-pics-controls editorial-carousel-controls"><div class="owl-prev">prev</div><div class="owl-pagination"><div data-index="0" class="owl-page active"><span><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h56/hc3/9358898233374/KM00201020principale_60Wx60H.jpg#k-thumbnail"/></span></div><div data-index="1" class="owl-page "><span><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hae/h56/9358897184798/KM00201020secondario_60Wx60H.jpg#k-thumbnail"/></span></div></div><div class="owl-next">next</div></div><div class="clear"></div></div><div id="dettaglio-prodotto" class="desc-actions swatch-container js-dettaglio-prodotto"><div class="swatch-gallery"></div><div class="desc"><p data-onsale-label="Offre Spéciale" class="labels js-labels"></p><h2 class="title"> Velvet Passion Matte Lipstick</h2><h1 class="longdesc">Rouge &agrave; l&egrave;vres confortable, couleur mate</h1><meta content="Rouge à lèvres mat - Velvet Passion Matte Lipstick - KIKO MILANO" itemprop="name"/><meta content="KIKO lance le nouveau rouge à lèvres mat Velvet Passion Matte Lipstick : sa texture, onctueuse et ultra-fondante, offre à vos lèvres un effet mat intense. Achetez-le en ligne." itemprop="description"/><div id="rating-prodotto" class="rating"><div class="cat-rating"><form data-confirm="Confirmez-vous la note pour le produit" method="post" action="/fr-fr/maquillage/levres/rouges-a-levres/Velvet-Passion-Matte-Lipstick/p-KM00201020"><input value="" name="rate" type="hidden"/><input value="KM00201020" name="productCode" type="hidden"/><input value="" name="rating" type="hidden"/><div class="">
+				<input
+          value="1"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar  {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="2"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar  {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="3"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar  {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="4"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar  {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="5"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar  {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="6"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar  {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="7"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar  {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="8"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar  {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="9"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar  {split:2} required"
+					checked="checked"
+          
+				/>
+			
+				<input
+          value="10"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar  {split:2} required"
+					
+          
+				/>
+			</div><br/></form></div><a class="label guarda-recensioni" href="#reviews">Nombre d'avis : 158</a><a class="link scrivi-recensione" href="#reviews">Lire / Écrire un avis</a></div></div><div id="box-opzioni" class="colors"><div class="colors-textual"><form class="form-default"><fieldset><label class="control-label col" for="select-opzioni">Sélectionner couleur</label><div class="select-options-box"><select data-isocode="fr" data-loading-label="" data-in-stock-text="Ajouter au panier" data-out-of-stock-text="Indisponible" data-checkout-page="871988cc-3ded-4e8e-9ea0-a644bb75562e" data-addtocart="/fr-fr/action/addToCart" class="select-opzioni " id="select-opzioni"><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hf3/hd7/9358865760286/KM0020102030133principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h6c/hde/9358865596446/KM0020102030133principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102030133" data-stock-level="10014" value="KM0020102030133" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hf3/hd7/9358865760286/KM0020102030133principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 301 Beige
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h79/hde/9358852947998/KM0020102030233principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h38/he2/9358852816926/KM0020102030233principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102030233" data-stock-level="9998" value="KM0020102030233" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h79/hde/9358852947998/KM0020102030233principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 302 Beige Rose
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h93/h81/9358845476894/KM0020102030333principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h52/h85/9358845345822/KM0020102030333principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102030333" data-stock-level="1136" value="KM0020102030333" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h93/h81/9358845476894/KM0020102030333principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 303 Rose
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hab/h76/9358890827806/KM0020102030433principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hba/h7c/9358890696734/KM0020102030433principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102030433" data-stock-level="2405" value="KM0020102030433" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hab/h76/9358890827806/KM0020102030433principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 304 Warm Pink
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hcb/h38/9358901641246/KM0020102030533%20principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h8a/h3c/9358901510174/KM0020102030533%20principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102030533" data-stock-level="12181" value="KM0020102030533" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hcb/h38/9358901641246/KM0020102030533%20principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 305 Hibiscus
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hd1/h4f/9358884339742/KM0020102030633%20principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h12/h4c/9358884208670/KM0020102030633%20principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102030633" data-stock-level="10545" value="KM0020102030633" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hd1/h4f/9358884339742/KM0020102030633%20principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 306 Fuchsia
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h24/hdb/9358849409054/KM0020102030733%20principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h34/he1/9358849277982/KM0020102030733%20principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102030733" data-stock-level="10912" value="KM0020102030733" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h24/hdb/9358849409054/KM0020102030733%20principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 307 Cyclamen Pink
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hee/ha5/9358864023582/KM0020102030833%20principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h33/h58/9358863892510/KM0020102030833%20principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102030833" data-stock-level="11087" value="KM0020102030833" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hee/ha5/9358864023582/KM0020102030833%20principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 308 Papaya
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/heb/h0e/9358867431454/KM0020102030933%20principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/haa/h12/9358867300382/KM0020102030933%20principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102030933" data-stock-level="13314" value="KM0020102030933" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/heb/h0e/9358867431454/KM0020102030933%20principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 309 Tulip Red
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/ha5/h3a/9358915534878/KM0020102031033principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hd5/h33/9358915338270/KM0020102031033principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102031033" data-stock-level="1761" value="KM0020102031033" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/ha5/h3a/9358915534878/KM0020102031033principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 310 Strawberry Red
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h77/hf1/9358904918046/KM0020102031133principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h87/hf7/9358904786974/KM0020102031133principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102031133" data-stock-level="0" value="KM0020102031133" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h77/hf1/9358904918046/KM0020102031133principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 311 Poppy Red
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h84/h23/9358862319646/KM0020102031233principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h93/h29/9358862188574/KM0020102031233principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102031233" data-stock-level="28" value="KM0020102031233" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h84/h23/9358862319646/KM0020102031233principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 312 Cherry
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h52/h94/9358903476254/KM0020102031333%20principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h93/h90/9358903345182/KM0020102031333%20principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102031333" data-stock-level="11893" value="KM0020102031333" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h52/h94/9358903476254/KM0020102031333%20principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 313 Sangria
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h7b/hb9/9358885322782/KM0020102031433%20principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h6c/hb3/9358885191710/KM0020102031433%20principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102031444" data-stock-level="551" value="KM0020102031444" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h7b/hb9/9358885322782/KM0020102031433%20principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 314 Plum
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h1a/he0/9358894366750/KM0020102031533principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hd9/he3/9358894235678/KM0020102031533principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102031544" data-stock-level="10619" value="KM0020102031544" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h1a/he0/9358894366750/KM0020102031533principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 315 Mauve
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h73/ha5/9358900592670/KM0020102031633principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h33/ha9/9358900461598/KM0020102031633principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102031644" data-stock-level="0" value="KM0020102031644" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h73/ha5/9358900592670/KM0020102031633principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 316 Vintage Rose
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h23/h65/9358895874078/KM0020102031733%20principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/he2/h68/9358895743006/KM0020102031733%20principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102031744" data-stock-level="10066" value="KM0020102031744" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h23/h65/9358895874078/KM0020102031733%20principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 317 Wine
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h9a/hea/9358917763102/KM0020102031833%20principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h59/hee/9358917632030/KM0020102031833%20principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102031844" data-stock-level="44" value="KM0020102031844" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h9a/hea/9358917763102/KM0020102031833%20principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 318 Burgundy
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h2f/h80/9358874312734/KM0020102031933principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h3e/h86/9358874181662/KM0020102031933principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102031933" data-stock-level="10154" value="KM0020102031933" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h2f/h80/9358874312734/KM0020102031933principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 319 Chocolate
+      </option><option  data-pack-image-retina="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/haf/ha0/9358843183134/KM0020102032033principale_608Wx608H.jpg#k-product-retina" data-discount="- 0 %" data-old-price-original="0.0" data-pack-image-desktop="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hf0/h9c/9358843052062/KM0020102032033principale_390Wx390H.jpg#k-product" data-pack-image-tablet="" data-image="" data-promo-sticker-url="" data-pack-enabled="true" data-price="EUR 8,90" data-price-original="8.9" data-all-promo-type-enabled="false" data-variant-url="/fr-fr/maquillage/levres/rouges-a-levres//p-KM0020102032033" data-stock-level="0" value="KM0020102032033" data-pack-image-zoom="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/haf/ha0/9358843183134/KM0020102032033principale_608Wx608H.jpg#k-product-retina" data-old-price="EUR 0,00"> 320 Hazelnut
+      </option></select></div></fieldset></form></div><div class="colors-preview " id="colors-preview"><div id="js-palette-preview" class="palette-zoom js-palette-preview"><div class="icon-zoom opzione-principale"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h63/h82/9358866186270/KM0020102030133goccia_140Wx140H.png#k-variant-xlarge" width="140" height="140"  id="bigImage" title="301 Beige" alt="301 Beige"/><p class="label">301 Beige</p></div></div><div id="js-palette" class="palette-items owl-carousel js-palette"><div class="palette-item"><ul data-page="0" id="set1" class="icons click-opzioni active"><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h63/h82/9358866186270/KM0020102030133goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h95/h78/9358866448414/KM0020102030133goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102030133" title="" class="active"/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h63/h82/9358866186270/KM0020102030133goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>301 Beige</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h60/had/9358851637278/KM0020102030233goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hde/hb4/9358851899422/KM0020102030233goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102030233" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h60/had/9358851637278/KM0020102030233goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>302 Beige Rose</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hb3/h74/9358845804574/KM0020102030333goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h8a/h25/9358846066718/KM0020102030333goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102030333" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hb3/h74/9358845804574/KM0020102030333goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>303 Rose</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h52/h0c/9358891876382/KM0020102030433goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h26/h45/9358892138526/KM0020102030433goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102030433" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h52/h0c/9358891876382/KM0020102030433goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>304 Warm Pink</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h8a/hd5/9358894694430/KM0020102030533goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hbc/hcb/9358894956574/KM0020102030533goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102030533" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h8a/hd5/9358894694430/KM0020102030533goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>305 Hibiscus</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hc4/ha1/9358911995934/KM0020102030633goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h3e/hf3/9358912258078/KM0020102030633goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102030633" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hc4/ha1/9358911995934/KM0020102030633goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>306 Fuchsia</span></div></div></div></li><li class="clear"></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hf3/h30/9358907146270/KM0020102030733goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hc1/h3a/9358907408414/KM0020102030733goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102030733" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hf3/h30/9358907146270/KM0020102030733goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>307 Cyclamen Pink</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h1f/h87/9358905966622/KM0020102030833goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/ha6/h35/9358906228766/KM0020102030833goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102030833" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h1f/h87/9358905966622/KM0020102030833goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>308 Papaya</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h58/h9f/9358913372190/KM0020102030933goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hdc/h94/9358913699870/KM0020102030933goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102030933" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h58/h9f/9358913372190/KM0020102030933goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>309 Tulip Red</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h35/h45/9358915862558/KM0020102031033goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hae/h96/9358916124702/KM0020102031033goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102031033" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h35/h45/9358915862558/KM0020102031033goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>310 Strawberry Red</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h31/ha1/9358903803934/KM0020102031133goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h5c/hf0/9358904066078/KM0020102031133goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102031133" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h31/ha1/9358903803934/KM0020102031133goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>311 Poppy Red</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hda/h90/9358861205534/KM0020102031233goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h5b/h89/9358861467678/KM0020102031233goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102031233" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hda/h90/9358861205534/KM0020102031233goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>312 Cherry</span></div></div></div></li><li class="clear"></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h51/h92/9358918221854/KM0020102031333goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hd2/h8a/9358918483998/KM0020102031333goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102031333" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h51/h92/9358918221854/KM0020102031333goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>313 Sangria</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h0f/hf5/9358909308958/KM0020102031433goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h7d/hed/9358909571102/KM0020102031433goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102031444" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h0f/hf5/9358909308958/KM0020102031433goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>314 Plum</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h8f/hb2/9358893252638/KM0020102031533goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h5e/hbc/9358893514782/KM0020102031533goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102031544" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h8f/hb2/9358893252638/KM0020102031533goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>315 Mauve</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hd5/hca/9358898495518/KM0020102031633goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/ha3/hd4/9358898757662/KM0020102031633goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102031644" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hd5/hca/9358898495518/KM0020102031633goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>316 Vintage Rose</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hb0/hd0/9358857863198/KM0020102031733goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h36/h7f/9358858125342/KM0020102031733goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102031744" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hb0/hd0/9358857863198/KM0020102031733goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>317 Wine</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h95/hd0/9358849736734/KM0020102031833goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h16/hc9/9358849998878/KM0020102031833goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102031844" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h95/hd0/9358849736734/KM0020102031833goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>318 Burgundy</span></div></div></div></li><li class="clear"></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hd3/ha5/9358872150046/KM0020102031933goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h4f/hb0/9358872477726/KM0020102031933goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102031933" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hd3/ha5/9358872150046/KM0020102031933goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>319 Chocolate</span></div></div></div></li><li class="icon"><a href="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h3d/hae/9358843576350/KM0020102032033goccia_140Wx140H.png#k-variant-xlarge" class="colorzoom "><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h0b/hb8/9358843838494/KM0020102032033goccia_38Wx38H.png#k-variant-small" width="38" height="38"  id="KM0020102032033" title="" class=""/></a><div class="icon-zoom"><span class="arr"></span><div class="color-images"><div class="only-smart"><img src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h3d/hae/9358843576350/KM0020102032033goccia_140Wx140H.png#k-variant-xlarge" width="134" height="134"  title=""/><span>320 Hazelnut</span></div></div></div></li></ul></div></div><div class="clear"></div></div></div><div class="actions"><form class="form-default" action="#carrello"><fieldset class="quantity quantity-disabled"><label for="placeholderIdSelect" class="quantity-label control-label">Quantité</label>
+    <select name="qty" id="js-qty" class="control-form quantity-select" disabled='disabled' data-limit="">
+    <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+    </select> 
+    <p id="js-price" class="price"><span class="operator">x</span><span class="startingFrom"></span><b itemprop="price" class="current-price  "></b><span class="original-price hide">
+        
+      </span><span class="discount"> 
+       
+      </span></p></fieldset><fieldset class="buttons"><a class="btn selectcoloropen selectoption APPROVED" data-href="/fr-fr/maquillage/levres/rouges-a-levres/Velvet-Passion-Matte-Lipstick/p-KM00201020?selectColor=true" href="/fr-fr/maquillage/levres/rouges-a-levres/Velvet-Passion-Matte-Lipstick/p-KM00201020">Choisir une couleur</a><div class="rubrica wishlistselect"><select data-notification-type="loginNeeded" data-url="http://www.kikocosmetics.com/kiko/fr/prodotto.html" data-primary-line="Pour accéder à la Wishlist veuillez vous identifier ou vous inscrire sur le site" data-notification="true" class="select-big tooltip-btn"><option class="select-wishlist addtowishlist tooltip-btn" value="#">Ajouter à wishlist</option></select></div></fieldset><fieldset class="unit-price-container">Prix incluant la TVA</fieldset></form></div></div><div class="clear"></div></div><div id="jumpto-description" class="mod-detail-product-middle"><a name="jumpto-description"></a><div class="grid_8 info"><ul id="product-detail-tabs" class="info-items js-accordion"><li id="info-item0" class="item open"><h3 class="title "><a class="js-smooth-scroll" href="#info-item0">
+                  DESCRIPTION
+                  <span class="arr"></span></a></h3><div class="text producttext"> <p>Rouge &agrave; l&egrave;vres confortable &agrave; la couleur mate.</p><p>Sa texture, onctueuse et ultra-fondante, offre &agrave; vos l&egrave;vres un effet mat intense. Son extr&ecirc;me sensorialit&eacute; rend encore plus agr&eacute;able l&rsquo;application et la sensation de confort qui s&rsquo;ensuit.&nbsp;</p><p>L&rsquo;application est ultra-fluide, l&rsquo;effet couleur est imm&eacute;diat. La tenue du rouge &agrave; l&egrave;vres est longue dur&eacute;e.</p><p>Velvet Passion Matte Lipstick est mis en valeur par son tube moderne en aluminium mat au logo KK sur le haut. La fermeture magn&eacute;tique assure une conservation optimale du rouge &agrave; l&egrave;vres. La pointe carr&eacute;e du raisin vous permet une application facile et rapide.</p><p>Velvet Passion Matte Lipstick se d&eacute;cline en vingt teintes adapt&eacute;es &agrave; chaque type de peau, pour un maquillage des l&egrave;vres toujours impeccable. Vous pouvez assortir les couleurs du rouge &agrave; l&egrave;vres Velvet Passion Matte Lipstick aux couleurs du crayon Ever Lasting Colour Precision Lip Liner.&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>Test&eacute; sous contr&ocirc;le dermatologique.</p><p>Sans paraben.</p></div><div id="inci-infos" class="product-details"></div></li><li id="info-item1" class="item "><h3 class="title "><a class="js-smooth-scroll" href="#info-item1">
+                  RÉSULTATS
+                  <span class="arr"></span></a></h3><div class="text producttext"> <p>Un effet mat sophistiqu&eacute; pour des l&egrave;vres pleines et sensuelles. L&rsquo;effet velours des diff&eacute;rentes teintes vous permet de cr&eacute;er des looks raffin&eacute;s et &eacute;l&eacute;gants. Ne dess&egrave;che pas vos l&egrave;vres.</p></div><div id="inci-infos" class="product-details"></div></li><li id="info-item2" class="item "><h3 class="title "><a class="js-smooth-scroll" href="#info-item2">
+                  CONSEILS
+                  <span class="arr"></span></a></h3><div class="text producttext"> <p>Appliquez Velvet Passion Matte Lipstick directement sur vos l&egrave;vres, du milieu jusqu&rsquo;aux commissures.</p><p>Pour un r&eacute;sultat encore plus professionnel, dessinez le contour des l&egrave;vres &agrave; l&rsquo;aide du crayon Ever Lasting Colour Precision Lip Liner.</p></div><div id="inci-infos" class="product-details"></div></li><li id="info-item3" class="item "><h3 class="title "><a class="js-smooth-scroll" href="#info-item3">
+                  ASSOCIATIONS AVEC LE CRAYON
+                  <span class="arr"></span></a></h3><div class="text producttext"> <p>Vous pouvez assortir chaque couleur du rouge &agrave; l&egrave;vres Velvet Passion Matte Lipstick &agrave; une teinte du crayon Ever Lasting Colour Precision Lip Liner. D&eacute;couvrez toutes les associations possibles pour un maquillage des l&egrave;vres professionnel :</p><img src="/mediaObject/kiko/it/novita/2016/luxurious-lipsticks-and-lip-pencils/LuxuriousLipstickAndLipPencils_Tab/original/LuxuriousLipstickAndLipPencils_Tab.gif" border="0" /></div><div id="inci-infos" class="product-details"></div></li><li style="display:none;" id="ingredients" class="item"><h3 class="title "><a class="js-smooth-scroll" href="#ingredients">Ingrédients<span class="arr"></span></a></h3></li></ul></div><div class="grid_4"><div class="mod-services"><h4 class="services-title">INFORMATIONS POUR L'ACHAT</h4><ul class="services-items js-accordion"><li class="item  "><i style="background-image: url(//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/icons/new_usa/KIKO_icon_shipping_1507/original/KIKO_icon_shipping_1507.gif);" class="icon"></i><h5 class="title"><a href="#servizi">LIVRAISON EN POINT RELAIS&reg; GRATUITE</a></h5><div class="description">pour toutes les commandes en ligne</div><div class="text"><span class="arr"></span><p>KIKO MILANO vous offre l'exp&eacute;dition aux Point Relais &reg; gratuite sur toutes les commandes en ligne. Si en revanche vous souhaitez recevoir la marchandise &agrave; une adresse sp&eacute;cifique, vous pouvez choisir entre l'exp&eacute;dition Standard (par Service Postal Swiss Post - Global Logistic Express) &agrave; 5,90 EUR (1 EUR pour toutes commandes sup&eacute;rieures &agrave; 49 EUR) et l'exp&eacute;dition Express (par UPS) &agrave; 7,90 EUR (2 EUR pour tous achats sup&eacute;rieurs &agrave; 49 EUR).</p></div></li><li class="item  "><i style="background-image: url(//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/icons/new_usa/KIKO_icon_shipping_time_1507/original/KIKO_icon_shipping_time_1507.gif);" class="icon"></i><h5 class="title"><a href="#servizi">3 MODES DE LIVRAISON</a></h5><div class="description">pour r&eacute;pondre &agrave; chaque demande sp&eacute;cifique</div><div class="text"><span class="arr"></span><p>KIKO offre la possibilit&eacute; de choisir parmi 3 options de livraison diff&eacute;rentes : Point Relais&reg; - Mondial Relay (livraison sous 5 &agrave; 6 jours ouvr&eacute;s &agrave; compter du traitement de la commande) ; Swiss Post - Global Logistic Express (livraison &agrave; domicile en moyenne sous 6 &agrave; 7 jours ouvr&eacute;s) ; UPS (livraison &agrave; domicile sous 2 &agrave; 4 jours ouvr&eacute;s).</p></div></li><li class="item  "><i style="background-image: url(//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/icons/new_usa/KIKO_icon_secure_payment_1507/original/KIKO_icon_secure_payment_1507.gif);" class="icon"></i><h5 class="title"><a href="#servizi">PAIEMENTS S&Eacute;CURIS&Eacute;S</a></h5><div class="description">avec Carte de cr&eacute;dit, Paypal et Contre-remboursement</div><div class="text"><span class="arr"></span><p>Les achats effectu&eacute;s aupr&egrave;s de KIKO sont s&eacute;curis&eacute;s et garantis. Toutes les informations relatives aux paiements, y compris les renseignements personnels et coordonn&eacute;es de carte bancaire, sont prot&eacute;g&eacute;es par un syst&egrave;me avanc&eacute; de transmission de donn&eacute;es crypt&eacute;es. En aucun cas, le num&eacute;ro de votre carte de cr&eacute;dit ne sera communiqu&eacute; &agrave; KIKO, qui n'utilisera pas et ne conservera pas les informations que vous avez transmises &agrave; ses syst&egrave;mes.</p></div></li><li class="item  "><i style="background-image: url(//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/icons/new_usa/KIKO_icon_returns_1507/original/KIKO_icon_returns_1507.gif);" class="icon"></i><h5 class="title"><a href="#servizi">RETOURS FACILES</a></h5><div class="description">jusqu'&agrave; 14 jours apr&egrave;s la livraison de la commande</div><div class="text"><span class="arr"></span><p>Vous avez 14 jours ouvrables &agrave; partir de la date de r&eacute;ception des articles pour exercer votre droit de retour de la marchandise. Veuillez avertir le service client de tout probl&egrave;me relatif &agrave; la marchandise re&ccedil;ue.</p></div></li><li class="item  "><i style="background-image: url(//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/icons/new_usa/KIKO_icon_promo_codes_1507/original/KIKO_icon_promo_codes_1507.gif);" class="icon"></i><h5 class="title"><a href="#servizi">REMISES EXCLUSIVES</a></h5><div class="description">en utilisant les codes promotionnels</div><div class="text"><span class="arr"></span><p>Pour utiliser un code promotionnel, s&eacute;lectionnez &laquo; Avez-vous un code promotionnel ? &raquo; sur la page du panier et ins&eacute;rez les caract&egrave;res indiqu&eacute;s dans le champ appropri&eacute;. Si votre code est ins&eacute;r&eacute; correctement, le montant et/ou le contenu du panier seront recalcul&eacute;s en fonction de la promotion appliqu&eacute;e.</p></div></li><li class="item  "><i style="background-image: url(//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/icons/new_usa/KIKO_icon_recycle_1507/original/KIKO_icon_recycle_1507.gif);" class="icon"></i><h5 class="title"><a href="#servizi">produits recyclables</a></h5><div class="description"></div><div class="text"><span class="arr"></span><p>KIKO Milano est sensible &agrave; l&rsquo;environnement. Nos emballages / produits (tels que flacons en plastique, tubes et crayons en plastique) peuvent faire l&rsquo;objet d&rsquo;une consigne de tri. Pour en savoir plus : <a href="http://www.consignesdetri.fr">www.consignesdetri.fr</a>.</p></div></li></ul></div></div><div class="clear"></div></div><div class="products-references" id="products-references-0"><div class="mod-listing-wrapper"><a name="similar-section"></a><div id="similar-section" class="mod-listing-wrapper-col col-left"><div class="mod-title"><h5 class="title">CEUX QUI ONT ACHET&Eacute; CET ARTICLE ONT AUSSI ACHET&Eacute; :</h5></div><div class="mod-listing mod-listing-x2 mod-listing-full"><ul class="items js-listing-carouselx2 owl-carousel"><li class="item "><div class="pic"><a href="/fr-fr/maquillage/levres/rouges-a-levres/Velvet-Passion-Matte-Lipstick/p-KM00201020" class=""  title="Velvet Passion Matte Lipstick " role="navigation"><span data-lazy="false" data-class="" data-title="Velvet Passion Matte Lipstick" data-alt="Velvet Passion Matte Lipstick" data-picture="true"><span data-image-type="desktop" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h1b/h71/9358897905694/KM00201020principale_240Wx240H.jpg#k-listing"></span><span data-media="(min-width : 995px)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h1b/h71/9358897905694/KM00201020principale_240Wx240H.jpg#k-listing" data-image-type="desktop"></span><span data-media="(min-width : 995px) and (min-resolution: 2dppx), (min-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h1b/h71/9358897905694/KM00201020principale_240Wx240H.jpg#k-listing" data-image-type="desktop"></span><span data-media="(max-width : 767px) and (min-resolution: 2dppx), (max-width : 767px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h97/hbf/9358898102302/KM00201020principale_480Wx480H.jpg#k-listing-retina" data-image-type="retina"></span><span data-media="(min-width : 768px) and (max-width : 995px) and (min-resolution: 2dppx), (min-width : 768px) and (max-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h97/hbf/9358898102302/KM00201020principale_480Wx480H.jpg#k-listing-retina" data-image-type="retina"></span><img class="" title="Velvet Passion Matte Lipstick" alt="Velvet Passion Matte Lipstick" src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h1b/h71/9358897905694/KM00201020principale_240Wx240H.jpg#k-listing"/><noscript><img class="" title="Velvet Passion Matte Lipstick" alt="Velvet Passion Matte Lipstick" src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h1b/h71/9358897905694/KM00201020principale_240Wx240H.jpg#k-listing"/></noscript></span>
+    <p data-onsale-label="Offre Spéciale" class="labels "></p><p class="price cat-prodotto-price"><span class="startingFrom"></span><b itemprop="price" class="current-price  ">
+          EUR 8,90
+        </b></p></a></div><div class="desc"><a href="/fr-fr/maquillage/levres/rouges-a-levres/Velvet-Passion-Matte-Lipstick/p-KM00201020" class=""  title="Velvet Passion Matte Lipstick " role="navigation"><div class="title"> Velvet Passion Matte Lipstick
+      </div><div itemprop="description" class="longdesc">Rouge &agrave; l&egrave;vres confortable, couleur mate</div></a><a href="/fr-fr/maquillage/levres/rouges-a-levres/Velvet-Passion-Matte-Lipstick/p-KM00201020" class=""  title="Velvet Passion Matte Lipstick " role="navigation"><p itemtype="http://schema.org/Offer" itemscope="" itemprop="offers" class="price cat-prodotto-price"><span class="startingFrom"></span><b itemprop="price" class="current-price  ">
+          EUR 8,90
+        </b><span class="unit-price-container"></span></p></a><a class="btn selectcoloropen selectoption APPROVED" data-href="/fr-fr/maquillage/levres/rouges-a-levres/Velvet-Passion-Matte-Lipstick/p-KM00201020?selectColor=true" href="/fr-fr/maquillage/levres/rouges-a-levres/Velvet-Passion-Matte-Lipstick/p-KM00201020">Choisir une couleur</a><span class="note">Disponible en 20 couleurs</span></div><div class="clear"></div></li><li class="item "><div class="pic"><a href="/fr-fr/maquillage/levres/crayons-levres/Creamy-Colour-Comfort-Lip-Liner/p-KM00203009" class=""  title="Creamy Colour Comfort Lip Liner " role="navigation"><span data-lazy="false" data-class="" data-title="Creamy Colour Comfort Lip Liner" data-alt="Creamy Colour Comfort Lip Liner" data-picture="true"><span data-image-type="desktop" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hde/hd5/9180652339230/KM00203009principale_240Wx240H.jpg#k-listing"></span><span data-media="(min-width : 995px)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hde/hd5/9180652339230/KM00203009principale_240Wx240H.jpg#k-listing" data-image-type="desktop"></span><span data-media="(min-width : 995px) and (min-resolution: 2dppx), (min-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hde/hd5/9180652339230/KM00203009principale_240Wx240H.jpg#k-listing" data-image-type="desktop"></span><span data-media="(max-width : 767px) and (min-resolution: 2dppx), (max-width : 767px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hae/hdc/9180652535838/KM00203009principale_480Wx480H.jpg#k-listing-retina" data-image-type="retina"></span><span data-media="(min-width : 768px) and (max-width : 995px) and (min-resolution: 2dppx), (min-width : 768px) and (max-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hae/hdc/9180652535838/KM00203009principale_480Wx480H.jpg#k-listing-retina" data-image-type="retina"></span><img class="" title="Creamy Colour Comfort Lip Liner" alt="Creamy Colour Comfort Lip Liner" src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hde/hd5/9180652339230/KM00203009principale_240Wx240H.jpg#k-listing"/><noscript><img class="" title="Creamy Colour Comfort Lip Liner" alt="Creamy Colour Comfort Lip Liner" src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hde/hd5/9180652339230/KM00203009principale_240Wx240H.jpg#k-listing"/></noscript></span>
+    <p data-onsale-label="Offre Spéciale" class="labels "></p><p class="price cat-prodotto-price"><span class="startingFrom"></span><b itemprop="price" class="current-price  ">
+          EUR 4,90
+        </b></p></a></div><div class="desc"><a href="/fr-fr/maquillage/levres/crayons-levres/Creamy-Colour-Comfort-Lip-Liner/p-KM00203009" class=""  title="Creamy Colour Comfort Lip Liner " role="navigation"><div class="title"> Creamy Colour Comfort Lip Liner
+      </div><div itemprop="description" class="longdesc">Crayon &agrave; l&egrave;vres longue tenue</div></a><a href="/fr-fr/maquillage/levres/crayons-levres/Creamy-Colour-Comfort-Lip-Liner/p-KM00203009" class=""  title="Creamy Colour Comfort Lip Liner " role="navigation"><p itemtype="http://schema.org/Offer" itemscope="" itemprop="offers" class="price cat-prodotto-price"><span class="startingFrom"></span><b itemprop="price" class="current-price  ">
+          EUR 4,90
+        </b><span class="unit-price-container"></span></p></a><a class="btn selectcoloropen selectoption APPROVED" data-href="/fr-fr/maquillage/levres/crayons-levres/Creamy-Colour-Comfort-Lip-Liner/p-KM00203009?selectColor=true" href="/fr-fr/maquillage/levres/crayons-levres/Creamy-Colour-Comfort-Lip-Liner/p-KM00203009">Choisir une couleur</a><span class="note">Disponible en 16 couleurs</span></div><div class="clear"></div></li></ul><div class="clear"></div></div></div><a name="crosselling-section"></a><div id="crosselling-section" class="mod-listing-wrapper-col col-right"><div class="mod-title"><h5 class="title">VOUS AIMERIEZ AUSSI S&Ucirc;REMENT&nbsp;:</h5></div><div class="mod-listing mod-listing-x2 mod-listing-full"><ul class="items js-listing-carouselx2 owl-carousel"><li class="item "><div class="pic"><a href="/fr-fr/maquillage/levres/rouges-a-levres/Glossy-Dream-Sheer-Lipstick/p-KM00201019" class=""  title="Glossy Dream Sheer Lipstick " role="navigation"><span data-lazy="false" data-class="" data-title="Glossy Dream Sheer Lipstick" data-alt="Glossy Dream Sheer Lipstick" data-picture="true"><span data-image-type="desktop" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h51/h68/9181606871070/KM00201019principale_240Wx240H.jpg#k-listing"></span><span data-media="(min-width : 995px)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h51/h68/9181606871070/KM00201019principale_240Wx240H.jpg#k-listing" data-image-type="desktop"></span><span data-media="(min-width : 995px) and (min-resolution: 2dppx), (min-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h51/h68/9181606871070/KM00201019principale_240Wx240H.jpg#k-listing" data-image-type="desktop"></span><span data-media="(max-width : 767px) and (min-resolution: 2dppx), (max-width : 767px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hb9/hb6/9181607067678/KM00201019principale_480Wx480H.jpg#k-listing-retina" data-image-type="retina"></span><span data-media="(min-width : 768px) and (max-width : 995px) and (min-resolution: 2dppx), (min-width : 768px) and (max-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hb9/hb6/9181607067678/KM00201019principale_480Wx480H.jpg#k-listing-retina" data-image-type="retina"></span><img class="" title="Glossy Dream Sheer Lipstick" alt="Glossy Dream Sheer Lipstick" src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h51/h68/9181606871070/KM00201019principale_240Wx240H.jpg#k-listing"/><noscript><img class="" title="Glossy Dream Sheer Lipstick" alt="Glossy Dream Sheer Lipstick" src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h51/h68/9181606871070/KM00201019principale_240Wx240H.jpg#k-listing"/></noscript></span>
+    <p data-onsale-label="Offre Spéciale" class="labels "></p><p class="price cat-prodotto-price"><span class="startingFrom"></span><b itemprop="price" class="current-price  ">
+          EUR 8,90
+        </b></p></a></div><div class="desc"><a href="/fr-fr/maquillage/levres/rouges-a-levres/Glossy-Dream-Sheer-Lipstick/p-KM00201019" class=""  title="Glossy Dream Sheer Lipstick " role="navigation"><div class="title"> Glossy Dream Sheer Lipstick
+      </div><div itemprop="description" class="longdesc">Rouge &agrave; l&egrave;vres lumineux couleur semi-transparente</div></a><a href="/fr-fr/maquillage/levres/rouges-a-levres/Glossy-Dream-Sheer-Lipstick/p-KM00201019" class=""  title="Glossy Dream Sheer Lipstick " role="navigation"><p itemtype="http://schema.org/Offer" itemscope="" itemprop="offers" class="price cat-prodotto-price"><span class="startingFrom"></span><b itemprop="price" class="current-price  ">
+          EUR 8,90
+        </b><span class="unit-price-container"></span></p></a><a class="btn selectcoloropen selectoption APPROVED" data-href="/fr-fr/maquillage/levres/rouges-a-levres/Glossy-Dream-Sheer-Lipstick/p-KM00201019?selectColor=true" href="/fr-fr/maquillage/levres/rouges-a-levres/Glossy-Dream-Sheer-Lipstick/p-KM00201019">Choisir une couleur</a><span class="note">Disponible en 15 couleurs</span></div><div class="clear"></div></li><li class="item "><div class="pic"><a href="/fr-fr/maquillage/levres/rouges-a-levres/Gossamer-Emotion-Creamy-Lipstick/p-KM00201018" class=""  title="Gossamer Emotion Creamy Lipstick " role="navigation"><span data-lazy="false" data-class="" data-title="Gossamer Emotion Creamy Lipstick" data-alt="Gossamer Emotion Creamy Lipstick" data-picture="true"><span data-image-type="desktop" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hf1/hac/9180687269918/KM00201018principale_240Wx240H.jpg#k-listing"></span><span data-media="(min-width : 995px)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hf1/hac/9180687269918/KM00201018principale_240Wx240H.jpg#k-listing" data-image-type="desktop"></span><span data-media="(min-width : 995px) and (min-resolution: 2dppx), (min-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hf1/hac/9180687269918/KM00201018principale_240Wx240H.jpg#k-listing" data-image-type="desktop"></span><span data-media="(max-width : 767px) and (min-resolution: 2dppx), (max-width : 767px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h20/ha6/9180687466526/KM00201018principale_480Wx480H.jpg#k-listing-retina" data-image-type="retina"></span><span data-media="(min-width : 768px) and (max-width : 995px) and (min-resolution: 2dppx), (min-width : 768px) and (max-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h20/ha6/9180687466526/KM00201018principale_480Wx480H.jpg#k-listing-retina" data-image-type="retina"></span><img class="" title="Gossamer Emotion Creamy Lipstick" alt="Gossamer Emotion Creamy Lipstick" src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hf1/hac/9180687269918/KM00201018principale_240Wx240H.jpg#k-listing"/><noscript><img class="" title="Gossamer Emotion Creamy Lipstick" alt="Gossamer Emotion Creamy Lipstick" src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/hf1/hac/9180687269918/KM00201018principale_240Wx240H.jpg#k-listing"/></noscript></span>
+    <p data-onsale-label="Offre Spéciale" class="labels "></p><p class="price cat-prodotto-price"><span class="startingFrom"></span><b itemprop="price" class="current-price  ">
+          EUR 8,90
+        </b></p></a></div><div class="desc"><a href="/fr-fr/maquillage/levres/rouges-a-levres/Gossamer-Emotion-Creamy-Lipstick/p-KM00201018" class=""  title="Gossamer Emotion Creamy Lipstick " role="navigation"><div class="title"> Gossamer Emotion Creamy Lipstick
+      </div><div itemprop="description" class="longdesc">Rouge &agrave; l&egrave;vres onctueux couleur intense</div></a><a href="/fr-fr/maquillage/levres/rouges-a-levres/Gossamer-Emotion-Creamy-Lipstick/p-KM00201018" class=""  title="Gossamer Emotion Creamy Lipstick " role="navigation"><p itemtype="http://schema.org/Offer" itemscope="" itemprop="offers" class="price cat-prodotto-price"><span class="startingFrom"></span><b itemprop="price" class="current-price  ">
+          EUR 8,90
+        </b><span class="unit-price-container"></span></p></a><a class="btn selectcoloropen selectoption APPROVED" data-href="/fr-fr/maquillage/levres/rouges-a-levres/Gossamer-Emotion-Creamy-Lipstick/p-KM00201018?selectColor=true" href="/fr-fr/maquillage/levres/rouges-a-levres/Gossamer-Emotion-Creamy-Lipstick/p-KM00201018">Choisir une couleur</a><span class="note">Disponible en 30 couleurs</span></div><div class="clear"></div></li><li class="item "><div class="pic"><a href="/fr-fr/maquillage/levres/rouges-a-levres/Smart-Lipstick/p-KM002010129" class=""  title="Smart Lipstick " role="navigation"><span data-lazy="false" data-class="" data-title="Smart Lipstick" data-alt="Smart Lipstick" data-picture="true"><span data-image-type="desktop" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h7a/h5d/9264110534686/KM002010129principale_240Wx240H.jpg#k-listing"></span><span data-media="(min-width : 995px)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h7a/h5d/9264110534686/KM002010129principale_240Wx240H.jpg#k-listing" data-image-type="desktop"></span><span data-media="(min-width : 995px) and (min-resolution: 2dppx), (min-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h7a/h5d/9264110534686/KM002010129principale_240Wx240H.jpg#k-listing" data-image-type="desktop"></span><span data-media="(max-width : 767px) and (min-resolution: 2dppx), (max-width : 767px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h4b/h64/9264110731294/KM002010129principale_480Wx480H.jpg#k-listing-retina" data-image-type="retina"></span><span data-media="(min-width : 768px) and (max-width : 995px) and (min-resolution: 2dppx), (min-width : 768px) and (max-width : 995px) and (-webkit-min-device-pixel-ratio:2.0)" data-src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h4b/h64/9264110731294/KM002010129principale_480Wx480H.jpg#k-listing-retina" data-image-type="retina"></span><img class="" title="Smart Lipstick" alt="Smart Lipstick" src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h7a/h5d/9264110534686/KM002010129principale_240Wx240H.jpg#k-listing"/><noscript><img class="" title="Smart Lipstick" alt="Smart Lipstick" src="//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h7a/h5d/9264110534686/KM002010129principale_240Wx240H.jpg#k-listing"/></noscript></span>
+    <p data-onsale-label="Offre Spéciale" class="labels "></p><p class="price cat-prodotto-price"><span class="startingFrom"></span><b itemprop="price" class="current-price  ">
+          EUR 3,90
+        </b></p></a></div><div class="desc"><a href="/fr-fr/maquillage/levres/rouges-a-levres/Smart-Lipstick/p-KM002010129" class=""  title="Smart Lipstick " role="navigation"><div class="title"> Smart Lipstick
+      </div><div itemprop="description" class="longdesc">Rouge &agrave; l&egrave;vres riche et nourrissant</div></a><a href="/fr-fr/maquillage/levres/rouges-a-levres/Smart-Lipstick/p-KM002010129" class=""  title="Smart Lipstick " role="navigation"><p itemtype="http://schema.org/Offer" itemscope="" itemprop="offers" class="price cat-prodotto-price"><span class="startingFrom"></span><b itemprop="price" class="current-price  ">
+          EUR 3,90
+        </b><span class="unit-price-container"></span></p></a><a class="btn selectcoloropen selectoption APPROVED" data-href="/fr-fr/maquillage/levres/rouges-a-levres/Smart-Lipstick/p-KM002010129?selectColor=true" href="/fr-fr/maquillage/levres/rouges-a-levres/Smart-Lipstick/p-KM002010129">Choisir une couleur</a><span class="note">Disponible en 34 couleurs</span></div><div class="clear"></div></li></ul><div class="clear"></div></div></div><div class="clear"></div></div></div><div id="olapic-de012ee4-52c6-4029-82f2-aa48b05d61c1"></div><script id="olapic-widget" data-lang="fr_FR" data-tags="KM00201020" data-apikey="0deb89e444ec64ee1853d25c679dba6abdc0cbae392813c3fc7037d95c29365d" data-instance="584b724e2bcaf43b479885ede14532db" data-olapic="olapic-de012ee4-52c6-4029-82f2-aa48b05d61c1" src="https://photorankstatics-a.akamaihd.net/81b03e40475846d5883661ff57b34ece/static/frontend/latest/build.min.js" type="text/javascript"></script><script>
+    console.log("olapic data AFTER: ");
+    console.log("olapic key: " + $("#olapic-widget").data("olapic"));
+    console.log("instance : " + $("#olapic-widget").data("instance"));
+    console.log("olapic apikey: " + $("#olapic-widget").data("apikey"));
+  </script><div id="reviews" class="mod-detail-reviews grid_12"><a name="reviews"></a><div class="reviews-header"><h5 class="title-section"><a name="reviews">Avis (158)</a></h5><div class="average-rating"><form data-confirm="Confirmez-vous la note pour le produit" method="post" action="/p-KM00201020"><input value="" name="rate" type="hidden"/><input value="KM00201020" name="productCode" type="hidden"/><input value="" name="rating" type="hidden"/><div class="">
+				<input
+          value="1"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="2"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="3"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="4"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="5"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="6"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="7"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="8"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="9"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar {split:2} required"
+					checked="checked"
+          
+				/>
+			
+				<input
+          value="10"
+          name ="rating10" 
+          type ="radio"
+          class="quickStar {split:2} required"
+					
+          
+				/>
+			</div></form></div><span class="votes">Sur la base de 152 votes</span><a class="btn btn-medium btn-edit unauthenticated" id="js-write" href="#scrivi">Donner votre avis</a></div><div itemtype="http://data-vocabulary.org/Review-aggregate" itemscope="" class="reviews"><meta content="Velvet Passion Matte Lipstick" itemprop="itemreviewed"/><meta content="158" itemprop="count"/><meta content="4.608766233766234" itemprop="rating"/><meta content="http://www.kikocosmetics.com//d1ltdbx2fxfwcj.cloudfront.net/sys-master/images/h4b/h6a/9358897709086/KM00201020principale_100Wx100H.jpg#k-gallery-mini" itemprop="photo"/><ol class="items scrollable"><li class="item addreview js-addreview"><form id="reviewForm" class="form-default" action="http://www.kikocosmetics.com/kiko/fr/prodotto.html" method="post"><input name="rating" type="hidden"/><input name="review" type="hidden"/><input value="KM00201020" name="productCode" type="hidden"/><div class="form"><div class="form-group"><label class="control-label col" for="placeholderid">Rating</label><div class="rating"><div class="">
+				<input
+          value="1"
+          name ="rating10" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="2"
+          name ="rating10" 
+          type ="radio"
+          class="star {split:2} required"
+					checked="checked"
+          
+				/>
+			
+				<input
+          value="3"
+          name ="rating10" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="4"
+          name ="rating10" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="5"
+          name ="rating10" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="6"
+          name ="rating10" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="7"
+          name ="rating10" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="8"
+          name ="rating10" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="9"
+          name ="rating10" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          
+				/>
+			
+				<input
+          value="10"
+          name ="rating10" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          
+				/>
+			</div></div><span class="clear"></span></div><div class="form-group"><label class="hide" for="alias">Votre prénom</label><input placeholder="Votre prénom" value="" type="text" name="alias" id="alias"/><span class="clear"></span></div><div class="form-group"><label class="hide" for="headline">Titre de l'avis</label><input placeholder="Titre de l'avis" value="" type="text" name="headline" id="headline"/><span class="clear"></span></div><div class="form-group"><label class="hide" for="placeholderid">Description avis</label><textarea rows="3" placeholder="Description avis" name="comment" id="comment"></textarea><span class="clear"></span></div><div class="form-group"><input class="btn btn-primary" value="Donner votre avis" type="submit"/><span class="clear"></span></div></div><div class="clear"></div></form></li><li class="item"><div class="data"><p content="2016-09-03" class="date">03/09/2016</p><div class="rating">
+				<input
+          value="1"
+          name ="rate-rec0" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="2"
+          name ="rate-rec0" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="3"
+          name ="rate-rec0" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="4"
+          name ="rate-rec0" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="5"
+          name ="rate-rec0" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="6"
+          name ="rate-rec0" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="7"
+          name ="rate-rec0" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="8"
+          name ="rate-rec0" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="9"
+          name ="rate-rec0" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="10"
+          name ="rate-rec0" 
+          type ="radio"
+          class="star {split:2} required"
+					checked="checked"
+          disabled="disabled"
+				/>
+			</div><p class="author">Nalan</p></div><div class="text"><p itemprop="name" class="title">Lippenstift (Matte)</p><div class="message"> Habe beim Friseurladen den Lippenstift benutzt.
+Bin sehr begeistert. Andere Langanhaltende Lippenstifte halten bei mir nicht. Bei diesen von Kiko war ich sehr verwundert. Auch nach dem essen war es noch dran. Auch stunden danach.... habe mich daher heute bei kiko angemeldet und sofort Produkte bestellt</div></div><div class="clear"></div></li><li class="item"><div class="data"><p content="2016-09-03" class="date">03/09/2016</p><div class="rating">
+				<input
+          value="1"
+          name ="rate-rec1" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="2"
+          name ="rate-rec1" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="3"
+          name ="rate-rec1" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="4"
+          name ="rate-rec1" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="5"
+          name ="rate-rec1" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="6"
+          name ="rate-rec1" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="7"
+          name ="rate-rec1" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="8"
+          name ="rate-rec1" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="9"
+          name ="rate-rec1" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="10"
+          name ="rate-rec1" 
+          type ="radio"
+          class="star {split:2} required"
+					checked="checked"
+          disabled="disabled"
+				/>
+			</div><p class="author">Federica </p></div><div class="text"><p itemprop="name" class="title">Woow</p><div class="message"> Ottimi rossetti. Non seccano le labbra, durano tantissimo e i colori sono molto pigmentati</div></div><div class="clear"></div></li><li class="item"><div class="data"><p content="2016-09-02" class="date">02/09/2016</p><div class="rating">
+				<input
+          value="1"
+          name ="rate-rec2" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="2"
+          name ="rate-rec2" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="3"
+          name ="rate-rec2" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="4"
+          name ="rate-rec2" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="5"
+          name ="rate-rec2" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="6"
+          name ="rate-rec2" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="7"
+          name ="rate-rec2" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="8"
+          name ="rate-rec2" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="9"
+          name ="rate-rec2" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="10"
+          name ="rate-rec2" 
+          type ="radio"
+          class="star {split:2} required"
+					checked="checked"
+          disabled="disabled"
+				/>
+			</div><p class="author">Naty</p></div><div class="text"><p itemprop="name" class="title">Bellissimo</p><div class="message"> Ho acquistato da poco il 316! Bellissimo colore,molto particolare! L'ho testato indossandolo ad un matrimonio,ottima tenuta per tutta la giornata! Giusto una ritoccatina verso la fine della giornata per via del cibo magari un po più oleoso!   Sono molto contenta! Farò un pensierino per gli altri colori!</div></div><div class="clear"></div></li><li class="item"><div class="data"><p content="2016-08-31" class="date">31/08/2016</p><div class="rating">
+				<input
+          value="1"
+          name ="rate-rec3" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="2"
+          name ="rate-rec3" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="3"
+          name ="rate-rec3" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="4"
+          name ="rate-rec3" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="5"
+          name ="rate-rec3" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="6"
+          name ="rate-rec3" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="7"
+          name ="rate-rec3" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="8"
+          name ="rate-rec3" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="9"
+          name ="rate-rec3" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="10"
+          name ="rate-rec3" 
+          type ="radio"
+          class="star {split:2} required"
+					checked="checked"
+          disabled="disabled"
+				/>
+			</div><p class="author">Fabiana </p></div><div class="text"><p itemprop="name" class="title">115-117</p><div class="message"> Fantastici..morbidi e duraturi.. pienamente promossi!</div></div><div class="clear"></div></li><li class="item"><div class="data"><p content="2016-08-30" class="date">30/08/2016</p><div class="rating">
+				<input
+          value="1"
+          name ="rate-rec4" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="2"
+          name ="rate-rec4" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="3"
+          name ="rate-rec4" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="4"
+          name ="rate-rec4" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="5"
+          name ="rate-rec4" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="6"
+          name ="rate-rec4" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="7"
+          name ="rate-rec4" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="8"
+          name ="rate-rec4" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="9"
+          name ="rate-rec4" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="10"
+          name ="rate-rec4" 
+          type ="radio"
+          class="star {split:2} required"
+					checked="checked"
+          disabled="disabled"
+				/>
+			</div><p class="author">Giorgia</p></div><div class="text"><p itemprop="name" class="title">Ottimi</p><div class="message"> Sono rimasta piacevolmente colpita da questi rossetti, dopo averne preso uno ne ho poi ricomprati due, anche per mia mamma! Hanno 20 bellissimi colori, io in particolare ho il 304, 314 e 316.. Sono confortevoli sulle labbra nonostante siano matte e durano veramente a lungo (6-7 ore)</div></div><div class="clear"></div></li><li class="item"><div class="data"><p content="2016-08-29" class="date">29/08/2016</p><div class="rating">
+				<input
+          value="1"
+          name ="rate-rec5" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="2"
+          name ="rate-rec5" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="3"
+          name ="rate-rec5" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="4"
+          name ="rate-rec5" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="5"
+          name ="rate-rec5" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="6"
+          name ="rate-rec5" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="7"
+          name ="rate-rec5" 
+          type ="radio"
+          class="star {split:2} required"
+					checked="checked"
+          disabled="disabled"
+				/>
+			
+				<input
+          value="8"
+          name ="rate-rec5" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="9"
+          name ="rate-rec5" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="10"
+          name ="rate-rec5" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			</div><p class="author">Chloé</p></div><div class="text"><p itemprop="name" class="title">Super produit</p><div class="message"> Les couleurs sont magnifiques et le produit offre une bonne tenue dans le temps.</div></div><div class="clear"></div></li><li class="item"><div class="data"><p content="2016-08-29" class="date">29/08/2016</p><div class="rating">
+				<input
+          value="1"
+          name ="rate-rec6" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="2"
+          name ="rate-rec6" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="3"
+          name ="rate-rec6" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="4"
+          name ="rate-rec6" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="5"
+          name ="rate-rec6" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="6"
+          name ="rate-rec6" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="7"
+          name ="rate-rec6" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="8"
+          name ="rate-rec6" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="9"
+          name ="rate-rec6" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="10"
+          name ="rate-rec6" 
+          type ="radio"
+          class="star {split:2} required"
+					checked="checked"
+          disabled="disabled"
+				/>
+			</div><p class="author">Anna</p></div><div class="text"><p itemprop="name" class="title">Bellissimi</p><div class="message"> Questi rossetti sono davvero belli, ne ho comprati già un bel po'!! Ottimi colori, buona durata.. Prodotto davvero valido </div></div><div class="clear"></div></li><li class="item"><div class="data"><p content="2016-08-28" class="date">28/08/2016</p><div class="rating">
+				<input
+          value="1"
+          name ="rate-rec7" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="2"
+          name ="rate-rec7" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="3"
+          name ="rate-rec7" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="4"
+          name ="rate-rec7" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="5"
+          name ="rate-rec7" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="6"
+          name ="rate-rec7" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="7"
+          name ="rate-rec7" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="8"
+          name ="rate-rec7" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="9"
+          name ="rate-rec7" 
+          type ="radio"
+          class="star {split:2} required"
+					checked="checked"
+          disabled="disabled"
+				/>
+			
+				<input
+          value="10"
+          name ="rate-rec7" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			</div><p class="author">Helene</p></div><div class="text"><p itemprop="name" class="title">Magnifique rouge à lèvres</p><div class="message"> Je l'ai prit en teinte 314 "Plum" il est superbe et rend très bien!</div></div><div class="clear"></div></li><li class="item"><div class="data"><p content="2016-08-28" class="date">28/08/2016</p><div class="rating">
+				<input
+          value="1"
+          name ="rate-rec8" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="2"
+          name ="rate-rec8" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="3"
+          name ="rate-rec8" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="4"
+          name ="rate-rec8" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="5"
+          name ="rate-rec8" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="6"
+          name ="rate-rec8" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="7"
+          name ="rate-rec8" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="8"
+          name ="rate-rec8" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="9"
+          name ="rate-rec8" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="10"
+          name ="rate-rec8" 
+          type ="radio"
+          class="star {split:2} required"
+					checked="checked"
+          disabled="disabled"
+				/>
+			</div><p class="author">Laura</p></div><div class="text"><p itemprop="name" class="title">Buono</p><div class="message"> Buono</div></div><div class="clear"></div></li><li class="item"><div class="data"><p content="2016-08-28" class="date">28/08/2016</p><div class="rating">
+				<input
+          value="1"
+          name ="rate-rec9" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="2"
+          name ="rate-rec9" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="3"
+          name ="rate-rec9" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="4"
+          name ="rate-rec9" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="5"
+          name ="rate-rec9" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="6"
+          name ="rate-rec9" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="7"
+          name ="rate-rec9" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="8"
+          name ="rate-rec9" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="9"
+          name ="rate-rec9" 
+          type ="radio"
+          class="star {split:2} required"
+					
+          disabled="disabled"
+				/>
+			
+				<input
+          value="10"
+          name ="rate-rec9" 
+          type ="radio"
+          class="star {split:2} required"
+					checked="checked"
+          disabled="disabled"
+				/>
+			</div><p class="author">Viola</p></div><div class="text"><p itemprop="name" class="title">Resistente, colori bellissimi</p><div class="message"> Ho comprato il 303 abbinandolo alla matita 407 e sono contentissima, dura a lungo e il colore è veramente bello! Finalmente inoltre il suggerimento sui colori delle matite da abbinare, per me era sempre un casino prima trovare quella giusta ..</div></div><div class="clear"></div></li><li class="item load-more"><a class="btn btn-light loadmore-show loadmore" href="#loadmore">Voir plus avis</a></li></ol><div class="pagination-reviews"><a href="/fr-fr/maquillage/levres/rouges-a-levres/Velvet-Passion-Matte-Lipstick/p-KM00201020?page=2&reviews-ajax=true" class="next">next
+          </a></div></div></div><div class="clear"></div><div class="social product-social"><div class="social-bar-top"></div><section style="" id="social-bar"><div><div id="gigya-share-bar"></div></div></section><script type="text/javascript"> window.___gcfg = {lang: 'fr'};
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+      </script><script type="text/javascript">var addthis_config = {"data_track_addressbar":false, ui_language: "fr" };</script><script src="//s7.addthis.com/js/300/addthis_widget.js" type="text/javascript">/**/</script><div class="clear"></div><div class="socialmobile hideInTablet hideInDesktop" id="gigya-share-bar-mobile"></div></div><div class="mod-listing-wrapper focus-on"><div id="jumpto-focus" class="mod-title"><h2><a name="jumpto-focus"></a>Approfondissements</h2></div><div class="mod-listing mod-listing-x4 mod-listing-mini"><ul class="items js-listing-carousel owl-carousel"><li class="item "><div class="pic"><a href="/fr-fr/nouveautes/velvet-passion-matte-lipstick.html"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/it/box-responsive/2016/LuxuriousLipsticks-LipPencils_Banner540x540_EU/resolutions/res-223x223/LuxuriousLipsticks-LipPencils_Banner540x540_EU.jpg" alt="" title="" width="223" heigth="223" /></a><div class="overlay"><p class="price center"><a href="/fr-fr/nouveautes/velvet-passion-matte-lipstick.html" class="btn btn-primary2">En savoir plus</a></p></div></div><div class="desc"><a href="/fr-fr/nouveautes/velvet-passion-matte-lipstick.html"><p class="title"> Velvet Passion Matte Lipstick</p><p class="longdesc">Des lèvres de velours. La pureté de la couleur dans une application sans défauts. KIKO MILANO présente deux nouveaux..</p></a></div><div class="clear"></div></li></ul><div class="clear"></div></div></div></div><div id="mobile-menu" class="container-nav masklevel1"><div id="mobile-menu-second-menu-panel" class="second-menu-panel"><button class="back js-back">Retour</button><div class="nav"></div></div><div id="mobile-menu-third-menu-panel" class="third-menu-panel"><button class="back js-back">Retour</button><div class="nav"></div></div><div id="mobile-menu-first-menu-panel" class="first-menu-panel"><nav class="nav"><ul style="z-index: 101" class="nav1"><li class="nav1-item subnav "><a class=" nav1-link" href="/fr-fr/maquillage.html"> Maquillage</a><div class="nav2-wrapper"><ul class="nav2 "><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/maquillage/visage.html"> Maquillage Visage</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/base.html"> Base</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/fonds-de-teint.html"> Fonds de teint</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/correcteurs.html"> Correcteurs</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/poudres.html"> Poudres</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/poudres-bronzantes.html"> Poudres bronzantes</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/fards-a-joues.html"> Fards à joues</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/poudres-illuminatrices.html"> Poudres illuminatrices</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/visage/fixateurs.html"> Fixateurs</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/maquillage/yeux.html"> Maquillage Yeux</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/yeux/base.html"> Base</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/yeux/ombres-a-paupieres.html"> Ombres à paupières</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/yeux/crayons-yeux.html"> Crayons pour les yeux</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/yeux/mascaras.html"> Mascaras</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/yeux/eyeliners.html"> Eyeliners</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/yeux/sourcils.html"> Sourcils</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/maquillage/levres.html"> Lèvres</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/levres/base.html"> Base</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/levres/gloss-levres.html"> Gloss pour les lèvres</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/levres/rouges-a-levres.html"> Rouges à lèvres</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/levres/crayons-levres.html"> Crayons à lèvres</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/maquillage/mains.html"> Maquillage Mains</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/mains/vernis-a-ongles.html"> Vernis à ongles</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/mains/traitements-ongles.html"> Soins des ongles</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/mains/french-manucure.html"> French Manucure</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/mains/dissolvants.html"> Dissolvants</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/mains/fixateurs-de-vernis-a-ongles.html"> Fixateurs de vernis à ongles</a></li></ul></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/maquillage/palettes.html"> Palettes Clics System</a></li><li class="nav2-item subnav last"><a role="navigation" class="nav2-link" href="/fr-fr/maquillage/series-limitees.html"> Séries Limitées</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/series-limitees/neo-noir.html"> Neo Noir</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/series-limitees/the-beauty-games.html"> The Beauty Games</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/series-limitees/the-artist.html"> The Artist</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/series-limitees/campus-idol.html"> Campus Idol</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/series-limitees/rebel-romantic.html"> Rebel Romantic</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/maquillage/series-limitees/on-the-go-minis.html"> On-The-Go Minis</a></li></ul></li><li class="image"><a class="adv" href="/fr-fr/nouveautes/unmeasurable-mascara.html"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/it/menu/MenuBanner_UnmeasurableMascara/original/MenuBanner_UnmeasurableMascara.jpg" alt="" title="" /></a></li></ul><div class="nav2-bottom-container"><div class="nav2-bottom-wrapper nav2-bottom-full"><ul class="nav2-bottom"><li class="nav2-bottom-item subnav  first"><div class="nav2-link">MEILLEURES VENTES</div><ul class="nav3"><li class="nav3-item"><a class="nav3-link" href="/fr-fr/meilleure-vente/meilleure-vente-maquillage.html">Meilleures ventes Maquillage</a></li><li class="nav3-item"><a class="nav3-link" href="/fr-fr/meilleure-vente/fan-favorites.html">Fan Favorites</a></li></ul></li></ul></div></div></div></li><li class="nav1-item subnav "><a class=" nav1-link" href="/fr-fr/soin-pour-la-peau.html"> Soin pour la peau</a><div class="nav2-wrapper"><ul class="nav2 "><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/soin-pour-la-peau/visage.html"> Soin du Visage</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/nettoyant.html"> Nettoyant</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/hydratant.html"> Hydratant</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/anti-imperfections.html"> Anti-imperfections</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/exfoliants.html"> Exfoliants</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/rides.html"> Rides</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/rides-visibles.html"> Rides visibles</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/masques.html"> Masques</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/serums.html"> Sérums</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/visage/skin-trainer.html"> Skin Trainer</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/soin-pour-la-peau/levres.html"> Lèvres</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/levres/baume-a-levres.html"> Baumes à lèvres</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/levres/baumes-a-levres.html"> Spécifiques lèvres</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/soin-pour-la-peau/corps.html"> Corps</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/corps/soins-specifiques.html"> Soins spécifiques</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/soin-pour-la-peau/mains.html"> Mains et pieds</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/mains/creme-pour-les-mains.html"> Crème pour les mains</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/mains/assainissants.html"> Assainissants</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/mains/soins-pieds.html"> Produits pour le Soin des Pieds</a></li></ul></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/soin-pour-la-peau/parfums.html"> Parfums</a></li><li class="nav2-item subnav last"><a role="navigation" class="nav2-link" href="/fr-fr/soin-pour-la-peau/series-limitees.html"> Séries limitées</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/soin-pour-la-peau/series-limitees/neo-noir.html"> Neo Noir</a></li></ul></li><li class="image"><a class="adv" href="/fr-fr/nouveautes/begin-with-skin/skin-trainer.html"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/it/menu/MenuBanner_SkinTrainer/original/MenuBanner_SkinTrainer.jpg" alt="" title="" /></a></li></ul><div class="nav2-bottom-container"><div class="nav2-bottom-wrapper nav2-bottom-full"><ul class="nav2-bottom"><li class="nav2-bottom-item subnav  first"><div class="nav2-link">MEILLEURES VENTES</div><ul class="nav3"><li class="nav3-item"><a class="nav3-link" href="/fr-fr/meilleure-vente/meilleure-vente-soins-de-la-peau.html">Meilleures ventes Soin de la peau</a></li><li class="nav3-item"><a class="nav3-link" href="/fr-fr/meilleure-vente/fan-favorites.html">Fan Favorites</a></li></ul></li></ul></div></div></div></li><li class="nav1-item subnav "><a class=" nav1-link" href="/fr-fr/accessoires.html"> Accessoires</a><div class="nav2-wrapper"><ul class="nav2 "><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/accessoires/accessoires-visage.html"> Visage</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-visage/applicateurs.html"> Applicateurs et Miroirs</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-visage/eponges-nettoyantes.html"> Éponges nettoyantes</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-visage/pinces-a-epiler.html"> Pinces à épiler</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-visage/paillettes-et-strass.html"> Paillettes et Strass</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/accessoires/accessoires-yeux.html"> Yeux</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-yeux/faux-cils.html"> Faux cils</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-yeux/recourbe-cils.html"> Recourbe-cils</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-yeux/taille-crayons.html"> Taille-crayons</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-yeux/palettes-ombres-a-paupieres.html"> Palettes Ombres à paupières</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/accessoires/accessoires-mains.html"> Mains et ongles</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-mains/limes.html"> Limes</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-mains/manucure.html"> Manucure</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-mains/dissolvants.html"> Dissolvants</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-mains/fixateurs-vernis-a-ongles.html"> Fixateurs pour vernis à ongles</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/accessoires-mains/nail-art.html"> Nail Art</a></li></ul></li><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/accessoires/pinceaux.html"> Pinceaux</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/pinceaux/pinceaux-yeux.html"> Pinceaux yeux</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/pinceaux/pinceaux-visage.html"> Pinceaux visage</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/pinceaux/pinceaux-levres.html"> Pinceaux lèvres</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/pinceaux/nettoyant-pinceaux.html"> Nettoyant pinceaux</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/pinceaux/set-pinceaux.html"> Set pinceaux</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/accessoires/pinceaux/ceinture-a-pinceaux.html"> Accessoires pour pinceaux</a></li></ul></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/accessoires/accessoires-de-voyage.html"> Accessoires de voyage</a></li><li class="nav2-item  last"><a role="navigation" class="nav2-link" href="/fr-fr/accessoires/trousses-maquillage.html"> Trousses maquillage</a></li><li class="image"><a class="adv" href="/p-KM0050203100033.html"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/it/menu/MenuBanner_CleansingCloth/original/MenuBanner_CleansingCloth.jpg" alt="" title="" /></a></li></ul><div class="nav2-bottom-container"><div class="nav2-bottom-wrapper nav2-bottom-full"><ul class="nav2-bottom"><li class="nav2-bottom-item subnav  first"><div class="nav2-link">Meilleures Ventes</div><ul class="nav3"><li class="nav3-item"><a class="nav3-link" href="/fr-fr/meilleure-vente/meilleure-vente-accessoires.html">Meilleures ventes Accessoires</a></li><li class="nav3-item"><a class="nav3-link" href="/fr-fr/meilleure-vente/fan-favorites.html">Fan Favorites</a></li></ul></li></ul></div></div></div></li><li class="nav1-item subnav "><a class=" nav1-link" href="/fr-fr/produits-solaires.html"> Solaires</a><div class="nav2-wrapper"><ul class="nav2 "><li class="nav2-item subnav "><a role="navigation" class="nav2-link" href="/fr-fr/produits-solaires/protection-solaire.html"> Protection solaire</a><ul class="nav3"><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/produits-solaires/protection-solaire/faible-protection.html"> Faible Protection</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/produits-solaires/protection-solaire/moyenne-protection.html"> Moyenne Protection</a></li><li class="nav3-item"><a class="nav3-link" role="navigation" href="/fr-fr/produits-solaires/protection-solaire/haute-protection.html"> Haute Protection</a></li></ul></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/produits-solaires/apres-soleil.html"> Après-soleil </a></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/produits-solaires/cheveux.html"> Cheveux</a></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/produits-solaires/autobronzants.html"> Autobronzants</a></li><li class="nav2-item  last"><a role="navigation" class="nav2-link" href="/fr-fr/produits-solaires/accessoires.html"> Accessoires</a></li></ul></div></li><li class="nav1-item subnav "><a class=" nav1-link" href="/fr-fr/gift-card.html"> Gift Card</a><div class="nav2-wrapper"><ul class="nav2 "><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/gift-card/gift-card-physique.html"> Gift Card Physique</a></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/gift-card/online-gift-card.html"> Online Gift Card</a></li><li class="nav2-item  last"><a role="navigation" class="nav2-link" href="/fr-fr/gift-card/verification-de-credit.html"> Vérification de crédit</a></li></ul></div></li><li class="nav1-item nav1-item-more  "><a class="nav1-link minor" href="/fr-fr/nouveautes.html"> Nouveaut&eacute;s</a></li><li class="nav1-item subnav "><a class=" nav1-link" href="/fr-fr/promo-kiko.html"> Promotion</a><div class="nav2-wrapper"><ul class="nav2 "><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/promo-kiko/promo-actiglow.html"> Promo Actiglow + fond de teint </a></li><li class="nav2-item  "><a role="navigation" class="nav2-link" href="/fr-fr/promo-kiko/promo-mascara.html"> Mascara à 3,90 €</a></li><li class="nav2-item  last"><a role="navigation" class="nav2-link" href="/fr-fr/promo-kiko/produits-en-promotion.html"> Tous les produits en promotion</a></li></ul></div></li><li class="nav1-item nav1-item-more  "><a class="nav1-link minor" href="/fr-fr/kikotrendsetters.html"> #kikotrendsetters</a></li></ul></nav></div><ul id="mobile-topbar-utils" class="utils"><li class="utils-item"><a class="utils-link login  " href="/fr-fr/authenticate/my-account"><span data-hover="S'identifier">S'identifier</span></a></li><li class="utils-item"><a class="utils-link registration" href="https://account.kikocosmetics.com/cas/newUserRegistration?service=http%3A%2F%2Fwww.kikocosmetics.com%2Ffr-fr%2F&X-PERCASSI-COUNTRY=fr-fr"><span data-hover="S'enregistrer">S'enregistrer</span></a></li><li class="utils-item"><a class="utils-link loyalty" href="/fr-fr/kiko-rewards.html"><span data-hover="KIKO Rewards">KIKO Rewards</span></a></li></ul></div><div data-show-country-selection="true" data-cookie-name="ip_detection_domain" data-overlay-closed="" data-country-selection="/kiko/shared/country-selection.html" class="footer-data"></div><div class="footer-services-wrapper100"><div class="footer-services container"><div id="" class="js-services-carousel"><div class="grid_3 footer-services-item"><a style="background-image: url(//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/icone-servizi-new/mid/mykiko_ICON_NEW/original/mykiko_ICON_NEW.gif);" href="/fr-fr/system/register.html" class="shipping24h"><p>Enregistrez-vous sur le site pour b&eacute;n&eacute;ficier d&rsquo;avantages exclusifs</p></a></div><div class="grid_3 footer-services-item"><a style="background-image: url(//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/icone-servizi-new/mid/KIKO_rewards_general_icon_MID/original/KIKO_rewards_general_icon_MID.jpg);" href="/fr-fr/kiko-rewards.html" class="shipping24h"><p>D&eacute;couvrez le programme de fidelit&eacute; qui r&eacute;compense votre passion pour KIKO</p></a></div><div class="grid_3 footer-services-item"><a style="background-image: url(//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/icone-servizi-new/mid/KIKO_icon_tempi_spedizione_MID/original/KIKO_icon_tempi_spedizione_MID.png);" href="/fr-fr/achats-securises/livraison-informations-et-couts.html" class="shipping24h"><p>Livraison express pr&eacute;vue entre 2-4 jours ouvr&eacute;s</p></a></div><div class="grid_3 footer-services-item"><a style="background-image: url(//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/icone-servizi-new/mid/KIKO_icon_call_center_MID/original/KIKO_icon_call_center_MID.png);" href="/fr-fr/services-en-ligne.html" class="shipping24h"><p>Service client <strong>toujours</strong> joignable</p></a></div></div></div><div class="footer-services container"><div class="clear"></div></div></div><div class="footer-nl-wrapper100"><div class="footer-nl container"><div class="grid_5 reverse footer-nl-item"><form action="/fr-fr/utils/store-locator" class="form-inline"><fieldset><label for="cercastore">Boutiques KIKO</label><input class="cap" placeholder="Recherche" name="q" id="cercastore" type="text"/><input name="more" value="30" type="hidden"/><input name="submit" value="Recherche" type="submit"/></fieldset></form></div><div class="grid_7 reverse footer-nl-item newsletter"><form data-track-prefix="iscrizione_NL_footer" class="form-inline" data-home-uuid="058917c4-3c1a-4115-b394-413a9477bfc9" method="post" action="/fr-fr/eshop/newsletters" id="newsletter"><fieldset><label for="eMail-newsletterformfooter">S'INSCRIRE &Agrave; LA NEWSLETTER</label><input class="email" placeholder="Votre e-mail" id="eMail-newsletterformfooter" size="25" type="text" name="eMail"/><input value="Kiko-FR" id="storeSelected" name="storeSelected" type="hidden"/><input value="" type="hidden" id="check-response-email-newsletter"/><input value="Adresse email invalide" type="hidden" id="email-invalidformat"/><input value="Autorisation du traitement des donn&eacute;es personnelles" type="hidden" id="check-privacyformat"/><input id="conferma-newsletter" value="OK" type="submit"/></fieldset></form></div><div class="clear"></div></div></div><div class="footer-nav-wrapper100"><footer class="footer-nav container"><div class=" grid_12"><h6 class="logo"><a href="/fr-fr/"><img title="KIKO Make Up" alt="KIKO Make Up" src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/loghi/new/KIKO_logo_small_new/original/KIKO_logo_small_new.png"/></a></h6><ul class="nav-corporate js-accordion "><li class="nav-corporate-item item"><a class="nav-corporate-link title" href="javascript:void(0);">KIKO</a><ul class="text"><li><a href="/fr-fr/la-marque-kiko/la-marque.html">La Marque</a></li><li><a href="/fr-fr/la-marque-kiko/la-marque/maquillage.html">Maquillage</a></li><li><a href="/fr-fr/la-marque-kiko/la-marque/soins-de-la-peau.html">Soins de la Peau</a></li><li><a href="/fr-fr/utils/store-locator.html">Magasins KIKO</a></li><li><a href="https://Kiko.recruitmentplatform.com/">Travailler avec nous</a></li><li><a href="/fr-fr/copyright.html">Copyright</a></li><li><a href="/fr-fr/plansite.html">Plan du site</a></li></ul></li><li class="nav-corporate-item item"><a class="nav-corporate-link title" href="javascript:void(0);">ACHATS EN LIGNE</a><ul class="text"><li><a href="/fr-fr/achats-securises/livraison-informations-et-couts.html">Livraison: informations et coûts</a></li><li><a href="/fr-fr/achats-securises/modalites-de-paiement.html">Modalités de paiement</a></li><li><a href="/fr-fr/achats-securises/paiements-securises.html">Paiements sécurisés</a></li><li><a href="/fr-fr/services-en-ligne.html">Services en ligne</a></li><li><a href="/fr-fr/achats-securises/conditions-de-vente.html">Conditions de vente</a></li><li><a href="/fr-fr/achats-securises/informations-sur-la-confidentialite.html">Informations sur la confidentialité</a></li><li><a href="/fr-fr/kikotrendsetters/terms-and-conditions.html">Conditions générales #KTS</a></li></ul></li><li class="nav-corporate-item item"><a class="nav-corporate-link title" href="javascript:void(0);">AIDE</a><ul class="text"><li><a href="/fr-fr/aide-et-contacts.html">Questions fréquentes</a></li></ul></li></ul><div class="social"><span class="social-link">Follow us</span><div class="social-icons"><div id="gigya-follow-bar"></div></div></div><div class="clear"></div><div class="crosscountry"><a class="crosscountry-link js-crosscountry" href="javascript:void(0);">Choose your location</a><a class="crosscountry-current js-crosscountry" href="javascript:void(0);"><span class="flag flag-fr"></span><span class="country-name">
+              France
+              </span></a></div></div><div class="clear"></div></footer></div><div class="js-footer-xcountry footer-xcountry-wrapper100"></div><div class="footer-legal-wrapper100"><div class="footer-legal container"><div class=" grid_12"><ul class="payment-items"><li class="payment-item"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/pagamenti/mastercard/original/mastercard.gif" alt="percassi-kiko-prod2-as-08 7.0.0" title="percassi-kiko-prod2-as-08 7.0.0" /></li><li class="payment-item"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/pagamenti/mastercard_securecode/original/mastercard_securecode.gif" alt="percassi-kiko-prod2-as-08 7.0.0" title="percassi-kiko-prod2-as-08 7.0.0" /></li><li class="payment-item"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/pagamenti/visa/original/visa.gif" alt="percassi-kiko-prod2-as-08 7.0.0" title="percassi-kiko-prod2-as-08 7.0.0" /></li><li class="payment-item"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/pagamenti/verified_by_visa/original/verified_by_visa.gif" alt="percassi-kiko-prod2-as-08 7.0.0" title="percassi-kiko-prod2-as-08 7.0.0" /></li><li class="payment-item"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/pagamenti/visa_electron/original/visa_electron.gif" alt="percassi-kiko-prod2-as-08 7.0.0" title="percassi-kiko-prod2-as-08 7.0.0" /></li><li class="payment-item"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/pagamenti/KIKO_american_express_icon/resolutions/res-l10000x31/KIKO_american_express_icon.png" alt="percassi-kiko-prod2-as-08 7.0.0" title="percassi-kiko-prod2-as-08 7.0.0" width="60" heigth="31" /></li><li class="payment-item"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/pagamenti/Amex_SafeKey_31px_Footer/original/Amex_SafeKey_31px_Footer.gif" alt="percassi-kiko-prod2-as-08 7.0.0" title="percassi-kiko-prod2-as-08 7.0.0" /></li><li class="payment-item"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/pagamenti/paypal/original/paypal.gif" alt="percassi-kiko-prod2-as-08 7.0.0" title="percassi-kiko-prod2-as-08 7.0.0" /></li><li class="payment-item"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/pagamenti/KIKO_card_blue_icon/original/KIKO_card_blue_icon.jpg" alt="percassi-kiko-prod2-as-08 7.0.0" title="percassi-kiko-prod2-as-08 7.0.0" /></li><li class="payment-item"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/pagamenti/logo_maestro/original/logo_maestro.gif" alt="percassi-kiko-prod2-as-08 7.0.0" title="percassi-kiko-prod2-as-08 7.0.0" /></li><li class="payment-item"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/pagamenti/logo_vpay/original/logo_vpay.png" alt="percassi-kiko-prod2-as-08 7.0.0" title="percassi-kiko-prod2-as-08 7.0.0" /></li><li class="payment-item"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/pagamenti/geotrust/original/geotrust.png" alt="percassi-kiko-prod2-as-08 7.0.0" title="percassi-kiko-prod2-as-08 7.0.0" /></li><li class="payment-item"><img src="//d1ltdbx2fxfwcj.cloudfront.net/mediaObject/kiko/img_sistema/pagamenti/netcomm/original/netcomm.gif" alt="percassi-kiko-prod2-as-08 7.0.0" title="percassi-kiko-prod2-as-08 7.0.0" /></li></ul><div class="clear"></div>
+          <p>&copy; KIKO France - 75, avenue des Champs-Elys&eacute;es, 75008 Paris -&nbsp;Registre du Commerce et des Soci&eacute;t&eacute;s de Paris: B 521 795 237</p>
+        </div><div class="clear"></div></div></div><script src="//assets.pinterest.com/js/pinit.js" type="text/javascript"></script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+          <style type="text/css">
+
+.blocco-prodotto .cat-prodotto-dettagli div.titolo-elemento-ricercato {
+height:auto;
+overflow:none;
+}
+
+.mod-listing .items .item .desc .color-selection .control-form {
+max-width: 200px;
+}
+
+</style>
+
+
+
+<style type="text/css">
+.mod-checkout-steps .mod-checkout-step.step-address2 .radio-inline{
+border-bottom:none;
+}
+.mod-checkout-steps .mod-checkout-step.step-delivery .radio-inline .col{
+width:130px;
+}
+
+</style>
+
+
+    
+          <style>
+.top-promo-present .mod-hero {
+    padding-top: 0;
+  }
+
+.mod-hero.video .video-wrapper {     
+  top: 0;
+}
+
+.top-promo-present .mod-hero.video .video-wrapper {    
+ top: 0;
+}
+
+.mod-choose-color .sales-variants-checkbox {
+   float:left;
+   margin-top:10px;
+}
+
+@media only screen and (min-width: 767px) {
+.boris-wrapper {
+  width: 700px;
+}
+
+.mod-boris-wrapper {
+  .double {
+    float: left;
+    width: 50%;
+}
+
+.mod-boris-wrapper:not(.mod-boris-newsletter) {
+      position: relative;
+      padding-top: 47%;
+      overflow: hidden;
+}
+
+.mod-boris-wrapper:not(.mod-boris-newsletter) img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+}
+}
+
+</style>
+    </div><div id="virtual-green-overlay" class="mod-lightbox mod-lightbox-virtualgreen body-effect"><div class="lightbox-bg close-overlay"></div><div class="mod-virtualgreen"><span class="lightbox-close close-overlay"></span><div class="content"></div></div></div><div id="js-editorial-lightbox" class="mod-lightbox mod-lightbox-highlight-text container"><div class="lightbox-bg close-overlay"></div><div class="mod-highlight-text"><div class="lightbox-close close-overlay"></div></div></div><div id="js-editorial-lightbox-video" class="mod-lightbox mod-lightbox-highlight-video"><div class="lightbox-bg close-overlay"></div><div class="mod-highlight-video"><div class="lightbox-close close-overlay"></div></div></div><div class="to-top"><div id="go-to-top"><i class="icon"></i>Top</div></div><div class="dark-backdrop"></div><div id="search-modal"><div data-dismiss="#search-modal" class="close"><span class="text">Fermer</span></div><div class="container"><form class="main" action="/fr-fr/utils/search.html" method="get"><input autocomplete="off" placeholder="Rechercher" value="" name="q" type="text" class="query js-search-select"/><input value="true" name="search" type="submit" class="send"/></form></div><div class="wrapper"><div class="container"><div id="modal-search-results"></div><img class="loading" src="//d1ltdbx2fxfwcj.cloudfront.net/docroot/img/ajax-loader.gif"/></div></div></div>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"applicationID":"4179469","applicationTime":206,"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"ba09b8e93e","transactionName":"ZwNUMBYDDERQABYKWV5JZRQWCwxQcgwMF0RfCloBFk0SGlIWEAJCVQIbBwsMFlJfF08PX0MSFkwjJzYe","agent":"","errorBeacon":"bam.nr-data.net"}</script></body></html>

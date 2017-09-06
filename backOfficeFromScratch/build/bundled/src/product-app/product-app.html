@@ -1,0 +1,184 @@
+<html><head><link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/iron-signals/iron-signals.html">
+
+
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="global-app.html">
+<link rel="import" href="features-app.html">
+<link rel="import" href="colors-app.html">
+<link rel="import" href="crossProd-app.html">
+<link rel="import" href="application-app.html">
+
+
+
+
+</head><body><dom-module id="product-app">
+  <template>
+
+    <style type="text/css">
+    #menu {
+      float: left;
+      width: 50px;
+      margin-top: 10px;
+    }
+
+    .menuOption {
+      display: block;
+      width: 50px;
+      height: 50px;
+
+      background-color: white;
+      color: grey;
+
+      box-shadow: 1px 1px 3px grey;
+      font-size: 15px;
+    }
+
+    .home {
+      background-color: #6d89a0;
+      color: white;
+    }
+
+    button {
+      border-style: none;
+      background-color: white;
+    }
+
+    .card {
+      display: inline-block;
+
+      vertical-align: middle;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    .mainInput {
+      display: inline-block;
+
+      vertical-align: top;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    #mainProductField {
+
+
+      margin-left: 70px;
+      margin-right: 10px;
+    }
+
+    #productMenu {
+      float: left;
+    }
+
+    paper-input, paper-textarea, paper-button .list {
+
+
+/*    --paper-input-container-color: #737373;
+    --paper-input-container-focus-color: #737373;
+    --paper-input-container-input-color: black;*/
+
+      margin: 5px;
+      padding: 5px;
+      display: inline-block;
+      width: 210px;
+      overflow: auto;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: grey;
+    }
+
+    paper-textarea {
+      float: left;
+      height: 160px;
+    }
+
+    iron-image {
+      display: inline-block;
+      margin: 5px;
+      margin-top: 10px;
+
+      border-width: 1px;
+      border-style: solid;
+      border-color: #727272;
+    }
+
+    iron-pages {
+      position: static;
+      margin-left: 70px;
+    }
+
+    #mainProductField paper-input {
+      margin-left: 2px;
+      margin-bottom: 8px;
+      vertical-align: bottom;
+    }
+
+    </style>
+
+    <div id="menu">
+      <button class="menuOption home" onclick="dashboardCall()"><iron-icon icon="icons:home"></iron-icon></button>
+      <button class="menuOption" onclick="categoriesCall()"><iron-icon icon="icons:apps"></iron-icon></button>
+      <button class="menuOption" onclick="searchCall()"><iron-icon icon="icons:search"></iron-icon></button>
+    </div>
+
+        <iron-ajax auto="" id="getProduct" url="" handle-as="json" debounce-duration="300" last-response="{{productIntel}}"></iron-ajax>
+
+    <div id="mainProductField">
+        <iron-image src="{{productIntel.img}}" style="width:220px; height:200px" sizing="contain"></iron-image>
+
+        <paper-input class="mainInput" label="Name" value="{{productIntel.name::input}}"></paper-input>
+    </div>
+
+    <div id="productMenu">
+      <button class="menuOption" on-click="productGlobal">G</button>
+      <button class="menuOption" on-click="productFeatures">F</button>
+      <button class="menuOption" on-click="productColors">C</button>
+      <button class="menuOption" on-click="productCrossProd">P</button>
+      <button class="menuOption" on-click="productApplication">A</button>
+    </div>
+
+    
+
+      <iron-pages selected="0" id="productComponent">
+        <global-app items="{{productIntel}}"></global-app>
+        <features-app items="{{productIntel}}"></features-app>
+        <colors-app items="{{productIntel}}"></colors-app>
+        <crossprod-app items="{{productIntel}}"></crossprod-app>
+        <application-app items="{{productIntel}}"></application-app>
+      </iron-pages>
+
+        <iron-ajax auto="" id="ajax" url="http://54.171.115.230:8080/api/v1/entities/{{connId}}/products/{{productIntel._id}}" handle-as="json" content-type="application/json" debounce-duration="300" body="{{productIntel}}" last-response="{{answer}}"></iron-ajax>
+
+      <iron-signals on-iron-signal-atchoum="load"></iron-signals>
+
+  </template>
+  
+  <script>function productCall(){var t=document.querySelector("iron-pages");t.selectIndex(1)}Polymer({is:"product-app",properties:{connId:{type:String,value:sessionId}},stringify:function(t){return JSON.stringify(t)},load:function(t){this.$.getProduct.url="http://54.171.115.230:8080/api/v1/entities/"+this.connId+"/products/"+t.detail,this.$.getProduct.generateRequest()},setajax:function(){this.$.ajax.method="put",this.$.ajax.generateRequest(),this.$.ajax.method=""},productGlobal:function(t){this.$.productComponent.selectIndex(0)},productFeatures:function(){this.$.productComponent.selectIndex(1)},productColors:function(){this.$.productComponent.selectIndex(2)},productCrossProd:function(){this.$.productComponent.selectIndex(3)},productApplication:function(){this.$.productComponent.selectIndex(4)}});</script>
+</dom-module></body></html>

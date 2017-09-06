@@ -1,0 +1,115 @@
+<input id="testTest" style="display:none" value="<%= req.session.id %>"></input>
+
+<div class="container">
+  <div class="jumbotron">
+    <h1 align="center">API Chat page</h1>
+  </div>
+  <div style="height: 300px; background-color: grey;" id="chatbox"></div>
+
+  <form align="right" enctype='application/json' name="fromChat">
+
+    <input type="text" name="name" readonly="true" id="nameForm">
+    <input type="text" name="sessionId" style="display:none" value="<%= req.session.id %>" id="sessionIdForm">
+    <input type="text" name="message" placeholder="your message" required="true" id="messageForm">
+
+    <input class="btn btn-info" value="send" onclick="tagada()">
+  </form>
+</div>
+
+<script>
+  var sessionId;
+
+  window.onload = function setUp(){
+
+    sessionId = document.getElementById('testTest').value;
+
+    // var testRequest = "http://localhost:1337/chatsession/?sessionId=" + sessionId;
+    // var testContent = new XMLHttpRequest();
+    // testContent.open("GET", testRequest, false);
+    // testContent.send(null);
+    // var test = JSON.parse(testContent.response);
+
+    // if(!test.length){
+    //   var pseudo = prompt("what is your name ?");
+    //   if(pseudo){
+    //     document.getElementById('name').value = pseudo;
+    //   }else {
+    //     document.getElementById('name').value = "undifined";
+    //   }
+    //   var request = "http://localhost:1337/chatsession/create?sessionId=" + sessionId + "&connected=true";
+    //   var apiContent = new XMLHttpRequest();
+    //   apiContent.open("GET", request, false);
+    //   apiContent.send(null);
+    // }else{
+    //   var request = "http://localhost:1337/chatsession/update/" + test[0].id + "?connected=true";
+    //   var apiContent = new XMLHttpRequest();
+    //   apiContent.open("GET", request, false);
+    //   apiContent.send(null);
+    // }
+
+    document.getElementById('nameForm').value = prompt('What is your name ?');
+
+    update();
+  }
+
+  function update(){
+    var research = "http://localhost:1337/chat/?sessionId=" + sessionId;
+    var apiContent = new XMLHttpRequest();
+    apiContent.open("GET", research, false);
+    apiContent.send(null);
+    var r = JSON.parse(apiContent.response);
+    
+    if(r.length){
+      document.getElementById('name').value = r[0].name ;
+      document.getElementById('chatbox').innerHTML = "";
+      for (i = 0; i < r.length; i++) {
+        if(r[i].name == r[0].name){
+          document.getElementById('chatbox').innerHTML += r[i].name + " : " + r[i].message + "<br/>";
+        }else {
+          document.getElementById('chatbox').innerHTML += "-> " + r[i].message + "<br/>";
+        }
+      }
+    }
+  }
+
+  function tagada() {
+    // document.getElementById('chatbox').innerHTML += "<strong>Vous : </strong>" ;
+    // document.getElementById('chatbox').innerHTML += document.getElementById('messageForm').value;
+    // document.getElementById('chatbox').innerHTML += "<br/>" ;
+
+    // var data = {name: '', message: '', sessionId: ''};
+    // data.name = document.getElementById('nameForm').value;
+    // data.message = document.getElementById('messageForm').value;
+    // data.sessionId = document.getElementById('sessionIdForm').value;      
+
+    var chatRequest = "http://54.171.115.230:8080/chattest";
+
+    var chatApi = new XMLHttpRequest();
+    chatApi.open("POST", chatRequest);
+    chatApi.setRequestHeader("Content-Type", "application/json");
+    chatApi.send(JSON.stringify(data));
+
+    chatApi.onreadystatechange = function () {
+     if (chatApi.readyState == 4 && chatApi.status == 200) {
+       var json = JSON.parse(chatApi.responseText);
+
+       document.getElementById('chatbox').innerHTML += "<strong>Serveur : </strong>" ;
+       document.getElementById('chatbox').innerHTML += json.message ;
+       document.getElementById('chatbox').innerHTML += "<br/>" ;
+     }
+   }
+ }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

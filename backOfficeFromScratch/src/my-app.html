@@ -1,0 +1,69 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+
+<link rel="import" href="dashboard-app/dashboard-app.html">
+<link rel="import" href="product-app/product-app.html">
+<link rel="import" href="categories-app/categories-app.html">
+<link rel="import" href="categoriesEdit-app/categoriesEdit-app.html">
+<link rel="import" href="search-app/search-app.html">
+<link rel="import" href="question-app/question-app.html">
+<link rel="import" href="cloud-app/cloud-app.html">
+
+<dom-module id="my-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      iron-pages {
+        position: static;
+        margin-bottom: 80px;
+        height: 100%;
+      }
+    </style>
+
+    <app-location route="{{route}}"
+                  use-hash-as-path></app-location>
+    <app-route
+        route="{{route}}"
+        pattern="/:page"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
+
+    <iron-pages  selected="[[routeData.page]]"  attr-for-selected="name"  fallback-selection="dashboard"  id="plop">
+        <dashboard-app route="{{subroute}}" name="dashboard"></dashboard-app>
+
+        <product-app route="{{subroute}}" name="product"></product-app>
+
+        <categories-app route="{{subroute}}" name="categories"></categories-app>
+
+        <search-app route="{{subroute}}" name="search"></search-app>
+
+        <categoriesEdit-app route="{{subroute}}" name="categoriesEdit"></categoriesEdit-app>
+
+        <question-app route="{{subroute}}" name="question"></question-app>
+
+        <cloud-app route="{{subroute}}" name="cloud"></cloud-app>
+    </iron-pages>
+
+  </template>
+
+  <script>
+  var sessionId = "57d2c67d6165141b3d842987";
+  console.log("ici");
+
+    Polymer({
+      is: 'my-app',
+      properties: {
+      },
+      stringify: function(obj){ return JSON.stringify(obj); },
+      test: function(obj){ console.log(obj); },
+    });
+  </script>
+</dom-module>

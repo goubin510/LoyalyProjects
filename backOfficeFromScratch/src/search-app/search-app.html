@@ -1,0 +1,156 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<link rel="stylesheet" type="text/css" href="/font.css">
+
+<dom-module id="search-app">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+<style type="text/css">
+    #menu {
+      float: left;
+      width: 50px;
+    }
+
+    .menuOption {
+      display: block;
+      width: 50px;
+      height: 50px;
+
+      background-color: white;
+      color: grey;
+
+      box-shadow: 1px 1px 3px grey;
+      font-size: 15px;
+    }
+
+    .home {
+      background-color: #6d89a0;
+      color: white;
+    }
+
+    button {
+      border-style: none;
+      background-color: white;
+    }
+
+    #content {
+      margin: 10px;
+      margin-left: 70px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      font: 200 15px/1.5 Helvetica, Verdana, sans-serif;
+      border-bottom: 1px solid #ccc;
+    }
+
+    li:last-child {
+      border: none;
+    }
+
+    li paper-button {
+      text-decoration: none;
+      color: #000;
+      display: block;
+    }
+
+    li paper-button:hover {
+      background: #f6f6f6;
+    }
+
+    a {
+      text-decoration: none;
+      color: grey;
+    }
+      
+    </style>
+
+    <div id="menu">
+      <a href="#/dashboard/customers">
+        <button class="menuOption home">
+          <iron-icon icon="icons:home"></iron-icon>
+        </button>
+      </a>
+
+      <a href="#/categories">
+        <button class="menuOption">
+          <iron-icon icon="icons:apps"></iron-icon>
+        </button>
+      </a>
+
+      <a href="#/search">
+        <button class="menuOption">
+          <iron-icon icon="icons:search"></iron-icon>
+        </button>
+      </a>
+    </div>
+
+    <div id="content">
+      <paper-input label="Search" on-input="refresh" id="inputField""></paper-input>
+
+      <div id="results">
+        <ul>
+          <template is="dom-repeat" items="{{answer.results}}">
+            <li>
+              <a href="#/product/[[item._id]]">
+                <paper-button>{{item.name}}</paper-button>
+              </a>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </div>
+
+  <iron-ajax
+  auto
+  id="ajax"
+  url=""
+  handle-as="json"
+  content-type="application/json"
+  debounce-duration="300"
+  last-response="{{answer}}"></iron-ajax>
+
+  </template>
+  <!-- Creates the element's prototype and registers it -->
+  <script>
+    Polymer({
+      is: 'search-app',
+      stringify: function(obj){ return JSON.stringify(obj); },
+      refresh: function(){
+        var searchString = this.$.inputField.value.split(' ');
+        var finalString = '';
+
+        if(searchString.length > 1){
+          for (var i = 0; i < searchString.length; i++) {
+            if(searchString[i] != "")
+              finalString += searchString[i];
+            if((i < searchString.length - 1) &&(searchString[i + 1] != ""))
+              finalString += '-';
+          }
+        }else{
+          finalString = searchString[0];
+        }
+
+        this.$.ajax.url = "http://54.171.115.230:8080/api/v1/entities/" + this.connId + "/products/search?text=" + finalString;
+        if(this.$.inputField.value)
+          this.$.ajax.generateRequest();
+      },
+      properties: {
+        connId: {
+          type: String,
+          value: "57d2c67d6165141b3d842987",
+        },
+      },
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,143 @@
+<html><head><link rel="import" href="../../bower_components/polymer/polymer.html">
+
+</head><body><dom-module id="colors-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+    .card {
+      display: inline-block;
+
+      vertical-align: middle;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    .mainInput {
+      display: inline-block;
+
+      vertical-align: top;
+
+      height: auto;
+      width: auto;
+
+      padding: 5px;
+      background-color: white;
+
+      margin: 10px;
+      overflow: auto;
+    }
+
+    #mainProductField {
+      display: block;
+
+      margin-left: 70px;
+      margin-right: 10px;
+    }
+
+    .mainInput {
+      display: inline-block;
+    }
+
+    button {
+      border-style: none;
+      background-color: white;
+    }
+
+    #menuOption {
+      display: block;
+      width: 50px;
+      height: 50px;
+
+      background-color: white;
+      color: grey;
+
+      box-shadow: 1px 1px 3px grey;
+      font-size: 15px;
+    }
+
+    #producMenu {
+      float: left;
+    }
+
+    paper-input, paper-dropdown-menu, paper-textarea, paper-listbox {
+      margin: 5px;
+      padding: 5px;
+      display: inline-block;
+      width: 210px;
+      overflow: auto;
+
+      border-style: solid;
+      border-width: 1px;
+      border-color: grey;
+    }
+
+    paper-textarea {
+      float: left;
+      height: 160px;
+    }
+
+    iron-image {
+      display: inline-block;
+      margin: 5px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #727272;
+    }
+
+    paper-button {
+      float: right;
+    }
+    </style>
+
+      <paper-dropdown-menu label="code" value="{{test}}">
+        <paper-listbox class="dropdown-content" selected="{{showing}}">
+          <template is="dom-repeat" items="{{items.colors}}">
+            <paper-item>{{item.code}}</paper-item>
+          </template>
+        </paper-listbox>
+      </paper-dropdown-menu>
+
+      <paper-input label="img" value="{{getimg(properties)}}"></paper-input>
+      <paper-input label="imgRet" value="{{getimgRet(properties)}}"></paper-input>
+      <paper-input label="Sel" value="{{getimgSel(properties)}}"></paper-input>
+      <paper-input label="hex" value="{{gethex(properties)}}"></paper-input>
+
+<paper-dropdown-menu value="{{properties}}" style="display: none">
+  <paper-listbox class="dropdown-content" selected="{{showing}}">
+    <template is="dom-repeat" items="{{items.colors}}">
+      <paper-item>{{item.img}},{{item.imgRet}},{{item.imgSel}},{{item.hex}},{{item._id}}</paper-item>
+    </template>
+  </paper-listbox>
+</paper-dropdown-menu>
+
+
+
+  </template>
+
+  <script>Polymer({is:"colors-app",stringify:function(t){return JSON.stringify(t)},getimg:function(t){var r=t.split(",");return r[0]},getimgRet:function(t){var r=t.split(",");return r[1]},getimgSel:function(t){var r=t.split(",");return r[2]},gethex:function(t){var r=t.split(",");return r[3]},get_id:function(t){var r=t.split(",");return r[4]}});</script>
+</dom-module>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

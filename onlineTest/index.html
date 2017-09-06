@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Question Test</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+<style type="text/css">
+    body {
+        text-align: center;
+        background-color: #D7F5EE;
+        font-family: 'Montserrat', sans-serif;
+        color: #004438;
+    }
+
+    h1 {
+        margin: 0.67em 0;
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        line-height: 1.1;
+        font-size: 2.5rem;
+    }
+
+    p {
+        orphans: 3;
+        widows: 3;
+        color: #24292C;
+    }
+
+    input {
+        font: inherit;
+        overflow: visible;
+        margin: 0;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        margin: 0;
+        line-height: inherit;
+        
+        border-radius: 5px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #CEE6DE;
+        
+        background-color: #E9F4F1;
+    }
+
+    input::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+
+    input:-moz-focusring {
+        outline: 1px dotted ButtonText;
+    }
+
+    .jumbotron {
+        margin: auto;
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+        background-color: #eceeef;
+        border-radius: 0.3rem;
+    }
+
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .log {
+        display: block;
+        background-color: #EDF8F5;
+
+        border-radius: 5px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #CEE6DE;
+        
+        margin: auto;
+        width: 50%;
+    }
+    
+    .container {
+        background-color: #EDF8F5;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    
+    .jumbotron {
+        background-color: white;
+        margin: 0px;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="container">
+	<div class="jumbotron">
+		<h1>Testing program</h1>
+		<p id="intro">You are here to ask question to test our customers team. bla bla bla</p>
+
+        <form onsubmit="send()">
+            <input type="text" id="userInput" autofocus>
+            <input type="submit" value="Send" id="sender">
+        </form>
+        <br/>
+        <div class="log">
+            <div id="log"></div>`
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script>
+
+window.onload = function loading() {
+	var data = {userId: ''};
+	data.userId = getCookie('userId');
+
+	var chatRequest = "http://54.171.115.230:8080/survey";
+	var chatApi = new XMLHttpRequest();
+	chatApi.open("POST", chatRequest);
+	chatApi.setRequestHeader("Content-Type", "application/json");
+	chatApi.send(JSON.stringify(data));
+
+	chatApi.onreadystatechange = function () {
+		if (chatApi.readyState == 4 && chatApi.status == 200) {
+			showLog(chatApi.responseText);
+		}
+	}
+
+}
+
+// {"messages":[{"order":0,"rcvd":"/start","rep":"So, hello, what can I help you 
+//   with?"}],"userId":"zerg","sessionId":"57ea33e22923212aaf8fbc6e"}
+
+function showLog(data) {
+	var json = JSON.parse(data);
+
+	if(!json.final){
+		for (var i = 0; i < json.messages.length; i++) {
+			document.getElementById('log').innerHTML += json.messages[i].rcvd + "<br/>" + json.messages[i].rep + "<br/>";
+		}
+		document.cookie = "sessionId = " + json.sessionId;
+	}else{
+		document.getElementById('userInput').disabled = true;
+		document.getElementById('sender').disabled = true;
+		document.getElementById('log').innerHTML += json.message + "<br/>";
+		document.getElementById('log').innerHTML += "<a href='" + json.redurl + "' >Validate the test</a>";
+	}
+
+}
+
+function send(){
+	var data = {userId: '', message: ''};
+
+	data.userId = getCookie('userId');
+	data.message = document.getElementById('userInput').value;
+
+	document.getElementById('userInput').value = '';
+	var chatRequest = "http://54.171.115.230:8080/survey/" + getCookie('sessionId');
+	var chatApi = new XMLHttpRequest();
+	chatApi.open("POST", chatRequest);
+	chatApi.setRequestHeader("Content-Type", "application/json");
+	chatApi.send(JSON.stringify(data));
+
+
+	chatApi.onreadystatechange = function () {
+		if (chatApi.readyState == 4 && chatApi.status == 200) {
+			showLog(chatApi.responseText);
+		}
+	}
+
+}
+
+	function getCookie(cName) {
+	  var name = cName + "=";
+	  var ca = document.cookie.split(';');
+	  for(var i=0; i<ca.length; i++) {
+	    var c = ca[i];
+	    while (c.charAt(0)==' ') {
+	      c = c.substring(1);
+	    }
+	    if (c.indexOf(name) == 0) {
+	      return c.substring(name.length, c.length);
+	    }
+	  }
+	  return "";
+	}
+
+</script>
+
+
+
+
+
+
+
+
